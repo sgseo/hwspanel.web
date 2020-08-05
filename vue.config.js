@@ -4,5 +4,7 @@ const AntdDayjsWebpackPlugin = require('antd-dayjs-webpack-plugin')
 module.exports = {
   configureWebpack: {
     plugins: [new AntdDayjsWebpackPlugin()],
-  }
+  },
+
+  assetsDir: 'static'
 }
