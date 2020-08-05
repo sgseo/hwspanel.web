@@ -1,5 +1,8 @@
-import AntdDayjsWebpackPlugin from 'antd-dayjs-webpack-plugin';
+const AntdDayjsWebpackPlugin = require('antd-dayjs-webpack-plugin')
 
+// vue.config.js
 module.exports = {
-  plugins: [new AntdDayjsWebpackPlugin()],
-};
+  configureWebpack: {
+    plugins: [new AntdDayjsWebpackPlugin()],
+  }
+}
