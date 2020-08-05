@@ -1,0 +1,122 @@
+html,body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family:华文黑体,"Microsoft YaHei",微软雅黑,STHei,"Helvetica Neue",Helvetica,Arial,sans-serif
+}
+
+.color000, .color-black {
+  color: #000;
+}
+
+.color111 {
+  color: #111;
+}
+
+.color222 {
+  color: #222;
+}
+
+.color333 {
+  color: #333;
+}
+
+.color444 {
+  color: #444;
+}
+
+.color555 {
+  color: #555;
+}
+
+.color666 {
+  color: #666;
+}
+
+.color777 {
+  color: #777;
+}
+
+.color888 {
+  color: #888;
+}
+
+.color999 {
+  color: #999;
+}
+
+.font12px {
+  font-size: 12px;
+}
+
+.font13px {
+  font-size: 13px;
+}
+
+.font14px {
+  font-size: 14px;
+}
+
+.font15px {
+  font-size: 15px;
+}
+
+.font16px {
+  font-size: 16px;
+}
+
+.font17px {
+  font-size: 17px;
+}
+
+.font18px {
+  font-size: 18px;
+}
+
+.font19px {
+  font-size: 19px;
+}
+
+.font20px {
+  font-size: 20px;
+}
+
+.font21px {
+  font-size: 21px;
+}
+
+.font22px {
+  font-size: 22px;
+}
+
+.font23px {
+  font-size: 23px;
+}
+
+.font24px {
+  font-size: 24px;
+}
+
+.font25px {
+  font-size: 25px;
+}
+
+.font26px {
+  font-size: 26px;
+}
+
+.font27px {
+  font-size: 27px;
+}
+
+.font28px {
+  font-size: 28px;
+}
+
+.font29px {
+  font-size: 29px;
+}
+
+.font30px {
+  font-size: 30px;
+}
