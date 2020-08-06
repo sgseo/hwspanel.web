@@ -1,8 +1,32 @@
-html,body {
+html,body,#app {
     margin: 0;
     padding: 0;
     height: 100%;
     font-family:华文黑体,"Microsoft YaHei",微软雅黑,STHei,"Helvetica Neue",Helvetica,Arial,sans-serif
+}
+
+.bg-cyan {
+    background-color: cyan;
+}
+
+.bg-gray {
+    background-color: gray;
+}
+
+.bg-red {
+    background-color: red;
+}
+
+.bg-white {
+    background-color: white;
+}
+
+.bg-black {
+    background-color: black;
+}
+
+.bg-blue {
+    background-color: blue
 }
 
 .color000, .color-black {
