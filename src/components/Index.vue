@@ -60,7 +60,9 @@
               <p>
                   <a-icon class="ma5" type="global" />网站
               </p>
-              <p class="font22px color-primary">0</p>
+              <p class="font22px color-primary">
+                <a href="#">0</a>
+              </p>
             </a-card>
           </a-col>
           <a-col :xs="24" :sm="24" :md="12" :lg="6" :xl="4">
@@ -68,7 +70,9 @@
               <p>
                   <a-icon class="ma5" type="database" />数据库
               </p>
-              <p class="font22px color-primary">0</p>
+              <p class="font22px color-primary">
+                <a href="#">0</a>
+              </p>
             </a-card>
           </a-col>
           <a-col :xs="24" :sm="24" :md="12" :lg="6" :xl="4">
@@ -76,7 +80,9 @@
               <p>
                   <a-icon class="ma5" type="file-protect" />SSL
               </p>
-              <p class="font22px color-primary">0</p>
+              <p class="font22px color-primary">
+                <a href="#">0</a>
+              </p>
             </a-card>
           </a-col>
         </a-card>
