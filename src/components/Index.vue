@@ -120,9 +120,9 @@
             <a href="http://t.hws.com" target="_blank">
               <a-card class="bgf8 text-left hover" :bordered="false">
                 <p>
-                  <a-icon type="message" />论坛
+                  <a-icon class="mar5" type="message" />论坛
                 </p>
-                <p class="color-primary font12px">有任何问题，请上论坛发帖求助。</p>
+                <p class="color-primary font12px">有问题，上论坛发帖求助。</p>
               </a-card>
             </a>
           </a-col>
@@ -130,7 +130,7 @@
             <a href="https://www.hws.com" target="_blank">
               <a-card class="bgf8 text-left hover" :bordered="false">
                 <p>
-                  <a-icon type="star" />官网
+                  <a-icon class="mar5" type="star" />官网
                 </p>
                 <p class="color-error font12px">服务器安全，认准护卫神。</p>
               </a-card>
@@ -139,28 +139,28 @@
           <a-col :xs="24" :sm="24" :md="12" :lg="6" :xl="4">
             <a-card class="bgf8 text-left hover" :bordered="false">
               <p>
-                <a-icon type="qq" />QQ：
+                <a-icon class="mar5" type="qq" />
                 <a href="#" target="_blank">800181978</a>
               </p>
-              <p class="color-success font12px">客服QQ，24小时在线为您服务。</p>
+              <p class="color-success font12px">在线沟通更流畅、更便利。</p>
             </a-card>
           </a-col>
           <a-col :xs="24" :sm="24" :md="12" :lg="6" :xl="4">
             <a-card class="bgf8 text-left hover" :bordered="false">
               <p>
-                <a-icon type="phone" />电话：
+                <a-icon class="mar5" type="phone" />
                 <a href="#" target="_blank">028-89549999</a>
               </p>
-              <p class="color-warning font12px">电话沟通，更方便，更快捷。</p>
+              <p class="color-warning font12px">电话沟通更准确，更效率。</p>
             </a-card>
           </a-col>
           <a-col :xs="24" :sm="24" :md="12" :lg="6" :xl="4">
             <a href="https://www.hws.com/help/linuxmaster/" target="_blank">
               <a-card class="bgf8 text-left hover" :bordered="false">
                 <p>
-                  <a-icon type="solution" />帮助
+                  <a-icon class="mar5" type="solution" />帮助
                 </p>
-                <p class="color-primary font12px">帮助文档、教程、知识分享。</p>
+                <p class="color-primary font12px">帮助文档、教程、和知识。</p>
               </a-card>
             </a>
           </a-col>
