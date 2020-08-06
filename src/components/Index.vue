@@ -56,7 +56,7 @@
             <a-icon class="ma5 color-primary" type="tag" />数据概览
           </span>
           <a-col :xs="24" :sm="24" :md="12" :lg="6" :xl="4">
-            <a-card class="bg-gray text-center">
+            <a-card class="bgf8 text-center" :bordered="false">
               <p>
                   <a-icon class="ma5" type="global" />网站
               </p>
@@ -64,7 +64,7 @@
             </a-card>
           </a-col>
           <a-col :xs="24" :sm="24" :md="12" :lg="6" :xl="4">
-            <a-card class="bg-gray text-center">
+            <a-card class="bgf8 text-center" :bordered="false">
               <p>
                   <a-icon class="ma5" type="database" />数据库
               </p>
@@ -72,7 +72,7 @@
             </a-card>
           </a-col>
           <a-col :xs="24" :sm="24" :md="12" :lg="6" :xl="4">
-            <a-card class="bg-gray text-center">
+            <a-card class="bgf8 text-center" :bordered="false">
               <p>
                   <a-icon class="ma5" type="file-protect" />SSL
               </p>

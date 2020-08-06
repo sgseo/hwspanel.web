@@ -105,7 +105,11 @@ ol {
   color: #f5222d;
 }
 
-.bg-gray {
+.bgf8 {
+  background-color: #f8f8f8;
+}
+
+.bged {
   background-color: #ededed;
 }
 
