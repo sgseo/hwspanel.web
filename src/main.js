@@ -11,10 +11,16 @@ import {
     Layout,
     Menu,
     Icon,
+    Row,
+    Col,
+    Card,
 } from 'ant-design-vue';
 Vue.use(Layout)
 Vue.use(Menu)
 Vue.use(Icon)
+Vue.use(Row)
+Vue.use(Col)
+Vue.use(Card)
 
 Vue.config.productionTip = false
 

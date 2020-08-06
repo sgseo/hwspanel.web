@@ -2,7 +2,7 @@
   <div id="app">
     <a-layout id="components-layout-demo-custom-trigger" style="height: 100%;">
       <a-layout-sider v-model="collapsed" :trigger="null" collapsible>
-        <div class="logo" style="overflow: hidden; text-align: center;">
+        <div class="logo text-center" style="overflow: hidden;">
             <span class="font22px" style="color: #DDD">护卫神·主机大师</span>
         </div>
         <a-menu theme="dark" mode="inline" :default-selected-keys="['1']">
@@ -37,7 +37,7 @@
         </a-menu>
       </a-layout-sider>
       <a-layout>
-        <a-layout-header style="background: #fff; padding: 0">
+        <a-layout-header class="bg-white pd0">
           <a-icon
             class="trigger"
             :type="collapsed ? 'menu-unfold' : 'menu-fold'"
@@ -45,11 +45,11 @@
           />
         </a-layout-header>
         <a-layout-content
-          :style="{ margin: '24px 16px', padding: '24px', background: '#fff', minHeight: '280px' }"
+          :style="{ margin: '16px', minHeight: '280px' }"
         >
           <router-view />
         </a-layout-content>
-        <a-layout-footer style="background: #fff; text-align: center; padding: 18px;">
+        <a-layout-footer class="bg-white pd20 text-center">
             <a class="color888" href="https://www.hws.com" target="_blank">
                 版权所有 © 护卫神-服务器安全专家
             </a>

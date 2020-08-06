@@ -1,35 +1,26 @@
-html,body,#app {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    font-family:华文黑体,"Microsoft YaHei",微软雅黑,STHei,"Helvetica Neue",Helvetica,Arial,sans-serif
+html,
+body,
+#app {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: 华文黑体, "Microsoft YaHei", 微软雅黑, STHei, "Helvetica Neue",
+    Helvetica, Arial, sans-serif;
 }
 
-.bg-cyan {
-    background-color: cyan;
+.text-center {
+  text-align: center;
 }
 
-.bg-gray {
-    background-color: gray;
+.text-left {
+  text-align: left;
 }
 
-.bg-red {
-    background-color: red;
+.text-right {
+  text-align: right;
 }
 
-.bg-white {
-    background-color: white;
-}
-
-.bg-black {
-    background-color: black;
-}
-
-.bg-blue {
-    background-color: blue
-}
-
-.color000, .color-black {
+.color000 {
   color: #000;
 }
 
@@ -67,6 +58,54 @@ html,body,#app {
 
 .color999 {
   color: #999;
+}
+
+.color-white {
+  color: white;
+}
+
+.color-black {
+  color: black;
+}
+
+.color-primary {
+  color: #1890ff;
+}
+
+.color-success {
+  color: #52c41a;
+}
+
+.color-warning {
+  color: #faad14;
+}
+
+.color-error {
+  color: #f5222d;
+}
+
+.bg-white {
+  background-color: white;
+}
+
+.bg-black {
+  background-color: black;
+}
+
+.bg-primary {
+  background-color: #1890ff;
+}
+
+.bg-success {
+  background-color: #52c41a;
+}
+
+.bg-warning {
+  background-color: #faad14;
+}
+
+.bg-error {
+  background-color: #f5222d;
 }
 
 .font12px {
@@ -143,4 +182,252 @@ html,body,#app {
 
 .font30px {
   font-size: 30px;
+}
+
+.pd0 {
+  padding: 0;
+}
+
+.pd1 {
+  padding: 1px;
+}
+
+.pd2 {
+  padding: 2px;
+}
+
+.pd3 {
+  padding: 3px;
+}
+
+.pd4 {
+  padding: 4px;
+}
+
+.pd5 {
+  padding: 5px;
+}
+
+.pd6 {
+  padding: 6px;
+}
+
+.pd7 {
+  padding: 7px;
+}
+
+.pd8 {
+  padding: 8px;
+}
+
+.pd9 {
+  padding: 9px;
+}
+
+.pd10 {
+  padding: 10px;
+}
+
+.pd11 {
+  padding: 11px;
+}
+
+.pd12 {
+  padding: 12px;
+}
+
+.pd13 {
+  padding: 13px;
+}
+
+.pd14 {
+  padding: 14px;
+}
+
+.pd15 {
+  padding: 15px;
+}
+
+.pd16 {
+  padding: 16px;
+}
+
+.pd17 {
+  padding: 17px;
+}
+
+.pd18 {
+  padding: 18px;
+}
+
+.pd19 {
+  padding: 19px;
+}
+
+.pd20 {
+  padding: 20px;
+}
+
+.pd21 {
+  padding: 21px;
+}
+
+.pd22 {
+  padding: 22px;
+}
+
+.pd23 {
+  padding: 23px;
+}
+
+.pd24 {
+  padding: 24px;
+}
+
+.pd25 {
+  padding: 25px;
+}
+
+.pd26 {
+  padding: 26px;
+}
+
+.pd27 {
+  padding: 27px;
+}
+
+.pd28 {
+  padding: 28px;
+}
+
+.pd29 {
+  padding: 29px;
+}
+
+.pd30 {
+  padding: 30px;
+}
+
+.ma0 {
+  margin: 0;
+}
+
+.ma1 {
+  margin: 1px;
+}
+
+.ma2 {
+  margin: 2px;
+}
+
+.ma3 {
+  margin: 3px;
+}
+
+.ma4 {
+  margin: 4px;
+}
+
+.ma5 {
+  margin: 5px;
+}
+
+.ma6 {
+  margin: 6px;
+}
+
+.ma7 {
+  margin: 7px;
+}
+
+.ma8 {
+  margin: 8px;
+}
+
+.ma9 {
+  margin: 9px;
+}
+
+.ma10 {
+  margin: 10px;
+}
+
+.ma11 {
+  margin: 11px;
+}
+
+.ma12 {
+  margin: 12px;
+}
+
+.ma13 {
+  margin: 13px;
+}
+
+.ma14 {
+  margin: 14px;
+}
+
+.ma15 {
+  margin: 15px;
+}
+
+.ma16 {
+  margin: 16px;
+}
+
+.ma17 {
+  margin: 17px;
+}
+
+.ma18 {
+  margin: 18px;
+}
+
+.ma19 {
+  margin: 19px;
+}
+
+.ma20 {
+  margin: 20px;
+}
+
+.ma21 {
+  margin: 21px;
+}
+
+.ma22 {
+  margin: 22px;
+}
+
+.ma23 {
+  margin: 23px;
+}
+
+.ma24 {
+  margin: 24px;
+}
+
+.ma25 {
+  margin: 25px;
+}
+
+.ma26 {
+  margin: 26px;
+}
+
+.ma27 {
+  margin: 27px;
+}
+
+.ma28 {
+  margin: 28px;
+}
+
+.ma29 {
+  margin: 29px;
+}
+
+.ma30 {
+  margin: 30px;
 }
