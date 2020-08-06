@@ -1,6 +1,7 @@
 html,
 body,
 #app {
+  min-width: 410px;
   height: 100%;
   font-size: 12px;
   font-family: 华文黑体, "Microsoft YaHei", 微软雅黑, STHei, "Helvetica Neue",
@@ -102,6 +103,10 @@ ol {
 
 .color-error {
   color: #f5222d;
+}
+
+.bg-gray {
+  background-color: #ededed;
 }
 
 .bg-white {

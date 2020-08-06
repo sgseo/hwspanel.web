@@ -6,8 +6,8 @@
           <span slot="title">
             <a-icon class="ma5 color-primary" type="dashboard" />系统资源
           </span>
-          <a-col :span="14">
-            <ul style="display: flex; justify-content: space-between;">
+          <a-col :xs="24" :sm="22" :md="20" :lg="18" :xl="16">
+            <ul style="display: flex; justify-content: space-between; flex-wrap: wrap;">
               <li class="text-center">
                 <h4 class="color777 ma5">系统负载</h4>
                 <a-progress
@@ -55,9 +55,30 @@
           <span slot="title">
             <a-icon class="ma5 color-primary" type="tag" />数据概览
           </span>
-          <p>card content</p>
-          <p>card content</p>
-          <p>card content</p>
+          <a-col :xs="24" :sm="24" :md="12" :lg="6" :xl="4">
+            <a-card class="bg-gray text-center">
+              <p>
+                  <a-icon class="ma5" type="global" />网站
+              </p>
+              <p class="font22px color-primary">0</p>
+            </a-card>
+          </a-col>
+          <a-col :xs="24" :sm="24" :md="12" :lg="6" :xl="4">
+            <a-card class="bg-gray text-center">
+              <p>
+                  <a-icon class="ma5" type="database" />数据库
+              </p>
+              <p class="font22px color-primary">0</p>
+            </a-card>
+          </a-col>
+          <a-col :xs="24" :sm="24" :md="12" :lg="6" :xl="4">
+            <a-card class="bg-gray text-center">
+              <p>
+                  <a-icon class="ma5" type="file-protect" />SSL
+              </p>
+              <p class="font22px color-primary">0</p>
+            </a-card>
+          </a-col>
         </a-card>
       </a-col>
     </a-row>
@@ -125,9 +146,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-li {
-  display: inline-block;
-}
-</style>
