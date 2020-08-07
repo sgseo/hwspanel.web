@@ -92,7 +92,7 @@
     </a-row>
     <a-row :gutter="[10,10]">
       <a-col :span="12">
-        <a-card size="small">
+        <a-card size="small" style="min-height: 400px;">
           <span slot="title">
             <a-icon class="ma5 color-primary" type="link" />快捷操作
           </span>
@@ -102,7 +102,7 @@
         </a-card>
       </a-col>
       <a-col :span="12">
-        <a-card size="small">
+        <a-card size="small" style="min-height: 400px;">
           <span slot="title">
             <a-icon class="ma5 color-primary" type="area-chart" />实时流量
           </span>

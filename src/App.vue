@@ -46,14 +46,17 @@
         </a-layout-header>
         <a-layout-content
           :style="{ margin: '10px', minHeight: '280px' }"
+          class="flex-column-space-between"
         >
           <router-view />
+
+          <a-layout-footer class="mat5 bg-white pd15 text-center">
+              <a class="color888" href="https://www.hws.com" target="_blank">
+                  版权所有 © 护卫神-服务器安全专家
+              </a>
+          </a-layout-footer>
+
         </a-layout-content>
-        <a-layout-footer class="bg-white pd20 text-center">
-            <a class="color888" href="https://www.hws.com" target="_blank">
-                版权所有 © 护卫神-服务器安全专家
-            </a>
-        </a-layout-footer>
       </a-layout>
     </a-layout>
   </div>
@@ -86,5 +89,11 @@ export default {
   height: 32px;
   background: rgba(255, 255, 255, 0.2);
   margin: 16px;
+}
+
+.flex-column-space-between {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 </style>
