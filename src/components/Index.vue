@@ -7,7 +7,10 @@
             <a-icon class="ma5 color-primary" type="dashboard" />系统资源
           </span>
           <a-col :xs="24" :sm="22" :md="20" :lg="18" :xl="16">
-            <ul style="display: flex; justify-content: space-between; flex-wrap: wrap;">
+            <ul
+              class="dragsort"
+              style="display: flex; justify-content: space-between; flex-wrap: wrap;"
+            >
               <!-- 这里按理说可以优化,因为下面的代码有很多重复 -->
               <li class="text-center">
                 <h4 class="color777 ma5">系统负载</h4>
@@ -91,18 +94,23 @@
       </a-col>
     </a-row>
     <a-row :gutter="[10,10]">
-      <a-col :span="12">
-        <a-card size="small" style="min-height: 400px;">
+      <a-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
+        <a-card size="small" style="height: 400px; overflow: scroll;">
           <span slot="title">
             <a-icon class="ma5 color-primary" type="link" />快捷操作
           </span>
-          <p>card content</p>
-          <p>card content</p>
-          <p>card content</p>
+          <ul class="dragsort">
+            <li v-for="item in list" :key="item.id" class="ma5 text-center">
+              <a-card class="bgf8 text-left hover" :bordered="false">
+                <p>{{ item.name }}</p>
+                <p class="color-primary font12px">{{ item.description }}</p>
+              </a-card>
+            </li>
+          </ul>
         </a-card>
       </a-col>
-      <a-col :span="12">
-        <a-card size="small" style="min-height: 400px;">
+      <a-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
+        <a-card size="small" style="height: 400px;">
           <span slot="title">
             <a-icon class="ma5 color-primary" type="area-chart" />实时流量
           </span>
@@ -184,11 +192,25 @@ export default {
       memUsage: 0,
       memStr: "",
       rootUsage: 0,
-      rootStr: ""
+      rootStr: "",
+      list: [
+        { name: "Apache", description: "使用人数最多的Web服务器" },
+        { name: "Nginx", description: "小巧精悍的反向代理服务器" },
+        { name: "PHP53", description: "PHP是世界上最好的语言" },
+        { name: "PHP54", description: "PHP是世界上最好的语言" },
+        { name: "PHP56", description: "PHP是世界上最好的语言" },
+        { name: "PHP70", description: "PHP是世界上最好的语言" },
+        { name: "PHP55", description: "PHP是世界上最好的语言" },
+        { name: "PHP71", description: "PHP是世界上最好的语言" },
+        { name: "PHP72", description: "PHP是世界上最好的语言" },
+        { name: "PHP73", description: "PHP是世界上最好的语言" },
+        { name: "PureFTPd", description: "一款主打安全的FTP服务器" },
+        { name: "Redis", description: "内存型数据库" }
+      ]
     };
   },
   mounted() {
-    $("ul").dragsort({
+    $(".dragsort").dragsort({
       dragSelector: "li",
       dragEnd: function() {},
       dragBetween: false,
