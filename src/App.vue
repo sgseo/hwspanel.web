@@ -45,7 +45,7 @@
           />
         </a-layout-header>
         <a-layout-content
-          :style="{ margin: '16px', minHeight: '280px' }"
+          :style="{ margin: '10px', minHeight: '280px' }"
         >
           <router-view />
         </a-layout-content>

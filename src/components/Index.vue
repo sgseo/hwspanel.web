@@ -1,6 +1,6 @@
 <template>
   <div>
-    <a-row :gutter="[16,16]">
+    <a-row :gutter="[10,10]">
       <a-col :span="24">
         <a-card size="small">
           <span slot="title">
@@ -50,7 +50,7 @@
         </a-card>
       </a-col>
     </a-row>
-    <a-row :gutter="[16,16]">
+    <a-row :gutter="[10,10]">
       <a-col :span="24">
         <a-card size="small">
           <span slot="title">
@@ -90,7 +90,7 @@
         </a-card>
       </a-col>
     </a-row>
-    <a-row :gutter="[16,16]">
+    <a-row :gutter="[10,10]">
       <a-col :span="12">
         <a-card size="small">
           <span slot="title">
@@ -112,7 +112,7 @@
         </a-card>
       </a-col>
     </a-row>
-    <a-row :gutter="[16,16]">
+    <a-row :gutter="[10,10]">
       <a-col :span="24">
         <a-card size="small">
           <span slot="title">
