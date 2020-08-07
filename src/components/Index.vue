@@ -8,6 +8,7 @@
           </span>
           <a-col :xs="24" :sm="22" :md="20" :lg="18" :xl="16">
             <ul style="display: flex; justify-content: space-between; flex-wrap: wrap;">
+              <!-- 这里按理说可以优化,因为下面的代码有很多重复 -->
               <li class="text-center">
                 <h4 class="color777 ma5">系统负载</h4>
                 <a-progress
@@ -55,6 +56,7 @@
           <span slot="title">
             <a-icon class="ma5 color-primary" type="tag" />数据概览
           </span>
+          <!-- 这里按理说可以优化,因为下面的代码有很多重复 -->
           <a-col :xs="24" :sm="24" :md="12" :lg="6" :xl="4">
             <a href="#">
               <a-card class="bgf8 text-center hover" :bordered="false">
@@ -116,6 +118,7 @@
           <span slot="title">
             <a-icon class="ma5 color-primary" type="customer-service" />技术支持
           </span>
+          <!-- 这里按理说可以优化,因为下面的代码有很多重复 -->
           <a-col :xs="24" :sm="24" :md="12" :lg="6" :xl="4">
             <a href="http://t.hws.com" target="_blank">
               <a-card class="bgf8 text-left hover" :bordered="false">
