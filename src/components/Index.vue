@@ -187,6 +187,14 @@ export default {
       rootStr: ""
     };
   },
+  mounted() {
+    $("ul").dragsort({
+      dragSelector: "li",
+      dragEnd: function() {},
+      dragBetween: false,
+      placeHolderTemplate: "<li></li>"
+    });
+  },
   methods: {
     strokeColor: function(progress) {
       if (progress > 90) {
