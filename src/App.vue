@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <a-layout id="components-layout-demo-custom-trigger" style="height: 100%;">
-      <a-layout-sider v-model="collapsed" :trigger="null" collapsible>
+      <a-layout-sider v-model="collapsed" :trigger="collapsed" collapsible>
         <div class="logo text-center" style="overflow: hidden;">
           <span class="font22px" style="color: #DDD">护卫神·主机大师</span>
         </div>
