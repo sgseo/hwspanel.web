@@ -87,10 +87,4 @@ export default {
   background: rgba(255, 255, 255, 0.2);
   margin: 16px;
 }
-
-.flex-column-space-between {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
 </style>

@@ -81,6 +81,10 @@ ol {
   color: #999;
 }
 
+.color-title {
+  color: #555;
+}
+
 .color-white {
   color: white;
 }
@@ -103,6 +107,10 @@ ol {
 
 .color-error {
   color: #f5222d;
+}
+
+.color-info {
+  color: #909399;
 }
 
 .bgf8 {
@@ -1451,4 +1459,22 @@ ol {
 
 .mab30 {
   margin-bottom: 30px;
+}
+
+.flex-column-space-between {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.flex-row-space-between-wrap {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.flex-row-space-between-nowrap {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: nowrap;
 }
