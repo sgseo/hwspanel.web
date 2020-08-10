@@ -41,11 +41,11 @@
               <li v-for="item in systemResource" :key="item.title" class="text-center">
                 <h4 class="color-title ma5">{{ item.title}}</h4>
                 <a-progress
-                  type="dashboard"
+                  type="circle"
                   :percent="item.data"
                   :strokeColor="progressColor(item.data)"
                 />
-                <h4 class="color888 ma5">{{ item.info }}</h4>
+                <h4 class="color777 ma5 font12px">{{ item.info }}</h4>
               </li>
             </ul>
           </a-col>
@@ -206,10 +206,10 @@ export default {
         }
       },
       systemResource: [
-        { data: 81, title: "平均负载", info: "" },
-        { data: 93, title: "CPU使用率", info: "" },
-        { data: 30, title: "内存使用率", info: "" },
-        { data: 14, title: "/", info: "" }
+        { data: 81, title: "平均负载", info: "运行缓慢" },
+        { data: 93, title: "CPU使用率", info: "2核心" },
+        { data: 30, title: "内存使用率", info: "546.02(MB)/1.78(GB)" },
+        { data: 14, title: "/", info: "14.51(GB)/39.99(GB)" }
       ],
       dataOverview: [
         { title: "网站", url: "#", class: "global", data: 0 },
