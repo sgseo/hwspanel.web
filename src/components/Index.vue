@@ -77,7 +77,7 @@
           <ul class="dragsort flex-row-space-between-wrap">
             <li
               class="font12px color888 text-center"
-              style="width: 200px; margin-top: 30px;"
+              style="width: 140px; padding: 25px 15px 0px;"
               v-for="item in traffic"
               :key="item.title"
             >
