@@ -5,6 +5,7 @@
         <a-card size="small" :bordered="false" class="font12px">
           <a-row :gutter="[5,5]">
             <a-col :xs="24" :sm="12" :md="12" :lg="6" :xl="4">
+              <a-icon type="tags" class="mar5"/>
               <span>系统：{{ topBar.osName }}</span>
             </a-col>
             <a-col :xs="24" :sm="12" :md="12" :lg="6" :xl="4">
@@ -18,10 +19,13 @@
             </a-col>
             <a-col :xs="24" :sm="12" :md="12" :lg="6" :xl="4">
               <a-badge dot class="font12px">
-                <span>版本：{{ topBar.curVer }}</span>
+                <a href="https://github.com/Wjinlei/hwspanel" target="_blank" class="color666">
+                  <a-icon type="github" />
+                </a>
+                版本：{{ topBar.curVer }}
               </a-badge>
-              <a href="#" class="mal20">更新</a>
-              <a href="#" class="mal10">重启</a>
+              <a href="#" class="mal10">更新</a>
+              <a href="#" class="mal5">其他</a>
             </a-col>
           </a-row>
         </a-card>
