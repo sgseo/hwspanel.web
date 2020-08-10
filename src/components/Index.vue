@@ -74,23 +74,21 @@
           <span slot="title">
             <a-icon class="ma5 color-primary" type="area-chart" />实时流量
           </span>
-          <div>
-            <ul class="dragsort flex-row-space-between-wrap">
-              <li
-                class="font12px color888 text-center"
-                style="width: 200px; margin-top: 30px;"
-                v-for="item in traffic"
-                :key="item.title"
-              >
-                <p>
-                  <span :class="item.class"></span>
-                  {{ item.title }}
-                </p>
-                <span>{{ item.data }}</span>
-              </li>
-            </ul>
-            <div id="trafficChart" style="width: 100%; height: 400px;"></div>
-          </div>
+          <ul class="dragsort flex-row-space-between-wrap">
+            <li
+              class="font12px color888 text-center"
+              style="width: 200px; margin-top: 30px;"
+              v-for="item in traffic"
+              :key="item.title"
+            >
+              <p>
+                <span :class="item.class"></span>
+                {{ item.title }}
+              </p>
+              <span>{{ item.data }}</span>
+            </li>
+          </ul>
+          <div id="trafficChart" style="width: 100%; height: 400px;"></div>
         </a-card>
       </a-col>
     </a-row>
@@ -222,7 +220,9 @@ export default {
       dragBetween: false,
       placeHolderTemplate: "<li></li>"
     });
-    this.drawTrafficChart();
+    setTimeout(() => {
+      this.drawTrafficChart();
+    }, 20);
   },
   methods: {
     progressColor: function(progress) {
