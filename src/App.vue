@@ -3,7 +3,7 @@
     <a-layout id="components-layout-demo-custom-trigger" style="height: 100%;">
       <a-layout-sider v-model="collapsed" :trigger="null" collapsible>
         <div class="logo text-center" style="overflow: hidden;">
-            <span class="font22px" style="color: #DDD">护卫神·主机大师</span>
+          <span class="font22px" style="color: #DDD">护卫神·主机大师</span>
         </div>
         <a-menu theme="dark" mode="inline" :default-selected-keys="['1']">
           <a-menu-item key="1">
@@ -50,12 +50,9 @@
         >
           <router-view />
 
-          <a-layout-footer class="mat5 bg-white pd15 text-center">
-              <a class="color888" href="https://www.hws.com" target="_blank">
-                  版权所有 © 护卫神-服务器安全专家
-              </a>
+          <a-layout-footer class="mat5 bg-white pd14 text-center font12px">
+            <a class="color333" href="https://www.hws.com" target="_blank">版权所有 © 护卫神-服务器安全专家</a>
           </a-layout-footer>
-
         </a-layout-content>
       </a-layout>
     </a-layout>
@@ -92,8 +89,8 @@ export default {
 }
 
 .flex-column-space-between {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 </style>
