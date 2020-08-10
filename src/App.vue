@@ -37,6 +37,7 @@
         </a-menu>
       </a-layout-sider>
       <a-layout>
+        <!--
         <a-layout-header class="bg-white pd0">
           <a-icon
             class="trigger"
@@ -44,6 +45,7 @@
             @click="() => (collapsed = !collapsed)"
           />
         </a-layout-header>
+        -->
         <a-layout-content
           :style="{ margin: '10px', minHeight: '280px' }"
           class="flex-column-space-between"

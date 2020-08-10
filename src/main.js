@@ -15,6 +15,7 @@ import {
     Col,
     Card,
     Progress,
+    Badge,
 } from 'ant-design-vue';
 Vue.use(Layout)
 Vue.use(Menu)
@@ -23,6 +24,7 @@ Vue.use(Row)
 Vue.use(Col)
 Vue.use(Card)
 Vue.use(Progress)
+Vue.use(Badge)
 
 Vue.config.productionTip = false
 

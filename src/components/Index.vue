@@ -2,6 +2,33 @@
   <div>
     <a-row :gutter="[10,10]">
       <a-col :span="24">
+        <a-card size="small" :bordered="false" class="font12px">
+          <a-row :gutter="[5,5]">
+            <a-col :xs="24" :sm="12" :md="12" :lg="6" :xl="4">
+              <span>系统：{{ topBar.osName }}</span>
+            </a-col>
+            <a-col :xs="24" :sm="12" :md="12" :lg="6" :xl="4">
+              <span>{{ topBar.upTime }}</span>
+            </a-col>
+            <a-col :xs="24" :sm="12" :md="12" :lg="6" :xl="12">
+              <a class="color-warning" :href="topBar.adv.url" target="_blank">
+                <a-icon class="mar5" type="notification" />
+                {{ topBar.adv.info }}
+              </a>
+            </a-col>
+            <a-col :xs="24" :sm="12" :md="12" :lg="6" :xl="4">
+              <a-badge dot class="font12px">
+                <span>版本：{{ topBar.curVer }}</span>
+              </a-badge>
+              <a href="#" class="mal20">更新</a>
+              <a href="#" class="mal10">重启</a>
+            </a-col>
+          </a-row>
+        </a-card>
+      </a-col>
+    </a-row>
+    <a-row :gutter="[10,10]">
+      <a-col :span="24">
         <a-card size="small">
           <span slot="title">
             <a-icon class="ma5 color-primary" type="dashboard" />系统资源
@@ -55,7 +82,7 @@
     </a-row>
     <a-row :gutter="[10,10]">
       <a-col :xs="24" :sm="24" :md="24" :lg="24" :xl="12">
-        <a-card size="small" style="min-height: 550px">
+        <a-card size="small" style="height: 550px; overflow: auto;">
           <span slot="title">
             <a-icon class="ma5 color-primary" type="link" />快捷操作
           </span>
@@ -146,7 +173,7 @@ const technicalSupport = [
     url: "#",
     target: "_self",
     iconType: "qq",
-    class: "color-warning",
+    class: "color-primary",
     description: "在线沟通更流畅、更便利。"
   },
   {
@@ -154,7 +181,7 @@ const technicalSupport = [
     url: "#",
     target: "_self",
     iconType: "phone",
-    class: "color-primary",
+    class: "color-warning",
     description: "电话沟通更准确，更效率。"
   },
   {
@@ -162,17 +189,26 @@ const technicalSupport = [
     url: "https://www.hws.com/help/LinuxMaster",
     target: "_blank",
     iconType: "solution",
-    class: "color-info",
+    class: "color-success",
     description: "帮助文档、教程、和知识。"
   }
 ];
 export default {
   data() {
     return {
+      topBar: {
+        osName: "centos 8.2.2004",
+        upTime: "已不间断运行: 6天",
+        curVer: "v1.0.0",
+        adv: {
+          info: "如何让服务器更安全？",
+          url: "https://www.hws.com/security"
+        }
+      },
       systemResource: [
-        { data: 30, title: "平均负载", info: "" },
+        { data: 81, title: "平均负载", info: "" },
         { data: 93, title: "CPU使用率", info: "" },
-        { data: 72, title: "内存使用率", info: "" },
+        { data: 30, title: "内存使用率", info: "" },
         { data: 14, title: "/", info: "" }
       ],
       dataOverview: [
@@ -183,7 +219,7 @@ export default {
       traffic: [
         {
           title: "上行",
-          class: "trafficIcon bg-success",
+          class: "trafficIcon bg-warning",
           data: 23,
           dataList: [12, 20, 10, 13, 15, 14, 11]
         },
@@ -201,14 +237,12 @@ export default {
         { name: "Nginx", description: "小巧精悍的反向代理服务器" },
         { name: "PHP53", description: "PHP是世界上最好的语言" },
         { name: "PHP54", description: "PHP是世界上最好的语言" },
+        { name: "PHP55", description: "PHP是世界上最好的语言" },
         { name: "PHP56", description: "PHP是世界上最好的语言" },
         { name: "PHP70", description: "PHP是世界上最好的语言" },
-        { name: "PHP55", description: "PHP是世界上最好的语言" },
         { name: "PHP71", description: "PHP是世界上最好的语言" },
         { name: "PHP72", description: "PHP是世界上最好的语言" },
-        { name: "PHP73", description: "PHP是世界上最好的语言" },
-        { name: "PureFTPd", description: "一款主打安全的FTP服务器" },
-        { name: "Redis", description: "内存型数据库" }
+        { name: "PHP73", description: "PHP是世界上最好的语言" }
       ],
       technicalSupport
     };
@@ -218,6 +252,7 @@ export default {
       dragSelector: "li",
       dragEnd: function() {},
       dragBetween: false,
+      scrollContainer: "div",
       placeHolderTemplate: "<li></li>"
     });
     setTimeout(() => {
@@ -293,13 +328,17 @@ export default {
             sampling: "average",
             data: this.traffic[0].dataList,
             circle: "circle",
-            itemStyle: { normal: { color: "#52c41a" } },
+            itemStyle: { normal: { color: "#f7b851" } },
             areaStyle: {
               normal: {
-                color: new echarts.graphic.LinearGradient(0,0,0,1,
+                color: new echarts.graphic.LinearGradient(
+                  0,
+                  0,
+                  0,
+                  1,
                   [
-                    { offset: 0, color: "rgba(30, 255, 0,0.5)" },
-                    { offset: 1, color: "rgba(30, 255, 0,0.8)" }
+                    { offset: 0, color: "rgba(255, 140, 0,0.5)" },
+                    { offset: 1, color: "rgba(255, 140, 0,0.8)" }
                   ],
                   false
                 )
@@ -320,7 +359,11 @@ export default {
             itemStyle: { normal: { color: "#52a9ff" } },
             areaStyle: {
               normal: {
-                color: new echarts.graphic.LinearGradient(0,0,0,1,
+                color: new echarts.graphic.LinearGradient(
+                  0,
+                  0,
+                  0,
+                  1,
                   [
                     { offset: 0, color: "rgba(30, 144, 255,0.5)" },
                     { offset: 1, color: "rgba(30, 144, 255,0.8)" }
