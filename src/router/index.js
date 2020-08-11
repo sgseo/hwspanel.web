@@ -8,6 +8,11 @@ Vue.use(VueRouter)
 const routes = [
     {
         path: "/",
+        name: "Root",
+        redirect: { name: 'Index' },
+    },
+    {
+        path: "/index",
         name: "Index",
         component: Index
     },

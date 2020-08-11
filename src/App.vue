@@ -6,14 +6,14 @@
           <div class="logo text-center" style="overflow: hidden;">
             <span class="font22px" style="color: #DDD">护卫神·主机大师</span>
           </div>
-          <a-menu theme="dark" mode="inline" :default-selected-keys="['1']">
-            <a-menu-item key="1">
-              <router-link to="/">
+          <a-menu theme="dark" mode="inline" :default-selected-keys="$route.path">
+            <a-menu-item key="/index">
+              <router-link to="/index">
                 <a-icon type="home" />
                 <span>首页</span>
               </router-link>
             </a-menu-item>
-            <a-menu-item key="2">
+            <a-menu-item key="/site">
               <router-link to="/site">
                 <a-icon type="global" />
                 <span>网站管理</span>
