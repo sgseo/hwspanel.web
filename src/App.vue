@@ -1,5 +1,5 @@
 <template>
-  <a-locale-provider :locale="zhCN">
+  <a-config-provider :locale="zhCN">
     <div id="app">
       <a-layout id="components-layout-demo-custom-trigger" style="height: 100%;">
         <a-layout-sider v-model="collapsed" :trigger="collapsed" collapsible>
@@ -64,7 +64,7 @@
         </a-layout>
       </a-layout>
     </div>
-  </a-locale-provider>
+  </a-config-provider>
 </template>
 
 <script>
