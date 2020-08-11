@@ -113,149 +113,6 @@
 </template>
 
 <script>
-const columns = [
-  {
-    title: "状态",
-    dataIndex: "siteStatus",
-    key: "siteStatus",
-    width: 70,
-    scopedSlots: { customRender: "siteStatus" },
-    className: "text-center",
-    filters: [
-      {
-        text: "运行中",
-        value: "运行中"
-      },
-      {
-        text: "已暂停",
-        value: "已暂停"
-      },
-      {
-        text: "异常",
-        value: "异常"
-      }
-    ],
-    onFilter: (value, record) => record.siteStatus.indexOf(value) === 0
-  },
-  {
-    title: "网站名称",
-    dataIndex: "name",
-    key: "name",
-    ellipsis: true,
-    width: 150,
-    scopedSlots: {
-      filterDropdown: "filterDropdown",
-      filterIcon: "filterIcon"
-    },
-    onFilter: (value, record) =>
-      record.name
-        .toString()
-        .toLowerCase()
-        .includes(value.toLowerCase()),
-    onFilterDropdownVisibleChange: visible => {
-      if (visible) {
-        setTimeout(() => {
-          this.searchInput.focus();
-        }, 0);
-      }
-    }
-  },
-  {
-    title: "网站路径",
-    dataIndex: "path",
-    key: "path",
-    ellipsis: true,
-    width: 300
-  },
-  {
-    title: "FTP",
-    dataIndex: "ftpStatus",
-    key: "ftpStatus",
-    width: 70,
-    scopedSlots: { customRender: "ftpStatus" },
-    className: "text-center",
-    filters: [
-      {
-        text: "已启用",
-        value: "已启用"
-      },
-      {
-        text: "已停止",
-        value: "已停止"
-      }
-    ],
-    onFilter: (value, record) => record.ftpStatus.indexOf(value) === 0
-  },
-  {
-    title: "FTP账户",
-    dataIndex: "ftpUser",
-    key: "ftpUser",
-    ellipsis: true,
-    width: 150,
-    scopedSlots: {
-      filterDropdown: "filterDropdown",
-      filterIcon: "filterIcon"
-    },
-    onFilter: (value, record) =>
-      record.ftpUser
-        .toString()
-        .toLowerCase()
-        .includes(value.toLowerCase()),
-    onFilterDropdownVisibleChange: visible => {
-      if (visible) {
-        setTimeout(() => {
-          this.searchInput.focus();
-        }, 0);
-      }
-    }
-  },
-  {
-    title: "FTP密码",
-    dataIndex: "ftpPass",
-    key: "ftpPass",
-    ellipsis: true,
-    width: 150
-  },
-  {
-    title: "开通时间",
-    dataIndex: "createTime",
-    key: "createTime",
-    ellipsis: true,
-    width: 200,
-    sorter: (a, b) => a.createTime > b.createTime,
-    defaultSortOrder: "descend"
-  },
-  {
-    title: "备注",
-    dataIndex: "comment",
-    key: "comment",
-    ellipsis: true,
-    scopedSlots: {
-      filterDropdown: "filterDropdown",
-      filterIcon: "filterIcon"
-    },
-    onFilter: (value, record) =>
-      record.comment
-        .toString()
-        .toLowerCase()
-        .includes(value.toLowerCase()),
-    onFilterDropdownVisibleChange: visible => {
-      if (visible) {
-        setTimeout(() => {
-          this.searchInput.focus();
-        }, 0);
-      }
-    }
-  },
-  {
-    title: "操作",
-    dataIndex: "operation",
-    key: "operation",
-    scopedSlots: { customRender: "operation" },
-    width: 85
-  }
-];
-
 const data = [
   {
     key: "1",
@@ -372,9 +229,150 @@ const data = [
 export default {
   data() {
     return {
-      columns,
       data,
-      searchInput: null
+      searchInput: null,
+      columns: [
+        {
+          title: "状态",
+          dataIndex: "siteStatus",
+          key: "siteStatus",
+          width: 70,
+          scopedSlots: { customRender: "siteStatus" },
+          className: "text-center",
+          filters: [
+            {
+              text: "运行中",
+              value: "运行中"
+            },
+            {
+              text: "已暂停",
+              value: "已暂停"
+            },
+            {
+              text: "异常",
+              value: "异常"
+            }
+          ],
+          onFilter: (value, record) => record.siteStatus.indexOf(value) === 0
+        },
+        {
+          title: "网站名称",
+          dataIndex: "name",
+          key: "name",
+          ellipsis: true,
+          width: 150,
+          scopedSlots: {
+            filterDropdown: "filterDropdown",
+            filterIcon: "filterIcon"
+          },
+          onFilter: (value, record) =>
+            record.name
+              .toString()
+              .toLowerCase()
+              .includes(value.toLowerCase()),
+          onFilterDropdownVisibleChange: visible => {
+            if (visible) {
+              setTimeout(() => {
+                this.searchInput.focus();
+              }, 0);
+            }
+          }
+        },
+        {
+          title: "网站路径",
+          dataIndex: "path",
+          key: "path",
+          ellipsis: true,
+          width: 300
+        },
+        {
+          title: "FTP",
+          dataIndex: "ftpStatus",
+          key: "ftpStatus",
+          width: 70,
+          scopedSlots: { customRender: "ftpStatus" },
+          className: "text-center",
+          filters: [
+            {
+              text: "已启用",
+              value: "已启用"
+            },
+            {
+              text: "已停止",
+              value: "已停止"
+            }
+          ],
+          onFilter: (value, record) => record.ftpStatus.indexOf(value) === 0
+        },
+        {
+          title: "FTP账户",
+          dataIndex: "ftpUser",
+          key: "ftpUser",
+          ellipsis: true,
+          width: 150,
+          scopedSlots: {
+            filterDropdown: "filterDropdown",
+            filterIcon: "filterIcon"
+          },
+          onFilter: (value, record) =>
+            record.ftpUser
+              .toString()
+              .toLowerCase()
+              .includes(value.toLowerCase()),
+          onFilterDropdownVisibleChange: visible => {
+            if (visible) {
+              setTimeout(() => {
+                this.searchInput.focus();
+              }, 0);
+            }
+          }
+        },
+        {
+          title: "FTP密码",
+          dataIndex: "ftpPass",
+          key: "ftpPass",
+          ellipsis: true,
+          width: 150
+        },
+        {
+          title: "开通时间",
+          dataIndex: "createTime",
+          key: "createTime",
+          ellipsis: true,
+          width: 200,
+          sorter: (a, b) => a.createTime > b.createTime,
+          defaultSortOrder: "descend"
+        },
+        {
+          title: "备注",
+          dataIndex: "comment",
+          key: "comment",
+          ellipsis: true,
+          scopedSlots: {
+            filterDropdown: "filterDropdown",
+            filterIcon: "filterIcon"
+          },
+          onFilter: (value, record) =>
+            record.comment
+              .toString()
+              .toLowerCase()
+              .includes(value.toLowerCase()),
+          onFilterDropdownVisibleChange: visible => {
+            if (visible) {
+              setTimeout(() => {
+                this.searchInput.focus();
+              }, 0);
+            }
+          }
+        },
+        {
+          title: "操作",
+          dataIndex: "operation",
+          key: "operation",
+          scopedSlots: { customRender: "operation" },
+          width: 85
+        }
+      ]
     };
   },
   mounted() {
