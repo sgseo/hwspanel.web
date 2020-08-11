@@ -253,7 +253,6 @@ export default {
   },
   mounted() {
     // 这个加载层可以做成公共函数
-    let load = layer.msg('正在处理,请稍候...',{icon: 16,shade:[0.5, '#333']});
     $(".dragsort").dragsort({
       dragSelector: "li",
       dragEnd: function() {},
@@ -261,7 +260,10 @@ export default {
       scrollContainer: "div",
       placeHolderTemplate: "<li></li>"
     });
+    // 很多东西需要延迟几毫米,让DOM先加载
     setTimeout(() => {
+      // 这里假数据,暂时先延迟2秒关闭,正式的时候将time改成0,然后close手动关闭
+      let load = layer.msg('正在处理,请稍候...',{icon: 16, time: 2000, shade:[0.5, '#000']});
       this.drawTrafficChart();
     }, 20);
     // 事情昨完后,关闭加载层
