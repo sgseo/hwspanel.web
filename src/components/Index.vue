@@ -252,6 +252,8 @@ export default {
     };
   },
   mounted() {
+    // 这个加载层可以做成公共函数
+    let load = layer.msg('正在处理,请稍候...',{icon: 16,shade:[0.5, '#333']});
     $(".dragsort").dragsort({
       dragSelector: "li",
       dragEnd: function() {},
@@ -262,6 +264,8 @@ export default {
     setTimeout(() => {
       this.drawTrafficChart();
     }, 20);
+    // 事情昨完后,关闭加载层
+    //layer.close(load)
   },
   methods: {
     progressColor: function(progress) {
