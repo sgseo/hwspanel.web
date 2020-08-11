@@ -71,7 +71,7 @@
             :lg="6"
             :xl="4"
           >
-            <a :href="item.url">
+            <router-link :to="item.url">
               <a-card class="bgf8 text-center hover" :bordered="false">
                 <p>
                   <a-icon class="ma5" :type="item.class" />
@@ -79,7 +79,7 @@
                 </p>
                 <p class="font22px color-primary">{{ item.data }}</p>
               </a-card>
-            </a>
+            </router-link>
           </a-col>
         </a-card>
       </a-col>
@@ -216,7 +216,7 @@ export default {
         { data: 14, title: "/", info: "14.51(GB)/39.99(GB)" }
       ],
       dataOverview: [
-        { title: "网站", url: "#", class: "global", data: 0 },
+        { title: "网站", url: "/site", class: "global", data: 0 },
         { title: "数据库", url: "#", class: "database", data: 0 },
         { title: "SSL", url: "#", class: "file-protect", data: 0 }
       ],

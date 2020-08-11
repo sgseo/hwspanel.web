@@ -6,7 +6,10 @@
           <div class="logo text-center" style="overflow: hidden;">
             <span class="font22px" style="color: #DDD">护卫神·主机大师</span>
           </div>
-          <a-menu theme="dark" mode="inline" :default-selected-keys="[$route.path]">
+          <a-menu theme="dark"
+              mode="inline"
+              :default-selected-keys="[$route.path]"
+              :selectedKeys="[$route.path]">
             <a-menu-item key="/index">
               <router-link to="/index">
                 <a-icon type="home" />
