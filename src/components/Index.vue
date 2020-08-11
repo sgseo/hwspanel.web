@@ -281,12 +281,6 @@ export default {
             type: "cross"
           }
         },
-        grid: {
-          top: "15%",
-          bottom: "10%",
-          left: "10%",
-          right: "10%"
-        },
         xAxis: {
           type: "category",
           boundaryGap: false,
