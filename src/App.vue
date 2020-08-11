@@ -7,12 +7,16 @@
         </div>
         <a-menu theme="dark" mode="inline" :default-selected-keys="['1']">
           <a-menu-item key="1">
-            <a-icon type="home" />
-            <span>首页</span>
+            <router-link to="/">
+              <a-icon type="home" />
+              <span>首页</span>
+            </router-link>
           </a-menu-item>
           <a-menu-item key="2">
-            <a-icon type="global" />
-            <span>网站管理</span>
+            <router-link to="/site">
+              <a-icon type="global" />
+              <span>网站管理</span>
+            </router-link>
           </a-menu-item>
           <a-menu-item key="3">
             <a-icon type="database" />
