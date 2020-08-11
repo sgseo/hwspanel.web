@@ -49,11 +49,7 @@
                 style="width: 90px; margin-right: 8px"
                 @click="() => handleSearch(selectedKeys, confirm, column.dataIndex)"
               >过滤</a-button>
-              <a-button
-                size="small"
-                style="width: 90px"
-                @click="() => handleReset(clearFilters)"
-              >重置</a-button>
+              <a-button size="small" style="width: 90px" @click="() => handleReset(clearFilters)">重置</a-button>
             </div>
             <a-icon
               slot="filterIcon"
@@ -61,6 +57,12 @@
               type="search"
               :style="{ color: filtered ? '#108ee9' : undefined }"
             />
+
+            <template slot="operation" slot-scope="text, record">
+              <a class="font12px" href="javascript:;" v-on:click="onSetting(record)">设置</a>
+              <a-divider type="vertical" />
+              <a class="font12px" href="javascript:;" v-on:click="onDelete(record.key)">删除</a>
+            </template>
 
             <a-tag
               v-if="siteStatus == '运行中'"
@@ -133,7 +135,7 @@ const columns = [
     width: 150,
     scopedSlots: {
       filterDropdown: "filterDropdown",
-      filterIcon: "filterIcon",
+      filterIcon: "filterIcon"
     },
     onFilter: (value, record) =>
       record.name
@@ -182,7 +184,7 @@ const columns = [
     width: 150,
     scopedSlots: {
       filterDropdown: "filterDropdown",
-      filterIcon: "filterIcon",
+      filterIcon: "filterIcon"
     },
     onFilter: (value, record) =>
       record.ftpUser
@@ -220,7 +222,7 @@ const columns = [
     ellipsis: true,
     scopedSlots: {
       filterDropdown: "filterDropdown",
-      filterIcon: "filterIcon",
+      filterIcon: "filterIcon"
     },
     onFilter: (value, record) =>
       record.comment
@@ -234,6 +236,13 @@ const columns = [
         }, 0);
       }
     }
+  },
+  {
+    title: "操作",
+    dataIndex: "operation",
+    key: "operation",
+    scopedSlots: { customRender: "operation" },
+    width: 85
   }
 ];
 
@@ -355,7 +364,7 @@ export default {
     return {
       columns,
       data,
-      searchInput: null,
+      searchInput: null
     };
   },
   mounted() {
@@ -376,6 +385,14 @@ export default {
     handleReset(clearFilters) {
       clearFilters();
       this.searchText = "";
+    },
+
+    onSetting(record) {
+      layer.msg(record.comment, { icon: 1 });
+    },
+
+    onDelete(key) {
+      layer.msg(key, { icon: 1 });
     }
   }
 };
