@@ -20,6 +20,7 @@ import {
     Button,
     Table,
     Tag,
+    LocaleProvider,
 } from 'ant-design-vue';
 Vue.use(Layout)
 Vue.use(Menu)
@@ -33,6 +34,7 @@ Vue.use(Breadcrumb)
 Vue.use(Button)
 Vue.use(Table)
 Vue.use(Tag)
+Vue.use(LocaleProvider)
 
 Vue.config.productionTip = false
 

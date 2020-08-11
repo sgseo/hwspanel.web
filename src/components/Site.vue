@@ -56,6 +56,21 @@ const columns = [
     width: 70,
     scopedSlots: { customRender: 'siteStatus' },
     className:'text-center',
+    filters: [
+      {
+        text: '运行中',
+        value: '运行中',
+      },
+      {
+        text: '已暂停',
+        value: '已暂停',
+      },
+      {
+        text: '异常',
+        value: '异常',
+      },
+    ],
+    onFilter: (value, record) => record.siteStatus.indexOf(value) === 0,
   },
   {
     title: '网站名称',
