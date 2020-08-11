@@ -1469,12 +1469,14 @@ ol {
 
 .flex-row-space-between-wrap {
   display: flex;
+  align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
 }
 
 .flex-row-space-between-nowrap {
   display: flex;
+  align-items: center;
   justify-content: space-between;
   flex-wrap: nowrap;
 }

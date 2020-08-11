@@ -4,7 +4,7 @@
       <a-col :span="24">
         <a-card size="small" :bordered="false" class="font12px">
           <a-row :gutter="[5,5]">
-            <a-col :xs="24" :sm="12" :md="12" :lg="6" :xl="6">
+            <a-col :span="24" class="flex-row-space-between-wrap">
               <a-breadcrumb>
                 <a-breadcrumb-item>
                   <a-icon type="home" />
@@ -14,6 +14,9 @@
                 </a-breadcrumb-item>
                 <a-breadcrumb-item>网站管理</a-breadcrumb-item>
               </a-breadcrumb>
+              <a-input-search
+                  style="width: 300px;"
+                  placeholder="域名搜索" enter-button @search="onSearch" />
             </a-col>
           </a-row>
         </a-card>
@@ -393,7 +396,11 @@ export default {
 
     onDelete(key) {
       layer.msg(key, { icon: 1 });
-    }
+    },
+
+    onSearch(value) {
+      layer.msg(value, { icon: 1 });
+    },
   }
 };
 </script>>
