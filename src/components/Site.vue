@@ -8,9 +8,7 @@
               <a-breadcrumb>
                 <a-breadcrumb-item>
                   <a-icon type="home" />
-                  <router-link to="/">
-                    <span>首页</span>
-                  </router-link>
+                  <a href="/">首页</a>
                 </a-breadcrumb-item>
                 <a-breadcrumb-item>网站管理</a-breadcrumb-item>
               </a-breadcrumb>
