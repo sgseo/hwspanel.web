@@ -3,8 +3,9 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 
-// glbal style
+// style
 import './assets/css/base.css'
+import './assets/css/antd.css'
 
 // ant-design-vue
 import {

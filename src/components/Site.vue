@@ -15,8 +15,11 @@
                 <a-breadcrumb-item>网站管理</a-breadcrumb-item>
               </a-breadcrumb>
               <a-input-search
-                  style="width: 300px;"
-                  placeholder="域名搜索" enter-button @search="onSearch" />
+                style="width: 300px;"
+                placeholder="域名搜索"
+                enter-button
+                @search="onSearch"
+              />
             </a-col>
           </a-row>
         </a-card>
@@ -31,7 +34,13 @@
             <a-button type="primary" class="mar5">添加网站</a-button>
             <a-button type="dashed">重建网站</a-button>
           </div>
-          <a-table :columns="columns" :data-source="data" bordered size="middle">
+          <a-table
+            :scroll="{ x: 1175 }"
+            :columns="columns"
+            :data-source="data"
+            bordered
+            size="middle"
+          >
             <div
               slot="filterDropdown"
               slot-scope="{ setSelectedKeys, selectedKeys, confirm, clearFilters, column }"
@@ -400,7 +409,7 @@ export default {
 
     onSearch(value) {
       layer.msg(value, { icon: 1 });
-    },
+    }
   }
 };
-</script>>
+</script>
