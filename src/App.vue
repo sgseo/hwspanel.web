@@ -38,9 +38,11 @@
               <a-icon type="setting" />
               <span>面板设置</span>
             </a-menu-item>
-            <a-menu-item key="6">
-              <a-icon type="snippets" />
-              <span>查看日志</span>
+            <a-menu-item key="/log">
+              <router-link to="/log">
+                <a-icon type="snippets" />
+                <span>查看日志</span>
+              </router-link>
             </a-menu-item>
             <a-menu-item key="7">
               <a-icon type="logout" />

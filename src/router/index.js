@@ -4,6 +4,7 @@ import Index from '../components/Index.vue'
 import Site from '../components/Site.vue'
 import Db from '../components/Db.vue'
 import AppStore from '../components/AppStore.vue'
+import Log from '../components/Log.vue'
 
 Vue.use(VueRouter)
 
@@ -32,6 +33,11 @@ const routes = [
         path: "/appstore",
         name: "AppStore",
         component: AppStore
+    },
+    {
+        path: "/log",
+        name: "Log",
+        component: Log
     },
 ]
 
