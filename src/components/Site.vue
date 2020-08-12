@@ -33,7 +33,7 @@
             <a-button type="dashed">重建所有网站</a-button>
           </div>
           <a-table
-            :scroll="{ x: 1175 }"
+            :scroll="{ x: 1125 }"
             :columns="columns"
             :data-source="data"
             bordered
@@ -68,12 +68,33 @@
               :style="{ color: filtered ? '#108ee9' : undefined }"
             />
 
+            <!--
+            <a-input-password
+              slot="ftpPass"
+              slot-scope="ftpPass"
+              placeholder="password"
+              :value="ftpPass" />
+            -->
+            <div slot="ftpPass" slot-scope="text, record">
+              <span :id="record.ftpUser" v-show="recordKey == record.key">{{ text }}</span>
+              <span v-show="recordKey != record.key">***********</span>
+              <a-icon
+                type="eye-invisible"
+                class="mal5"
+                v-if="recordKey == record.key"
+                @click="() => (recordKey = 0)"
+              />
+              <a-icon type="eye" class="mal5" v-else @click="() => (recordKey = record.key)" />
+              <a-icon type="copy" class="mal5" v-on:click="onCopyPass(text, record.ftpUser)" />
+            </div>
+
             <template slot="operation" slot-scope="text, record">
               <a class="font12px" href="javascript:;" v-on:click="onSetting(record)">设置</a>
               <a-divider type="vertical" />
               <a class="font12px" href="javascript:;" v-on:click="onDelete(record.key)">删除</a>
             </template>
 
+            <!-- 傻逼代码开始(想办法解决) -->
             <a-tag
               v-if="siteStatus == '运行中'"
               color="green"
@@ -105,6 +126,7 @@
               slot="ftpStatus"
               slot-scope="ftpStatus"
             >{{ ftpStatus }}</a-tag>
+            <!-- 傻逼代码结束 -->
           </a-table>
         </a-card>
       </a-col>
@@ -230,7 +252,8 @@ export default {
   data() {
     return {
       data,
-      searchText: '',
+      recordKey: 0,
+      searchText: "",
       searchInput: null,
       columns: [
         {
@@ -332,15 +355,15 @@ export default {
           title: "FTP密码",
           dataIndex: "ftpPass",
           key: "ftpPass",
-          ellipsis: true,
-          width: 150
+          width: 150,
+          scopedSlots: { customRender: "ftpPass" }
         },
         {
           title: "开通时间",
           dataIndex: "createTime",
           key: "createTime",
           ellipsis: true,
-          width: 200,
+          width: 150,
           sorter: (a, b) => a.createTime > b.createTime,
           defaultSortOrder: "descend"
         },
@@ -406,6 +429,20 @@ export default {
 
     onSearch(value) {
       layer.msg(value, { icon: 1 });
+    },
+
+    // 这段代码应该提取为公共函数
+    onCopyPass(password, id) {
+      let clipboard = new ClipboardJS("#" + id);
+      clipboard.on("success", function(e) {
+        layer.msg("复制成功", { icon: 1 });
+      });
+      clipboard.on("error", function(e) {
+        layer.msg("复制失败，浏览器不兼容!", { icon: 2 });
+      });
+      $("#" + id).attr("data-clipboard-text", password);
+      $("#" + id).click();
+      clipboard.destroy();
     }
   }
 };
