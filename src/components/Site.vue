@@ -96,37 +96,38 @@
 
             <!-- 傻逼代码开始(想办法解决) -->
             <a-tag
-              v-if="siteStatus == '运行中'"
+              v-if="siteStatus == '正常'"
               color="green"
               slot="siteStatus"
               slot-scope="siteStatus"
             >{{ siteStatus }}</a-tag>
             <a-tag
-              v-else-if="siteStatus == '已暂停'"
+              v-else-if="siteStatus == '暂停'"
               color="orange"
               slot="siteStatus"
               slot-scope="siteStatus"
             >{{ siteStatus }}</a-tag>
             <a-tag
-              v-else-if="siteStatus == '异常'"
+              v-else
               color="red"
               slot="siteStatus"
               slot-scope="siteStatus"
             >{{ siteStatus }}</a-tag>
 
             <a-tag
-              v-if="ftpStatus == '已启用'"
+              v-if="ftpStatus == '正常'"
               color="green"
               slot="ftpStatus"
               slot-scope="ftpStatus"
             >{{ ftpStatus }}</a-tag>
             <a-tag
-              v-else-if="ftpStatus == '已停止'"
+              v-else
               color="orange"
               slot="ftpStatus"
               slot-scope="ftpStatus"
             >{{ ftpStatus }}</a-tag>
             <!-- 傻逼代码结束 -->
+
           </a-table>
         </a-card>
       </a-col>
@@ -138,10 +139,10 @@
 const data = [
   {
     key: "1",
-    siteStatus: "运行中",
+    siteStatus: "正常",
     name: "www.hws.com",
     path: "/hwsmaster/wwwroot/www.hws.com",
-    ftpStatus: "已启用",
+    ftpStatus: "正常",
     ftpUser: "www_hws_com",
     ftpPass: "8xn45345ZMGi6Ejs",
     createTime: "2020-8-9 12:06:27",
@@ -149,10 +150,10 @@ const data = [
   },
   {
     key: "2",
-    siteStatus: "已暂停",
+    siteStatus: "暂停",
     name: "www.test1.com",
     path: "/hwsmaster/wwwroot/www.test1.com",
-    ftpStatus: "已启用",
+    ftpStatus: "正常",
     ftpUser: "www_test1_com",
     ftpPass: "xMxeekHnDjxH4npj",
     createTime: "2020-8-9 12:06:35",
@@ -160,10 +161,10 @@ const data = [
   },
   {
     key: "3",
-    siteStatus: "运行中",
+    siteStatus: "正常",
     name: "www.test2.com",
     path: "/hwsmaster/wwwroot/www.test2.com",
-    ftpStatus: "已停止",
+    ftpStatus: "停止",
     ftpUser: "www_test2_com",
     ftpPass: "PfTD5DskQihXi25B",
     createTime: "2020-8-9 12:06:40",
@@ -174,7 +175,7 @@ const data = [
     siteStatus: "异常",
     name: "www.test3.com",
     path: "/hwsmaster/wwwroot/www.test3.com",
-    ftpStatus: "已启用",
+    ftpStatus: "正常",
     ftpUser: "www_test3_com",
     ftpPass: "CjKdxtS3AjxMn4Wd",
     createTime: "2020-8-9 12:06:52",
@@ -182,10 +183,10 @@ const data = [
   },
   {
     key: "5",
-    siteStatus: "已暂停",
+    siteStatus: "暂停",
     name: "www.test4.com",
     path: "/hwsmaster/wwwroot/www.test4.com",
-    ftpStatus: "已停止",
+    ftpStatus: "停止",
     ftpUser: "www_test4_com",
     ftpPass: "ThAGzt5NxPN2naGs",
     createTime: "2020-8-9 12:12:53",
@@ -193,10 +194,10 @@ const data = [
   },
   {
     key: "6",
-    siteStatus: "已暂停",
+    siteStatus: "暂停",
     name: "www.test5.com",
     path: "/hwsmaster/wwwroot/www.test5.com",
-    ftpStatus: "已启用",
+    ftpStatus: "正常",
     ftpUser: "www_test5_com",
     ftpPass: "ss8SthfT5r8xmat5",
     createTime: "2020-8-9 12:13:23",
@@ -204,10 +205,10 @@ const data = [
   },
   {
     key: "7",
-    siteStatus: "运行中",
+    siteStatus: "正常",
     name: "www.test6.com",
     path: "/hwsmaster/wwwroot/www.test6.com",
-    ftpStatus: "已启用",
+    ftpStatus: "正常",
     ftpUser: "www_test6_com",
     ftpPass: "pKSa7z4ECt5SyMGT",
     createTime: "2020-8-9 12:23:39",
@@ -215,10 +216,10 @@ const data = [
   },
   {
     key: "8",
-    siteStatus: "运行中",
+    siteStatus: "正常",
     name: "www.test7.com",
     path: "/hwsmaster/wwwroot/www.test7.com",
-    ftpStatus: "已启用",
+    ftpStatus: "正常",
     ftpUser: "www_test7_com",
     ftpPass: "bJDbDPGEG4YhzXd7",
     createTime: "2020-8-9 12:33:39",
@@ -226,10 +227,10 @@ const data = [
   },
   {
     key: "9",
-    siteStatus: "运行中",
+    siteStatus: "正常",
     name: "www.test8.com",
     path: "/hwsmaster/wwwroot/www.test8.com",
-    ftpStatus: "已启用",
+    ftpStatus: "正常",
     ftpUser: "www_test8_com",
     ftpPass: "wZaTBQmf6wRarffF",
     createTime: "2020-8-9 12:34:50",
@@ -237,10 +238,10 @@ const data = [
   },
   {
     key: "10",
-    siteStatus: "运行中",
+    siteStatus: "正常",
     name: "www.test9.com",
     path: "/hwsmaster/wwwroot/www.test9.com",
-    ftpStatus: "已启用",
+    ftpStatus: "正常",
     ftpUser: "www_test9_com",
     ftpPass: "Wx7scX4WeZiy8eJm",
     createTime: "2020-8-9 12:36:48",
@@ -262,15 +263,15 @@ export default {
           key: "siteStatus",
           width: 70,
           scopedSlots: { customRender: "siteStatus" },
-          className: "text-center",
+          className: "text-right",
           filters: [
             {
-              text: "运行中",
-              value: "运行中"
+              text: "正常",
+              value: "正常"
             },
             {
-              text: "已暂停",
-              value: "已暂停"
+              text: "暂停",
+              value: "暂停"
             },
             {
               text: "异常",
@@ -315,15 +316,15 @@ export default {
           key: "ftpStatus",
           width: 70,
           scopedSlots: { customRender: "ftpStatus" },
-          className: "text-center",
+          className: "text-right",
           filters: [
             {
-              text: "已启用",
-              value: "已启用"
+              text: "正常",
+              value: "正常"
             },
             {
-              text: "已停止",
-              value: "已停止"
+              text: "停止",
+              value: "停止"
             }
           ],
           onFilter: (value, record) => record.ftpStatus.indexOf(value) === 0
