@@ -68,6 +68,19 @@
               :style="{ color: filtered ? '#108ee9' : undefined }"
             />
 
+            <div slot="dbPass" slot-scope="text, record">
+              <span :id="record.dbUser" v-show="recordKey == record.key">{{ text }}</span>
+              <span v-show="recordKey != record.key">***********</span>
+              <a-icon
+                type="eye-invisible"
+                class="mal5"
+                v-if="recordKey == record.key"
+                @click="() => (recordKey = 0)"
+              />
+              <a-icon type="eye" class="mal5" v-else @click="() => (recordKey = record.key)" />
+              <a-icon type="copy" class="mal5" @click="copyToClipboard(text, record.dbUser)" />
+            </div>
+
             <template slot="operation" slot-scope="text, record">
               <a class="font12px" href="javascript:;" v-on:click="onManage(record)">管理</a>
               <a-divider type="vertical" />
@@ -154,6 +167,7 @@ export default {
   data() {
     return {
       data,
+      recordKey: 0,
       searchText: "",
       searchInput: null,
       columns: [
@@ -205,7 +219,8 @@ export default {
           title: "数据库密码",
           dataIndex: "dbPass",
           key: "dbPass",
-          ellipsis: true
+          ellipsis: true,
+          scopedSlots: { customRender: "dbPass" }
         },
         {
           title: "归属网站",
@@ -241,11 +256,7 @@ export default {
   },
   mounted() {
     setTimeout(() => {
-      let load = layer.msg("正在处理,请稍候...", {
-        icon: 16,
-        time: 2000,
-        shade: [0.5, "#000"]
-      });
+      let load = this.loadingMsg();
     }, 20);
   },
   methods: {
@@ -260,23 +271,23 @@ export default {
     },
 
     onManage(record) {
-      layer.msg(record.dbName, { icon: 1 });
+      this.successMsg(record.dbName)
     },
 
     onSetting(record) {
-      layer.msg(record.dbName, { icon: 1 });
+      this.successMsg(record.dbName)
     },
 
     onRebuild(key) {
-      layer.msg(key, { icon: 1 });
+      this.successMsg(key)
     },
 
     onDelete(key) {
-      layer.msg(key, { icon: 1 });
+      this.successMsg(key)
     },
 
     onSearch(value) {
-      layer.msg(value, { icon: 1 });
+      this.successMsg(value)
     }
   }
 };

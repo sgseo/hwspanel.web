@@ -85,7 +85,7 @@
                 @click="() => (recordKey = 0)"
               />
               <a-icon type="eye" class="mal5" v-else @click="() => (recordKey = record.key)" />
-              <a-icon type="copy" class="mal5" v-on:click="onCopyPass(text, record.ftpUser)" />
+              <a-icon type="copy" class="mal5" @click="copyToClipboard(text, record.ftpUser)" />
             </div>
 
             <template slot="operation" slot-scope="text, record">
@@ -401,11 +401,7 @@ export default {
   },
   mounted() {
     setTimeout(() => {
-      let load = layer.msg("正在处理,请稍候...", {
-        icon: 16,
-        time: 2000,
-        shade: [0.5, "#000"]
-      });
+      let load = this.loadingMsg();
     }, 20);
   },
   methods: {
@@ -420,30 +416,16 @@ export default {
     },
 
     onSetting(record) {
-      layer.msg(record.comment, { icon: 1 });
+      this.successMsg(record.comment)
     },
 
     onDelete(key) {
-      layer.msg(key, { icon: 1 });
+      this.successMsg(key)
     },
 
     onSearch(value) {
-      layer.msg(value, { icon: 1 });
+      this.successMsg(value)
     },
-
-    // 这段代码应该提取为公共函数
-    onCopyPass(password, id) {
-      let clipboard = new ClipboardJS("#" + id);
-      clipboard.on("success", function(e) {
-        layer.msg("复制成功", { icon: 1 });
-      });
-      clipboard.on("error", function(e) {
-        layer.msg("复制失败，浏览器不兼容!", { icon: 2 });
-      });
-      $("#" + id).attr("data-clipboard-text", password);
-      $("#" + id).click();
-      clipboard.destroy();
-    }
   }
 };
 </script>
