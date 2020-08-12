@@ -33,7 +33,7 @@
             <a-button type="dashed">重建所有数据库</a-button>
           </div>
           <a-table
-            :scroll="{ x: 800 }"
+            :scroll="{ x: 1035 }"
             :columns="columns"
             :data-source="data"
             bordered
@@ -81,6 +81,19 @@
               <a-icon type="copy" class="mal5" @click="copyToClipboard(text, record.dbUser)" />
             </div>
 
+            <a-tag
+              v-if="dbStatus == '正常'"
+              color="green"
+              slot="dbStatus"
+              slot-scope="dbStatus"
+            >{{ dbStatus }}</a-tag>
+            <a-tag
+              v-else
+              color="red"
+              slot="dbStatus"
+              slot-scope="dbStatus"
+            >{{ dbStatus }}</a-tag>
+
             <template slot="operation" slot-scope="text, record">
               <a class="font12px" href="javascript:;" v-on:click="onManage(record)">管理</a>
               <a-divider type="vertical" />
@@ -101,66 +114,84 @@
 const data = [
   {
     key: "1",
+    dbStatus: "正常",
     dbName: "www_test1_com",
     dbUser: "www_test1_com",
     dbPass: "ZTDB5QmyaXXXDrXx",
-    dbSite: "www.test1.com"
+    dbSite: "www.test1.com",
+    dbComment: "测试数据库1,归属网站www.test1.com",
   },
   {
     key: "2",
+    dbStatus: "正常",
     dbName: "www_test2_com",
     dbUser: "www_test2_com",
     dbPass: "QErDWGrRyAxK7aJH",
-    dbSite: "www.test2.com"
+    dbSite: "www.test2.com",
+    dbComment: "测试数据库2,归属网站www.test2.com",
   },
   {
     key: "3",
+    dbStatus: "异常",
     dbName: "www_test3_com",
     dbUser: "www_test3_com",
     dbPass: "rNCPShNwfjaYpAeX",
-    dbSite: "www.test3.com"
+    dbSite: "www.test3.com",
+    dbComment: "测试数据库3,归属网站www.test3.com",
   },
   {
     key: "4",
+    dbStatus: "正常",
     dbName: "www_test4_com",
     dbUser: "www_test4_com",
     dbPass: "kmC4Djc54yEjM6jr",
-    dbSite: "www.test4.com"
+    dbSite: "www.test4.com",
+    dbComment: "测试数据库4,归属网站www.test4.com",
   },
   {
     key: "5",
+    dbStatus: "正常",
     dbName: "www_test5_com",
     dbUser: "www_test5_com",
     dbPass: "yX8YbZkWZPnsej68",
-    dbSite: "www.test5.com"
+    dbSite: "www.test5.com",
+    dbComment: "测试数据库5,归属网站www.test5.com",
   },
   {
     key: "6",
+    dbStatus: "正常",
     dbName: "www_test6_com",
     dbUser: "www_test6_com",
     dbPass: "fx7X2EzbZQ4HKbXX",
-    dbSite: "www.test6.com"
+    dbSite: "www.test6.com",
+    dbComment: "测试数据库6,归属网站www.test6.com",
   },
   {
     key: "7",
+    dbStatus: "异常",
     dbName: "www_test7_com",
     dbUser: "www_test7_com",
     dbPass: "wJe4D8Jrra3KzZFz",
-    dbSite: "www.test7.com"
+    dbSite: "www.test7.com",
+    dbComment: "测试数据库7,归属网站www.test7.com",
   },
   {
     key: "8",
+    dbStatus: "正常",
     dbName: "www_test8_com",
     dbUser: "www_test8_com",
     dbPass: "P2cbYmSYmHTtJKjD",
-    dbSite: "www.test8.com"
+    dbSite: "www.test8.com",
+    dbComment: "测试数据库8,归属网站www.test8.com",
   },
   {
     key: "9",
+    dbStatus: "正常",
     dbName: "www_test9_com",
     dbUser: "www_test9_com",
     dbPass: "Shx5XPpkmT2kScCW",
-    dbSite: "www.test9.com"
+    dbSite: "www.test9.com",
+    dbComment: "测试数据库9,归属网站www.test9.com",
   }
 ];
 export default {
@@ -172,10 +203,31 @@ export default {
       searchInput: null,
       columns: [
         {
+          title: "状态",
+          dataIndex: "dbStatus",
+          key: "dbStatus",
+          ellipsis: true,
+          width: 70,
+          scopedSlots: { customRender: "dbStatus" },
+          className: "text-right",
+          filters: [
+            {
+              text: "正常",
+              value: "正常"
+            },
+            {
+              text: "异常",
+              value: "异常"
+            },
+          ],
+          onFilter: (value, record) => record.dbStatus.indexOf(value) === 0
+        },
+        {
           title: "数据库名称",
           dataIndex: "dbName",
           key: "dbName",
           ellipsis: true,
+          width: 200,
           scopedSlots: {
             filterDropdown: "filterDropdown",
             filterIcon: "filterIcon"
@@ -198,6 +250,7 @@ export default {
           dataIndex: "dbUser",
           key: "dbUser",
           ellipsis: true,
+          width: 200,
           scopedSlots: {
             filterDropdown: "filterDropdown",
             filterIcon: "filterIcon"
@@ -220,6 +273,7 @@ export default {
           dataIndex: "dbPass",
           key: "dbPass",
           ellipsis: true,
+          width: 200,
           scopedSlots: { customRender: "dbPass" }
         },
         {
@@ -227,12 +281,35 @@ export default {
           dataIndex: "dbSite",
           key: "dbSite",
           ellipsis: true,
+          width: 200,
           scopedSlots: {
             filterDropdown: "filterDropdown",
             filterIcon: "filterIcon"
           },
           onFilter: (value, record) =>
             record.dbSite
+              .toString()
+              .toLowerCase()
+              .includes(value.toLowerCase()),
+          onFilterDropdownVisibleChange: visible => {
+            if (visible) {
+              setTimeout(() => {
+                this.searchInput.focus();
+              }, 0);
+            }
+          }
+        },
+        {
+          title: "备注",
+          dataIndex: "dbComment",
+          key: "dbComment",
+          ellipsis: true,
+          scopedSlots: {
+            filterDropdown: "filterDropdown",
+            filterIcon: "filterIcon"
+          },
+          onFilter: (value, record) =>
+            record.dbComment
               .toString()
               .toLowerCase()
               .includes(value.toLowerCase()),
