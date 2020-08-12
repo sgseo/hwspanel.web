@@ -22,9 +22,11 @@
                 <span>网站管理</span>
               </router-link>
             </a-menu-item>
-            <a-menu-item key="3">
-              <a-icon type="database" />
-              <span>数据库</span>
+            <a-menu-item key="/db">
+              <router-link to="/db">
+                <a-icon type="database" />
+                <span>数据库</span>
+              </router-link>
             </a-menu-item>
             <a-menu-item key="4">
               <a-icon type="appstore" />

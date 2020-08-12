@@ -217,7 +217,7 @@ export default {
       ],
       dataOverview: [
         { title: "网站", url: "/site", class: "global", data: 0 },
-        { title: "数据库", url: "#", class: "database", data: 0 },
+        { title: "数据库", url: "/db", class: "database", data: 0 },
         { title: "SSL", url: "#", class: "file-protect", data: 0 }
       ],
       traffic: [
