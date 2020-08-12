@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Index from '../components/Index.vue'
 import Site from '../components/Site.vue'
 import Db from '../components/Db.vue'
+import AppStore from '../components/AppStore.vue'
 
 Vue.use(VueRouter)
 
@@ -26,6 +27,11 @@ const routes = [
         path: "/db",
         name: "Db",
         component: Db
+    },
+    {
+        path: "/appstore",
+        name: "AppStore",
+        component: AppStore
     },
 ]
 

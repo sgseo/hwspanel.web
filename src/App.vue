@@ -28,9 +28,11 @@
                 <span>数据库</span>
               </router-link>
             </a-menu-item>
-            <a-menu-item key="4">
-              <a-icon type="appstore" />
-              <span>应用商店</span>
+            <a-menu-item key="/appstore">
+              <router-link to="/appstore">
+                <a-icon type="appstore" />
+                <span>应用商店</span>
+              </router-link>
             </a-menu-item>
             <a-menu-item key="5">
               <a-icon type="setting" />
