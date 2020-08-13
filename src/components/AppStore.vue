@@ -32,7 +32,7 @@
             <a-button type="dashed">更新应用列表</a-button>
           </div>
           <a-table
-            :scroll="{ x: 800 }"
+            :scroll="{ x: 445 }"
             :columns="columns"
             :data-source="data"
             size="small"
@@ -52,8 +52,9 @@
               :status="status" :text="record.msg" />
 
             <a-switch
+                v-if="record.status != 'error'"
                 slot="index"
-                slot-scope="index"
+                slot-scope="index, record"
                 size="small"
                 :checked="index"
                 @change="onChange" />
