@@ -1480,3 +1480,17 @@ ol {
   justify-content: space-between;
   flex-wrap: nowrap;
 }
+
+.flex-center-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.flex-center-nowrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: nowrap;
+}
