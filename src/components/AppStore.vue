@@ -199,7 +199,7 @@ const data = [
     class: "运行环境",
     status: "success",
     msg: "运行中",
-    index: false
+    index: true
   },
   {
     key: "8",
@@ -219,7 +219,7 @@ const data = [
     class: "运行环境",
     status: "success",
     msg: "运行中",
-    index: false
+    index: true
   },
   {
     key: "10",
