@@ -30,8 +30,12 @@
             </a-menu-item>
             <a-menu-item key="/appstore">
               <router-link to="/appstore">
-                <a-icon type="appstore" />
-                <span>应用商店</span>
+                <a-badge show-zero count="3"
+                    :number-style="{ boxShadow: 'none', borderRadius: '5px' }"
+                    title="任务数">
+                  <a-icon type="appstore" />
+                  <span>应用商店</span>
+                </a-badge>
               </router-link>
             </a-menu-item>
             <a-menu-item key="5">
