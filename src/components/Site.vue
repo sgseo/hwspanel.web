@@ -33,11 +33,10 @@
             <a-button type="dashed">重建所有网站</a-button>
           </div>
           <a-table
-            :scroll="{ x: 1125 }"
+            :scroll="{ x: 1170 }"
             :columns="columns"
             :data-source="data"
-            bordered
-            size="middle"
+            size="small"
           >
             <div
               slot="filterDropdown"
@@ -68,13 +67,6 @@
               :style="{ color: filtered ? '#108ee9' : undefined }"
             />
 
-            <!--
-            <a-input-password
-              slot="ftpPass"
-              slot-scope="ftpPass"
-              placeholder="password"
-              :value="ftpPass" />
-            -->
             <div slot="ftpPass" slot-scope="text, record">
               <span :id="record.ftpUser" v-show="recordKey == record.key">{{ text }}</span>
               <span v-show="recordKey != record.key">***********</span>
@@ -88,45 +80,20 @@
               <a-icon type="copy" class="mal5" @click="copyToClipboard(text, record.ftpUser)" />
             </div>
 
+            <a-badge
+              slot="siteStatus"
+              slot-scope="siteStatus, record"
+              :status="siteStatus" :text="record.siteMsg" />
+            <a-badge
+              slot="ftpStatus"
+              slot-scope="ftpStatus, record"
+              :status="ftpStatus" :text="record.ftpMsg" />
+
             <template slot="operation" slot-scope="text, record">
-              <a class="font12px" href="javascript:;" v-on:click="onSetting(record)">设置</a>
+              <a href="javascript:;" v-on:click="onSetting(record)">设置</a>
               <a-divider type="vertical" />
-              <a class="font12px" href="javascript:;" v-on:click="onDelete(record.key)">删除</a>
+              <a href="javascript:;" v-on:click="onDelete(record.key)">删除</a>
             </template>
-
-            <!-- 傻逼代码开始(想办法解决) -->
-            <a-tag
-              v-if="siteStatus == '正常'"
-              color="green"
-              slot="siteStatus"
-              slot-scope="siteStatus"
-            >{{ siteStatus }}</a-tag>
-            <a-tag
-              v-else-if="siteStatus == '暂停'"
-              color="orange"
-              slot="siteStatus"
-              slot-scope="siteStatus"
-            >{{ siteStatus }}</a-tag>
-            <a-tag
-              v-else
-              color="red"
-              slot="siteStatus"
-              slot-scope="siteStatus"
-            >{{ siteStatus }}</a-tag>
-
-            <a-tag
-              v-if="ftpStatus == '正常'"
-              color="green"
-              slot="ftpStatus"
-              slot-scope="ftpStatus"
-            >{{ ftpStatus }}</a-tag>
-            <a-tag
-              v-else
-              color="orange"
-              slot="ftpStatus"
-              slot-scope="ftpStatus"
-            >{{ ftpStatus }}</a-tag>
-            <!-- 傻逼代码结束 -->
 
           </a-table>
         </a-card>
@@ -139,10 +106,12 @@
 const data = [
   {
     key: "1",
-    siteStatus: "正常",
+    siteStatus: "success",
+    siteMsg: "正常",
     name: "www.hws.com",
     path: "/hwsmaster/wwwroot/www.hws.com",
-    ftpStatus: "正常",
+    ftpStatus: "success",
+    ftpMsg: "正常",
     ftpUser: "www_hws_com",
     ftpPass: "8xn45345ZMGi6Ejs",
     createTime: "2020-8-9 12:06:27",
@@ -150,10 +119,12 @@ const data = [
   },
   {
     key: "2",
-    siteStatus: "暂停",
+    siteStatus: "warning",
+    siteMsg: "暂停",
     name: "www.test1.com",
     path: "/hwsmaster/wwwroot/www.test1.com",
-    ftpStatus: "正常",
+    ftpStatus: "success",
+    ftpMsg: "正常",
     ftpUser: "www_test1_com",
     ftpPass: "xMxeekHnDjxH4npj",
     createTime: "2020-8-9 12:06:35",
@@ -161,10 +132,12 @@ const data = [
   },
   {
     key: "3",
-    siteStatus: "正常",
+    siteStatus: "success",
+    siteMsg: "正常",
     name: "www.test2.com",
     path: "/hwsmaster/wwwroot/www.test2.com",
-    ftpStatus: "停止",
+    ftpStatus: "warning",
+    ftpMsg: "停止",
     ftpUser: "www_test2_com",
     ftpPass: "PfTD5DskQihXi25B",
     createTime: "2020-8-9 12:06:40",
@@ -172,10 +145,12 @@ const data = [
   },
   {
     key: "4",
-    siteStatus: "异常",
+    siteStatus: "error",
+    siteMsg: "异常",
     name: "www.test3.com",
     path: "/hwsmaster/wwwroot/www.test3.com",
-    ftpStatus: "正常",
+    ftpStatus: "success",
+    ftpMsg: "正常",
     ftpUser: "www_test3_com",
     ftpPass: "CjKdxtS3AjxMn4Wd",
     createTime: "2020-8-9 12:06:52",
@@ -183,10 +158,12 @@ const data = [
   },
   {
     key: "5",
-    siteStatus: "暂停",
+    siteStatus: "warning",
+    siteMsg: "暂停",
     name: "www.test4.com",
     path: "/hwsmaster/wwwroot/www.test4.com",
-    ftpStatus: "停止",
+    ftpStatus: "warning",
+    ftpMsg: "停止",
     ftpUser: "www_test4_com",
     ftpPass: "ThAGzt5NxPN2naGs",
     createTime: "2020-8-9 12:12:53",
@@ -194,10 +171,12 @@ const data = [
   },
   {
     key: "6",
-    siteStatus: "暂停",
+    siteStatus: "warning",
+    siteMsg: "暂停",
     name: "www.test5.com",
     path: "/hwsmaster/wwwroot/www.test5.com",
-    ftpStatus: "正常",
+    ftpStatus: "success",
+    ftpMsg: "正常",
     ftpUser: "www_test5_com",
     ftpPass: "ss8SthfT5r8xmat5",
     createTime: "2020-8-9 12:13:23",
@@ -205,10 +184,12 @@ const data = [
   },
   {
     key: "7",
-    siteStatus: "正常",
+    siteStatus: "success",
+    siteMsg: "正常",
     name: "www.test6.com",
     path: "/hwsmaster/wwwroot/www.test6.com",
-    ftpStatus: "正常",
+    ftpStatus: "success",
+    ftpMsg: "正常",
     ftpUser: "www_test6_com",
     ftpPass: "pKSa7z4ECt5SyMGT",
     createTime: "2020-8-9 12:23:39",
@@ -216,10 +197,12 @@ const data = [
   },
   {
     key: "8",
-    siteStatus: "正常",
+    siteStatus: "success",
+    siteMsg: "正常",
     name: "www.test7.com",
     path: "/hwsmaster/wwwroot/www.test7.com",
-    ftpStatus: "正常",
+    ftpStatus: "success",
+    ftpMsg: "正常",
     ftpUser: "www_test7_com",
     ftpPass: "bJDbDPGEG4YhzXd7",
     createTime: "2020-8-9 12:33:39",
@@ -227,10 +210,12 @@ const data = [
   },
   {
     key: "9",
-    siteStatus: "正常",
+    siteStatus: "success",
+    siteMsg: "正常",
     name: "www.test8.com",
     path: "/hwsmaster/wwwroot/www.test8.com",
-    ftpStatus: "正常",
+    ftpStatus: "success",
+    ftpMsg: "正常",
     ftpUser: "www_test8_com",
     ftpPass: "wZaTBQmf6wRarffF",
     createTime: "2020-8-9 12:34:50",
@@ -238,10 +223,12 @@ const data = [
   },
   {
     key: "10",
-    siteStatus: "正常",
+    siteStatus: "success",
+    siteMsg: "正常",
     name: "www.test9.com",
     path: "/hwsmaster/wwwroot/www.test9.com",
-    ftpStatus: "正常",
+    ftpStatus: "success",
+    ftpMsg: "正常",
     ftpUser: "www_test9_com",
     ftpPass: "Wx7scX4WeZiy8eJm",
     createTime: "2020-8-9 12:36:48",
@@ -262,20 +249,20 @@ export default {
           dataIndex: "siteStatus",
           key: "siteStatus",
           width: 70,
+          className: "table_title",
           scopedSlots: { customRender: "siteStatus" },
-          className: "text-right",
           filters: [
             {
               text: "正常",
-              value: "正常"
+              value: "success"
             },
             {
               text: "暂停",
-              value: "暂停"
+              value: "warning"
             },
             {
               text: "异常",
-              value: "异常"
+              value: "error"
             }
           ],
           onFilter: (value, record) => record.siteStatus.indexOf(value) === 0
@@ -286,6 +273,7 @@ export default {
           key: "name",
           ellipsis: true,
           width: 150,
+          className: "table_title",
           scopedSlots: {
             filterDropdown: "filterDropdown",
             filterIcon: "filterIcon"
@@ -308,6 +296,7 @@ export default {
           dataIndex: "path",
           key: "path",
           ellipsis: true,
+          className: "table_title",
           width: 300
         },
         {
@@ -315,16 +304,16 @@ export default {
           dataIndex: "ftpStatus",
           key: "ftpStatus",
           width: 70,
+          className: "table_title",
           scopedSlots: { customRender: "ftpStatus" },
-          className: "text-right",
           filters: [
             {
               text: "正常",
-              value: "正常"
+              value: "success"
             },
             {
               text: "停止",
-              value: "停止"
+              value: "warning"
             }
           ],
           onFilter: (value, record) => record.ftpStatus.indexOf(value) === 0
@@ -335,6 +324,7 @@ export default {
           key: "ftpUser",
           ellipsis: true,
           width: 150,
+          className: "table_title",
           scopedSlots: {
             filterDropdown: "filterDropdown",
             filterIcon: "filterIcon"
@@ -356,7 +346,8 @@ export default {
           title: "FTP密码",
           dataIndex: "ftpPass",
           key: "ftpPass",
-          width: 150,
+          width: 190,
+          className: "table_title",
           scopedSlots: { customRender: "ftpPass" }
         },
         {
@@ -366,6 +357,7 @@ export default {
           ellipsis: true,
           width: 150,
           sorter: (a, b) => a.createTime > b.createTime,
+          className: "table_title",
           defaultSortOrder: "descend"
         },
         {
@@ -373,6 +365,7 @@ export default {
           dataIndex: "comment",
           key: "comment",
           ellipsis: true,
+          className: "table_title",
           scopedSlots: {
             filterDropdown: "filterDropdown",
             filterIcon: "filterIcon"
@@ -395,7 +388,8 @@ export default {
           dataIndex: "operation",
           key: "operation",
           scopedSlots: { customRender: "operation" },
-          width: 85
+          className: "table_title",
+          width: 90
         }
       ]
     };
