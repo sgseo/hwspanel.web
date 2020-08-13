@@ -22,7 +22,6 @@ import {
     Breadcrumb,
     Button,
     Table,
-    Tag,
     ConfigProvider,
     Input,
     Divider,
@@ -39,7 +38,6 @@ Vue.use(Badge)
 Vue.use(Breadcrumb)
 Vue.use(Button)
 Vue.use(Table)
-Vue.use(Tag)
 Vue.use(ConfigProvider)
 Vue.use(Input)
 Vue.use(Divider)
