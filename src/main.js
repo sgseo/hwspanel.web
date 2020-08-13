@@ -26,6 +26,7 @@ import {
     ConfigProvider,
     Input,
     Divider,
+    Switch,
 } from 'ant-design-vue';
 Vue.use(Layout)
 Vue.use(Menu)
@@ -42,6 +43,7 @@ Vue.use(Tag)
 Vue.use(ConfigProvider)
 Vue.use(Input)
 Vue.use(Divider)
+Vue.use(Switch)
 
 Vue.config.productionTip = false
 
