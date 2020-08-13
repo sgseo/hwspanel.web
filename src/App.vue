@@ -3,13 +3,22 @@
     <div id="app">
       <a-layout id="components-layout-demo-custom-trigger" style="height: 100%;">
         <a-layout-sider v-model="collapsed" :trigger="collapsed" collapsible>
-          <div class="logo text-center" style="overflow: hidden;">
-            <span class="font22px" style="color: #DDD">护卫神·主机大师</span>
+          <div
+            class="logo text-center font22px color-white"
+            style="
+                border-radius: 5px;
+                background: #108ee9;
+                overflow: hidden;"
+            @click="onOpenTask"
+          >
+            <span style="line-height: 32px;">护卫神.主机大师</span>
           </div>
-          <a-menu theme="dark"
-              mode="inline"
-              :default-selected-keys="[$route.path]"
-              :selectedKeys="[$route.path]">
+          <a-menu
+            theme="dark"
+            mode="inline"
+            :default-selected-keys="[$route.path]"
+            :selectedKeys="[$route.path]"
+          >
             <a-menu-item key="/index">
               <router-link to="/index">
                 <a-icon type="home" />
@@ -30,12 +39,14 @@
             </a-menu-item>
             <a-menu-item key="/appstore">
               <router-link to="/appstore">
-                <a-badge show-zero count="3"
-                    :number-style="{ boxShadow: 'none', borderRadius: '5px' }"
-                    title="任务数">
-                  <a-icon type="appstore" />
-                  <span>应用商店</span>
-                </a-badge>
+                <a-icon type="appstore" />
+                <span>应用商店</span>
+                <a-badge
+                  show-zero
+                  count="3"
+                  :number-style="{ boxShadow: 'none', borderRadius: '5px' }"
+                  title="任务数"
+                ></a-badge>
               </router-link>
             </a-menu-item>
             <a-menu-item key="5">
@@ -88,6 +99,11 @@ export default {
       zhCN,
       collapsed: false
     };
+  },
+  methods: {
+    onOpenTask() {
+      this.successMsg("打开任务队列");
+    }
   }
 };
 </script>
