@@ -30,7 +30,7 @@
           <span slot="title">应用列表</span>
           <div class="mab10">
             <a-button type="dashed">更新应用列表</a-button>
-            <div id="0" class="toBtn btnGroup" @click="onFilter('0')">全部</div>
+            <div id="0" class="toBtn btnGroup btnOn" @click="onFilter('0')">全部</div>
             <div id="1" class="toBtn btnGroup" @click="onFilter('1')">运行环境</div>
             <div id="2" class="toBtn btnGroup" @click="onFilter('2')">服务</div>
           </div>
