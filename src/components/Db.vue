@@ -32,7 +32,7 @@
             <a-button type="primary" class="mar5">添加数据库</a-button>
             <a-button type="dashed">重建所有数据库</a-button>
           </div>
-          <a-table :scroll="{ x: 1035 }" :columns="columns" :data-source="data" size="small">
+          <a-table :scroll="{ x: 1050 }" :columns="columns" :data-source="data" size="small">
             <div
               slot="filterDropdown"
               slot-scope="{ setSelectedKeys, selectedKeys, confirm, clearFilters, column }"
