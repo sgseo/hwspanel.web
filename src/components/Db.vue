@@ -32,13 +32,7 @@
             <a-button type="primary" class="mar5">添加数据库</a-button>
             <a-button type="dashed">重建所有数据库</a-button>
           </div>
-          <a-table
-            :scroll="{ x: 1035 }"
-            :columns="columns"
-            :data-source="data"
-            bordered
-            size="middle"
-          >
+          <a-table :scroll="{ x: 1035 }" :columns="columns" :data-source="data" size="small">
             <div
               slot="filterDropdown"
               slot-scope="{ setSelectedKeys, selectedKeys, confirm, clearFilters, column }"
@@ -68,8 +62,8 @@
               :style="{ color: filtered ? '#108ee9' : undefined }"
             />
 
-            <div slot="dbPass" slot-scope="text, record">
-              <span :id="record.dbUser" v-show="recordKey == record.key">{{ text }}</span>
+            <div slot="pass" slot-scope="text, record">
+              <span :id="record.user" v-show="recordKey == record.key">{{ text }}</span>
               <span v-show="recordKey != record.key">***********</span>
               <a-icon
                 type="eye-invisible"
@@ -78,30 +72,19 @@
                 @click="() => (recordKey = 0)"
               />
               <a-icon type="eye" class="mal5" v-else @click="() => (recordKey = record.key)" />
-              <a-icon type="copy" class="mal5" @click="copyToClipboard(text, record.dbUser)" />
+              <a-icon type="copy" class="mal5" @click="copyToClipboard(text, record.user)" />
             </div>
 
-            <a-tag
-              v-if="dbStatus == '正常'"
-              color="green"
-              slot="dbStatus"
-              slot-scope="dbStatus"
-            >{{ dbStatus }}</a-tag>
-            <a-tag
-              v-else
-              color="red"
-              slot="dbStatus"
-              slot-scope="dbStatus"
-            >{{ dbStatus }}</a-tag>
+            <a-badge slot="status" slot-scope="status, record" :status="status" :text="record.msg" />
 
             <template slot="operation" slot-scope="text, record">
-              <a class="font12px" href="javascript:;" v-on:click="onManage(record)">管理</a>
+              <a href="javascript:;" v-on:click="onManage(record)">管理</a>
               <a-divider type="vertical" />
-              <a class="font12px" href="javascript:;" v-on:click="onSetting(record)">设置</a>
+              <a href="javascript:;" v-on:click="onSetting(record)">设置</a>
               <a-divider type="vertical" />
-              <a class="font12px" href="javascript:;" v-on:click="onRebuild(record.key)">重建</a>
+              <a href="javascript:;" v-on:click="onRebuild(record.key)">重建</a>
               <a-divider type="vertical" />
-              <a class="font12px" href="javascript:;" v-on:click="onDelete(record.key)">删除</a>
+              <a href="javascript:;" v-on:click="onDelete(record.key)">删除</a>
             </template>
           </a-table>
         </a-card>
@@ -114,84 +97,93 @@
 const data = [
   {
     key: "1",
-    dbStatus: "正常",
-    dbName: "www_test1_com",
-    dbUser: "www_test1_com",
-    dbPass: "ZTDB5QmyaXXXDrXx",
-    dbSite: "www.test1.com",
-    dbComment: "测试数据库1,归属网站www.test1.com",
+    status: "success",
+    name: "www_test1_com",
+    user: "www_test1_com",
+    pass: "ZTDB5QmyaXXXDrXx",
+    site: "www.test1.com",
+    comment: "测试数据库1,归属网站www.test1.com",
+    msg: "正常"
   },
   {
     key: "2",
-    dbStatus: "正常",
-    dbName: "www_test2_com",
-    dbUser: "www_test2_com",
-    dbPass: "QErDWGrRyAxK7aJH",
-    dbSite: "www.test2.com",
-    dbComment: "测试数据库2,归属网站www.test2.com",
+    status: "success",
+    name: "www_test2_com",
+    user: "www_test2_com",
+    pass: "QErDWGrRyAxK7aJH",
+    site: "www.test2.com",
+    comment: "测试数据库2,归属网站www.test2.com",
+    msg: "正常"
   },
   {
     key: "3",
-    dbStatus: "异常",
-    dbName: "www_test3_com",
-    dbUser: "www_test3_com",
-    dbPass: "rNCPShNwfjaYpAeX",
-    dbSite: "www.test3.com",
-    dbComment: "测试数据库3,归属网站www.test3.com",
+    status: "error",
+    name: "www_test3_com",
+    user: "www_test3_com",
+    pass: "rNCPShNwfjaYpAeX",
+    site: "www.test3.com",
+    comment: "测试数据库3,归属网站www.test3.com",
+    msg: "异常"
   },
   {
     key: "4",
-    dbStatus: "正常",
-    dbName: "www_test4_com",
-    dbUser: "www_test4_com",
-    dbPass: "kmC4Djc54yEjM6jr",
-    dbSite: "www.test4.com",
-    dbComment: "测试数据库4,归属网站www.test4.com",
+    status: "success",
+    name: "www_test4_com",
+    user: "www_test4_com",
+    pass: "kmC4Djc54yEjM6jr",
+    site: "www.test4.com",
+    comment: "测试数据库4,归属网站www.test4.com",
+    msg: "正常"
   },
   {
     key: "5",
-    dbStatus: "正常",
-    dbName: "www_test5_com",
-    dbUser: "www_test5_com",
-    dbPass: "yX8YbZkWZPnsej68",
-    dbSite: "www.test5.com",
-    dbComment: "测试数据库5,归属网站www.test5.com",
+    status: "success",
+    name: "www_test5_com",
+    user: "www_test5_com",
+    pass: "yX8YbZkWZPnsej68",
+    site: "www.test5.com",
+    comment: "测试数据库5,归属网站www.test5.com",
+    msg: "正常"
   },
   {
     key: "6",
-    dbStatus: "正常",
-    dbName: "www_test6_com",
-    dbUser: "www_test6_com",
-    dbPass: "fx7X2EzbZQ4HKbXX",
-    dbSite: "www.test6.com",
-    dbComment: "测试数据库6,归属网站www.test6.com",
+    status: "success",
+    name: "www_test6_com",
+    user: "www_test6_com",
+    pass: "fx7X2EzbZQ4HKbXX",
+    site: "www.test6.com",
+    comment: "测试数据库6,归属网站www.test6.com",
+    msg: "正常"
   },
   {
     key: "7",
-    dbStatus: "异常",
-    dbName: "www_test7_com",
-    dbUser: "www_test7_com",
-    dbPass: "wJe4D8Jrra3KzZFz",
-    dbSite: "www.test7.com",
-    dbComment: "测试数据库7,归属网站www.test7.com",
+    status: "error",
+    name: "www_test7_com",
+    user: "www_test7_com",
+    pass: "wJe4D8Jrra3KzZFz",
+    site: "www.test7.com",
+    comment: "测试数据库7,归属网站www.test7.com",
+    msg: "异常"
   },
   {
     key: "8",
-    dbStatus: "正常",
-    dbName: "www_test8_com",
-    dbUser: "www_test8_com",
-    dbPass: "P2cbYmSYmHTtJKjD",
-    dbSite: "www.test8.com",
-    dbComment: "测试数据库8,归属网站www.test8.com",
+    status: "success",
+    name: "www_test8_com",
+    user: "www_test8_com",
+    pass: "P2cbYmSYmHTtJKjD",
+    site: "www.test8.com",
+    comment: "测试数据库8,归属网站www.test8.com",
+    msg: "正常"
   },
   {
     key: "9",
-    dbStatus: "正常",
-    dbName: "www_test9_com",
-    dbUser: "www_test9_com",
-    dbPass: "Shx5XPpkmT2kScCW",
-    dbSite: "www.test9.com",
-    dbComment: "测试数据库9,归属网站www.test9.com",
+    status: "success",
+    name: "www_test9_com",
+    user: "www_test9_com",
+    pass: "Shx5XPpkmT2kScCW",
+    site: "www.test9.com",
+    comment: "测试数据库9,归属网站www.test9.com",
+    msg: "正常"
   }
 ];
 export default {
@@ -204,36 +196,37 @@ export default {
       columns: [
         {
           title: "状态",
-          dataIndex: "dbStatus",
-          key: "dbStatus",
+          dataIndex: "status",
+          key: "status",
           ellipsis: true,
           width: 70,
-          scopedSlots: { customRender: "dbStatus" },
-          className: "text-right",
+          scopedSlots: { customRender: "status" },
+          className: "table_title",
           filters: [
             {
               text: "正常",
-              value: "正常"
+              value: "success"
             },
             {
               text: "异常",
-              value: "异常"
-            },
+              value: "error"
+            }
           ],
-          onFilter: (value, record) => record.dbStatus.indexOf(value) === 0
+          onFilter: (value, record) => record.status.indexOf(value) === 0
         },
         {
           title: "数据库名称",
-          dataIndex: "dbName",
-          key: "dbName",
+          dataIndex: "name",
+          key: "name",
           ellipsis: true,
           width: 200,
+          className: "table_title",
           scopedSlots: {
             filterDropdown: "filterDropdown",
             filterIcon: "filterIcon"
           },
           onFilter: (value, record) =>
-            record.dbName
+            record.name
               .toString()
               .toLowerCase()
               .includes(value.toLowerCase()),
@@ -247,16 +240,17 @@ export default {
         },
         {
           title: "数据库账户",
-          dataIndex: "dbUser",
-          key: "dbUser",
+          dataIndex: "user",
+          key: "user",
           ellipsis: true,
           width: 200,
+          className: "table_title",
           scopedSlots: {
             filterDropdown: "filterDropdown",
             filterIcon: "filterIcon"
           },
           onFilter: (value, record) =>
-            record.dbUser
+            record.user
               .toString()
               .toLowerCase()
               .includes(value.toLowerCase()),
@@ -270,24 +264,26 @@ export default {
         },
         {
           title: "数据库密码",
-          dataIndex: "dbPass",
-          key: "dbPass",
+          dataIndex: "pass",
+          key: "pass",
           ellipsis: true,
           width: 200,
-          scopedSlots: { customRender: "dbPass" }
+          className: "table_title",
+          scopedSlots: { customRender: "pass" }
         },
         {
           title: "归属网站",
-          dataIndex: "dbSite",
-          key: "dbSite",
+          dataIndex: "site",
+          key: "site",
           ellipsis: true,
           width: 200,
+          className: "table_title",
           scopedSlots: {
             filterDropdown: "filterDropdown",
             filterIcon: "filterIcon"
           },
           onFilter: (value, record) =>
-            record.dbSite
+            record.site
               .toString()
               .toLowerCase()
               .includes(value.toLowerCase()),
@@ -301,15 +297,16 @@ export default {
         },
         {
           title: "备注",
-          dataIndex: "dbComment",
-          key: "dbComment",
+          dataIndex: "comment",
+          key: "comment",
           ellipsis: true,
+          className: "table_title",
           scopedSlots: {
             filterDropdown: "filterDropdown",
             filterIcon: "filterIcon"
           },
           onFilter: (value, record) =>
-            record.dbComment
+            record.comment
               .toString()
               .toLowerCase()
               .includes(value.toLowerCase()),
@@ -326,7 +323,8 @@ export default {
           dataIndex: "operation",
           key: "operation",
           scopedSlots: { customRender: "operation" },
-          width: 165
+          width: 180,
+          className: "table_title"
         }
       ]
     };
@@ -348,23 +346,23 @@ export default {
     },
 
     onManage(record) {
-      this.successMsg(record.dbName)
+      this.successMsg(record.name);
     },
 
     onSetting(record) {
-      this.successMsg(record.dbName)
+      this.successMsg(record.name);
     },
 
     onRebuild(key) {
-      this.successMsg(key)
+      this.successMsg(key);
     },
 
     onDelete(key) {
-      this.successMsg(key)
+      this.successMsg(key);
     },
 
     onSearch(value) {
-      this.successMsg(value)
+      this.successMsg(value);
     }
   }
 };
