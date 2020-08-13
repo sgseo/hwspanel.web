@@ -303,6 +303,36 @@ const data = [
         msg: "未部署",
         index: false,
     },
+    {
+        key: "18",
+        name: "护卫神.网站挂码清理",
+        icon: {backgroundImage: "url('/static/img/logo.png')"},
+        description: "由我司安全工程师人工清理网站中的挂马代码",
+        class: "服务",
+        status: "error",
+        msg: "未部署",
+        index: false,
+    },
+    {
+        key: "19",
+        name: "护卫神.网页木马审计",
+        icon: {backgroundImage: "url('/static/img/logo.png')"},
+        description: "由我司安全工程师人工找出网站中的网页木马文件",
+        class: "服务",
+        status: "error",
+        msg: "未部署",
+        index: false,
+    },
+    {
+        key: "20",
+        name: "护卫神.故障应急响应",
+        icon: {backgroundImage: "url('/static/img/logo.png')"},
+        description: "排查各种系统故障，如：MySQL不稳定、PHP错误、网站打不开等，能解决才收费。",
+        class: "服务",
+        status: "error",
+        msg: "未部署",
+        index: false,
+    },
 
 ]
 
