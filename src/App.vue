@@ -8,6 +8,7 @@
             style="
                 border-radius: 5px;
                 background: #108ee9;
+                cursor: pointer;
                 overflow: hidden;"
             @click="onOpenTask"
           >
