@@ -5,6 +5,8 @@ import Site from '../components/Site.vue'
 import Db from '../components/Db.vue'
 import AppStore from '../components/AppStore.vue'
 import Log from '../components/Log.vue'
+import PanelSetting from '../components/PanelSetting.vue'
+import UserSetting from '../components/UserSetting.vue'
 
 Vue.use(VueRouter)
 
@@ -38,6 +40,16 @@ const routes = [
         path: "/log",
         name: "Log",
         component: Log
+    },
+    {
+        path: "/panel_setting",
+        name: "PanelSetting",
+        component: PanelSetting
+    },
+    {
+        path: "/user_setting",
+        name: "UserSetting",
+        component: UserSetting
     },
 ]
 

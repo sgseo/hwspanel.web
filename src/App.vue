@@ -18,6 +18,7 @@
             theme="dark"
             mode="inline"
             :default-selected-keys="[$route.path]"
+            :defaultOpenKeys="defaultOpenKeys"
             :selectedKeys="[$route.path]"
           >
             <a-menu-item key="/index">
@@ -56,13 +57,17 @@
                 <span>查看日志</span>
               </router-link>
             </a-menu-item>
-            <a-sub-menu key="setting_sub_menu">
+            <a-sub-menu key="sub1">
               <span slot="title"><a-icon type="setting" /><span>系统设置</span></span>
-              <a-menu-item key="sub_menu_1">
-                面板设置
+              <a-menu-item key="/panel_setting">
+                <router-link to="/panel_setting">
+                  面板设置
+                </router-link>
               </a-menu-item>
-              <a-menu-item key="sub_menu_2">
-                用户设置
+              <a-menu-item key="/user_setting">
+                <router-link to="/user_setting">
+                  用户设置
+                </router-link>
               </a-menu-item>
             </a-sub-menu>
             <a-menu-item key="7">
@@ -103,7 +108,8 @@ export default {
   data() {
     return {
       zhCN,
-      collapsed: false
+      collapsed: false,
+      defaultOpenKeys: ["sub1"]
     };
   },
   methods: {
