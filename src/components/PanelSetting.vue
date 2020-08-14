@@ -22,7 +22,7 @@
       <a-col :span="24">
         <a-card size="small">
           <span slot="title">面板设置</span>
-          <a-table :scroll="{ x: 470 }" :columns="columns" :data-source="data" size="small">
+          <a-table :scroll="{ x: 500 }" :columns="columns" :data-source="data" size="small">
             <template slot="input" slot-scope="text, record">
               <a-input
                 class="mar5"
@@ -58,9 +58,10 @@ const columns = [
     title: "项目名称",
     dataIndex: "name",
     key: "name",
-    width: 100,
+    width: 130,
     ellipsis: true,
-    className: "table_title font12px text-right"
+    align: "right",
+    className: "table_title"
   },
   {
     title: "内容",
@@ -68,7 +69,7 @@ const columns = [
     key: "input",
     width: 300,
     ellipsis: true,
-    className: "table_title font12px",
+    className: "table_title",
     scopedSlots: { customRender: "input" }
   },
   {
@@ -77,7 +78,7 @@ const columns = [
     key: "operation",
     width: 70,
     ellipsis: true,
-    className: "table_title font12px",
+    className: "table_title",
     scopedSlots: { customRender: "operation" }
   },
   {
@@ -85,7 +86,7 @@ const columns = [
     dataIndex: "description",
     key: "description",
     ellipsis: true,
-    className: "table_title font12px"
+    className: "table_title"
   }
 ];
 const data = [
@@ -136,6 +137,11 @@ export default {
       columns,
       data
     };
+  },
+  mounted() {
+    setTimeout(() => {
+      let load = this.loadingMsg();
+    }, 20);
   },
   methods: {
     onToogle(record) {
