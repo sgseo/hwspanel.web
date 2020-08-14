@@ -56,10 +56,15 @@
                 <span>查看日志</span>
               </router-link>
             </a-menu-item>
-            <a-menu-item key="5">
-              <a-icon type="setting" />
-              <span>面板设置</span>
-            </a-menu-item>
+            <a-sub-menu key="setting_sub_menu">
+              <span slot="title"><a-icon type="setting" /><span>系统设置</span></span>
+              <a-menu-item key="sub_menu_1">
+                面板设置
+              </a-menu-item>
+              <a-menu-item key="sub_menu_2">
+                用户设置
+              </a-menu-item>
+            </a-sub-menu>
             <a-menu-item key="7">
               <a-icon type="logout" />
               <span>退出</span>
