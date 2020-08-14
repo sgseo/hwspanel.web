@@ -8,5 +8,3 @@ module.exports = {
 
   assetsDir: 'static'
 }
-
-import 'dayjs/locale/zh-cn'
