@@ -91,7 +91,12 @@
             <a-icon class="ma5 color-primary" type="link" />快捷操作
           </span>
           <ul class="dragsort">
-            <li v-for="item in quickOperation" :key="item.id" class="ma5 text-center">
+            <li
+              v-for="item in quickOperation"
+              :key="item.id"
+              class="ma5 text-center"
+              @click="onClick(item.name)"
+            >
               <a-card class="bgf8 text-left hover" :bordered="false">
                 <div class="flex">
                   <div
@@ -100,8 +105,8 @@
                       background-repeat: no-repeat;
                       display: inline-block;
                       width: 50px;
-                      height: 50px;">
-                  </div>
+                      height: 50px;"
+                  ></div>
                   <div style="display: inline-block;">
                     <p class="font14px">{{ item.name }}</p>
                     <p class="color-primary font12px">{{ item.description }}</p>
@@ -250,75 +255,81 @@ export default {
       ],
       quickOperation: [
         {
-            name: "Apache",
-            description: "使用人数最多的Web服务器",
-            icon: { backgroundImage: "url('/static/img/soft_ico/ico-apache.png')" },
+          name: "Apache",
+          description: "使用人数最多的Web服务器",
+          icon: {
+            backgroundImage: "url('/static/img/soft_ico/ico-apache.png')"
+          }
         },
         {
-            name: "Nginx",
-            description: "小巧精悍的反向代理服务器",
-            icon: { backgroundImage: "url('/static/img/soft_ico/ico-nginx.png')" },
+          name: "Nginx",
+          description: "小巧精悍的反向代理服务器",
+          icon: { backgroundImage: "url('/static/img/soft_ico/ico-nginx.png')" }
         },
         {
-            name: "MySQL 8.0.19",
-            description: "MYSQL是一款关系型数据库",
-            icon: { backgroundImage: "url('/static/img/soft_ico/ico-mysql.png')" },
+          name: "MySQL 8.0.19",
+          description: "MYSQL是一款关系型数据库",
+          icon: { backgroundImage: "url('/static/img/soft_ico/ico-mysql.png')" }
         },
         {
-            name: "PureFTPd",
-            description: "PureFTPd是一款主打安全的FTP服务器软件",
-            icon: { backgroundImage: "url('/static/img/soft_ico/ico-pureftpd.png')" },
+          name: "PureFTPd",
+          description: "PureFTPd是一款主打安全的FTP服务器软件",
+          icon: {
+            backgroundImage: "url('/static/img/soft_ico/ico-pureftpd.png')"
+          }
         },
         {
-            name: "Redis",
-            description: "内存型数据库,一般用于缓存数据",
-            icon: { backgroundImage: "url('/static/img/soft_ico/ico-redis.png')" },
+          name: "Redis",
+          description: "内存型数据库,一般用于缓存数据",
+          icon: { backgroundImage: "url('/static/img/soft_ico/ico-redis.png')" }
         },
         {
-            name: "PHP53",
-            description: "PHP是世界上最好的语言",
-            icon: { backgroundImage: "url('/static/img/soft_ico/ico-php.png')" },
+          name: "PHP53",
+          description: "PHP是世界上最好的语言",
+          icon: { backgroundImage: "url('/static/img/soft_ico/ico-php.png')" }
         },
         {
-            name: "PHP54",
-            description: "PHP是世界上最好的语言",
-            icon: { backgroundImage: "url('/static/img/soft_ico/ico-php.png')" },
+          name: "PHP54",
+          description: "PHP是世界上最好的语言",
+          icon: { backgroundImage: "url('/static/img/soft_ico/ico-php.png')" }
         },
         {
-            name: "PHP55",
-            description: "PHP是世界上最好的语言",
-            icon: { backgroundImage: "url('/static/img/soft_ico/ico-php.png')" },
+          name: "PHP55",
+          description: "PHP是世界上最好的语言",
+          icon: { backgroundImage: "url('/static/img/soft_ico/ico-php.png')" }
         },
         {
-            name: "PHP56",
-            description: "PHP是世界上最好的语言",
-            icon: { backgroundImage: "url('/static/img/soft_ico/ico-php.png')" },
+          name: "PHP56",
+          description: "PHP是世界上最好的语言",
+          icon: { backgroundImage: "url('/static/img/soft_ico/ico-php.png')" }
         },
         {
-            name: "PHP70",
-            description: "PHP是世界上最好的语言",
-            icon: { backgroundImage: "url('/static/img/soft_ico/ico-php.png')" },
+          name: "PHP70",
+          description: "PHP是世界上最好的语言",
+          icon: { backgroundImage: "url('/static/img/soft_ico/ico-php.png')" }
         },
         {
-            name: "PHP71",
-            description: "PHP是世界上最好的语言",
-            icon: { backgroundImage: "url('/static/img/soft_ico/ico-php.png')" },
+          name: "PHP71",
+          description: "PHP是世界上最好的语言",
+          icon: { backgroundImage: "url('/static/img/soft_ico/ico-php.png')" }
         },
         {
-            name: "PHP72",
-            description: "PHP是世界上最好的语言",
-            icon: { backgroundImage: "url('/static/img/soft_ico/ico-php.png')" },
+          name: "PHP72",
+          description: "PHP是世界上最好的语言",
+          icon: { backgroundImage: "url('/static/img/soft_ico/ico-php.png')" }
         },
         {
-            name: "PHP73",
-            description: "PHP是世界上最好的语言",
-            icon: { backgroundImage: "url('/static/img/soft_ico/ico-php.png')" },
+          name: "PHP73",
+          description: "PHP是世界上最好的语言",
+          icon: { backgroundImage: "url('/static/img/soft_ico/ico-php.png')" }
         },
         {
-            name: "phpMyAdmin",
-            description: "phpMyAdmin是一款(PHP写的)基于Web的MySQL数据库管理工具",
-            icon: { backgroundImage: "url('/static/img/soft_ico/ico-phpmyadmin.png')" },
-        },
+          name: "phpMyAdmin",
+          description: "phpMyAdmin是一款(PHP写的)基于Web的MySQL数据库管理工具",
+          icon: {
+            backgroundImage: "url('/static/img/soft_ico/ico-phpmyadmin.png')"
+          }
+        }
       ],
       technicalSupport
     };
@@ -329,6 +340,11 @@ export default {
       let load = this.loadingMsg();
       this.drawTrafficChart();
     }, 20);
+  },
+  methods: {
+    onClick(event) {
+      this.successMsg("点击了" + event);
+    }
   }
 };
 </script>
@@ -346,8 +362,8 @@ export default {
 }
 
 .flex {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
 }
 </style>
