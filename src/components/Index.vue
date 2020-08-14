@@ -91,13 +91,8 @@
             <a-icon class="ma5 color-primary" type="link" />快捷操作
           </span>
           <ul class="dragsort">
-            <li
-              v-for="item in quickOperation"
-              :key="item.id"
-              class="ma5 text-center"
-              @click="onClick(item.name)"
-            >
-              <a-card class="bgf8 text-left hover" :bordered="false">
+            <li v-for="item in quickOperation" :key="item.id" class="ma5 text-center">
+              <a-card class="bgf8 text-left hover" :bordered="false" @click="onClick(item.name)">
                 <div class="flex">
                   <div
                     :style="item.icon"
