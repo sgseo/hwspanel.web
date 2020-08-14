@@ -1,5 +1,9 @@
+import dayjs from 'dayjs'
 export const hws = {
     methods:{
+        formatTimestamp: function(timestamp) {
+            return dayjs(timestamp)
+        },
         loadingMsg: function() {
             var load = layer.msg("正在处理,请稍候...",
                 {icon: 16, time: 1000, shade: [0.5, "#000"]});
