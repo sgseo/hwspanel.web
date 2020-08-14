@@ -58,7 +58,7 @@
               </router-link>
             </a-menu-item>
             <a-sub-menu key="sub1">
-              <span slot="title"><a-icon type="setting" /><span>系统设置</span></span>
+              <span slot="title"><a-icon type="setting" /><span>全局设置</span></span>
               <a-menu-item key="/panel_setting">
                 <router-link to="/panel_setting">
                   面板设置
