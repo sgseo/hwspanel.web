@@ -30,9 +30,9 @@
           <span slot="title">应用列表</span>
           <div class="mab10">
             <a-button type="dashed">更新应用列表</a-button>
-            <div id="0" class="toBtn btnGroup btnOn" @click="onFilter('0')">全部</div>
-            <div id="1" class="toBtn btnGroup" @click="onFilter('1')">运行环境</div>
-            <div id="2" class="toBtn btnGroup" @click="onFilter('2')">服务</div>
+            <div id="0" class="btn btnGroup active" @click="onFilter('#0')">全部</div>
+            <div id="1" class="btn btnGroup" @click="onFilter('#1')">运行环境</div>
+            <div id="2" class="btn btnGroup" @click="onFilter('#2')">服务</div>
           </div>
           <a-table :scroll="{ x: 445 }" :columns="columns" :data-source="data" size="small">
             <span
@@ -339,7 +339,6 @@ export default {
     return {
       columns,
       data,
-      typeId: 0
     };
   },
   mounted() {
@@ -363,17 +362,17 @@ export default {
     onChange(value) {
       console.log(value);
     },
-    onFilter(typeId) {
+    onFilter(btnId) {
       this.loadingMsg();
-      $(".btnGroup").removeClass("btnOn");
-      $("#" + typeId).addClass("btnOn");
+      $(".btnGroup").removeClass("active");
+      $(btnId).addClass("active");
     }
   }
 };
 </script>
 
 <style scoped>
-.toBtn {
+.btn {
   width: 80px;
   height: 30px;
   background: #ededed;
@@ -383,7 +382,7 @@ export default {
   cursor: pointer;
   text-align: center;
 }
-.btnOn {
+.active {
   background: #108ee9 !important;
   color: #fff;
 }

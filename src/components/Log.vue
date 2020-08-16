@@ -30,20 +30,20 @@
           <span slot="title">日志列表</span>
           <a-alert class="ma5" message="面板出于安全角度考虑，并没有提供日志删除功能，如需删除日志，请查看官网教程" type="info" show-icon />
           <div class="mab10">
-            <div id="0" class="toBtn btnGroup btnOn" @click="onFilter('0')">全部</div>
-            <div id="1" class="toBtn btnGroup" @click="onFilter('1')">用户登录</div>
-            <div id="2" class="toBtn btnGroup" @click="onFilter('2')">面板设置</div>
-            <div id="3" class="toBtn btnGroup" @click="onFilter('3')">网站设置</div>
-            <div id="4" class="toBtn btnGroup" @click="onFilter('4')">数据库设置</div>
-            <div id="5" class="toBtn btnGroup" @click="onFilter('5')">添加网站</div>
-            <div id="6" class="toBtn btnGroup" @click="onFilter('6')">删除网站</div>
-            <div id="7" class="toBtn btnGroup" @click="onFilter('7')">添加数据库</div>
-            <div id="8" class="toBtn btnGroup" @click="onFilter('8')">删除数据库</div>
-            <div id="9" class="toBtn btnGroup" @click="onFilter('9')">软件设置</div>
-            <div id="10" class="toBtn btnGroup" @click="onFilter('10')">软件安装</div>
-            <div id="11" class="toBtn btnGroup" @click="onFilter('11')">软件卸载</div>
-            <div id="12" class="toBtn btnGroup" @click="onFilter('12')">停止相关</div>
-            <div id="13" class="toBtn btnGroup" @click="onFilter('13')">重启相关</div>
+            <div id="0" class="btn btnGroup active" @click="onFilter('#0')">全部</div>
+            <div id="1" class="btn btnGroup" @click="onFilter('#1')">用户登录</div>
+            <div id="2" class="btn btnGroup" @click="onFilter('#2')">面板设置</div>
+            <div id="3" class="btn btnGroup" @click="onFilter('#3')">网站设置</div>
+            <div id="4" class="btn btnGroup" @click="onFilter('#4')">数据库设置</div>
+            <div id="5" class="btn btnGroup" @click="onFilter('#5')">添加网站</div>
+            <div id="6" class="btn btnGroup" @click="onFilter('#6')">删除网站</div>
+            <div id="7" class="btn btnGroup" @click="onFilter('#7')">添加数据库</div>
+            <div id="8" class="btn btnGroup" @click="onFilter('#8')">删除数据库</div>
+            <div id="9" class="btn btnGroup" @click="onFilter('#9')">软件设置</div>
+            <div id="10" class="btn btnGroup" @click="onFilter('#10')">软件安装</div>
+            <div id="11" class="btn btnGroup" @click="onFilter('#11')">软件卸载</div>
+            <div id="12" class="btn btnGroup" @click="onFilter('#12')">停止相关</div>
+            <div id="13" class="btn btnGroup" @click="onFilter('#13')">重启相关</div>
           </div>
           <a-table
             :scroll="{ x: 600 }"
@@ -207,17 +207,17 @@ export default {
     onSearch(value) {
       this.successMsg(value);
     },
-    onFilter(typeId) {
+    onFilter(btnId) {
       this.loadingMsg();
-      $(".btnGroup").removeClass("btnOn");
-      $("#" + typeId).addClass("btnOn");
+      $(".btnGroup").removeClass("active");
+      $(btnId).addClass("active");
     }
   }
 };
 </script>>
 
 <style scoped>
-.toBtn {
+.btn {
   width: 80px;
   height: 30px;
   background: #ededed;
@@ -227,7 +227,7 @@ export default {
   cursor: pointer;
   text-align: center;
 }
-.btnOn {
+.active {
   background: #108ee9 !important;
   color: #fff;
 }
