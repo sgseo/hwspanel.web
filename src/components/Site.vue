@@ -1,5 +1,6 @@
 <template>
   <div>
+    <!-- 以下代码在多个地方出现了重复 -->
     <a-row :gutter="[10,10]">
       <a-col :span="24">
         <a-card size="small" :bordered="false" class="font12px">
@@ -67,6 +68,7 @@
               :style="{ color: filtered ? '#108ee9' : undefined }"
             />
 
+            <!-- 其实我觉得下面的这个功能实现的方法不好,但暂时没想到更好的办法 -->
             <div slot="ftpPass" slot-scope="text, record">
               <span :id="record.ftpUser" v-show="recordKey == record.key">{{ text }}</span>
               <span v-show="recordKey != record.key">***********</span>
@@ -108,8 +110,8 @@ const data = [
     key: "1",
     siteStatus: "success",
     siteMsg: "正常",
-    name: "www.hws.com",
-    path: "/hwsmaster/wwwroot/www.hws.com",
+    siteName: "www.hws.com",
+    sitePath: "/hwsmaster/wwwroot/www.hws.com",
     ftpStatus: "success",
     ftpMsg: "正常",
     ftpUser: "www_hws_com",
@@ -121,8 +123,8 @@ const data = [
     key: "2",
     siteStatus: "warning",
     siteMsg: "暂停",
-    name: "www.test1.com",
-    path: "/hwsmaster/wwwroot/www.test1.com",
+    siteName: "www.test1.com",
+    sitePath: "/hwsmaster/wwwroot/www.test1.com",
     ftpStatus: "success",
     ftpMsg: "正常",
     ftpUser: "www_test1_com",
@@ -134,8 +136,8 @@ const data = [
     key: "3",
     siteStatus: "success",
     siteMsg: "正常",
-    name: "www.test2.com",
-    path: "/hwsmaster/wwwroot/www.test2.com",
+    siteName: "www.test2.com",
+    sitePath: "/hwsmaster/wwwroot/www.test2.com",
     ftpStatus: "warning",
     ftpMsg: "停止",
     ftpUser: "www_test2_com",
@@ -147,8 +149,8 @@ const data = [
     key: "4",
     siteStatus: "error",
     siteMsg: "异常",
-    name: "www.test3.com",
-    path: "/hwsmaster/wwwroot/www.test3.com",
+    siteName: "www.test3.com",
+    sitePath: "/hwsmaster/wwwroot/www.test3.com",
     ftpStatus: "success",
     ftpMsg: "正常",
     ftpUser: "www_test3_com",
@@ -160,8 +162,8 @@ const data = [
     key: "5",
     siteStatus: "warning",
     siteMsg: "暂停",
-    name: "www.test4.com",
-    path: "/hwsmaster/wwwroot/www.test4.com",
+    siteName: "www.test4.com",
+    sitePath: "/hwsmaster/wwwroot/www.test4.com",
     ftpStatus: "warning",
     ftpMsg: "停止",
     ftpUser: "www_test4_com",
@@ -173,8 +175,8 @@ const data = [
     key: "6",
     siteStatus: "warning",
     siteMsg: "暂停",
-    name: "www.test5.com",
-    path: "/hwsmaster/wwwroot/www.test5.com",
+    siteName: "www.test5.com",
+    sitePath: "/hwsmaster/wwwroot/www.test5.com",
     ftpStatus: "success",
     ftpMsg: "正常",
     ftpUser: "www_test5_com",
@@ -186,8 +188,8 @@ const data = [
     key: "7",
     siteStatus: "success",
     siteMsg: "正常",
-    name: "www.test6.com",
-    path: "/hwsmaster/wwwroot/www.test6.com",
+    siteName: "www.test6.com",
+    sitePath: "/hwsmaster/wwwroot/www.test6.com",
     ftpStatus: "success",
     ftpMsg: "正常",
     ftpUser: "www_test6_com",
@@ -199,8 +201,8 @@ const data = [
     key: "8",
     siteStatus: "success",
     siteMsg: "正常",
-    name: "www.test7.com",
-    path: "/hwsmaster/wwwroot/www.test7.com",
+    siteName: "www.test7.com",
+    sitePath: "/hwsmaster/wwwroot/www.test7.com",
     ftpStatus: "success",
     ftpMsg: "正常",
     ftpUser: "www_test7_com",
@@ -212,8 +214,8 @@ const data = [
     key: "9",
     siteStatus: "success",
     siteMsg: "正常",
-    name: "www.test8.com",
-    path: "/hwsmaster/wwwroot/www.test8.com",
+    siteName: "www.test8.com",
+    sitePath: "/hwsmaster/wwwroot/www.test8.com",
     ftpStatus: "success",
     ftpMsg: "正常",
     ftpUser: "www_test8_com",
@@ -225,8 +227,8 @@ const data = [
     key: "10",
     siteStatus: "success",
     siteMsg: "正常",
-    name: "www.test9.com",
-    path: "/hwsmaster/wwwroot/www.test9.com",
+    siteName: "www.test9.com",
+    sitePath: "/hwsmaster/wwwroot/www.test9.com",
     ftpStatus: "success",
     ftpMsg: "正常",
     ftpUser: "www_test9_com",
@@ -269,8 +271,8 @@ export default {
         },
         {
           title: "网站名称",
-          dataIndex: "name",
-          key: "name",
+          dataIndex: "siteName",
+          key: "siteName",
           ellipsis: true,
           width: 150,
           className: "table_title",
@@ -279,7 +281,7 @@ export default {
             filterIcon: "filterIcon"
           },
           onFilter: (value, record) =>
-            record.name
+            record.siteName
               .toString()
               .toLowerCase()
               .includes(value.toLowerCase()),
@@ -293,8 +295,8 @@ export default {
         },
         {
           title: "网站路径",
-          dataIndex: "path",
-          key: "path",
+          dataIndex: "sitePath",
+          key: "sitePath",
           ellipsis: true,
           className: "table_title",
           width: 300

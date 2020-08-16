@@ -1,5 +1,6 @@
 <template>
   <div>
+    <!-- 以下代码在多个地方出现了重复 -->
     <a-row :gutter="[10,10]">
       <a-col :span="24">
         <a-card size="small" :bordered="false" class="font12px">
@@ -26,8 +27,12 @@
             <a-button type="primary" class="mar5">添加用户</a-button>
           </div>
           <a-table :scroll="{ x: 1045 }" :columns="columns" :data-source="data" size="small">
+
+
+            <!-- 其实我觉得下面的这个功能实现的方法不好,但暂时没想到更好的办法 -->
+            <!-- 以下代码在多个地方出现了重复 -->
             <div slot="password" slot-scope="text, record">
-              <span :id="record.name" v-show="recordKey == record.key">{{ text }}</span>
+              <span :id="record.username" v-show="recordKey == record.key">{{ text }}</span>
               <span v-show="recordKey != record.key">***********</span>
               <a-icon
                 type="eye-invisible"
@@ -36,7 +41,7 @@
                 @click="() => (recordKey = 0)"
               />
               <a-icon type="eye" class="mal5" v-else @click="() => (recordKey = record.key)" />
-              <a-icon type="copy" class="mal5" @click="copyToClipboard(text, record.name)" />
+              <a-icon type="copy" class="mal5" @click="copyToClipboard(text, record.username)" />
             </div>
 
 
@@ -56,8 +61,8 @@
 const columns = [
   {
     title: "用户名",
-    dataIndex: "name",
-    key: "name",
+    dataIndex: "username",
+    key: "username",
     width: 300,
     ellipsis: true,
     className: "table_title"
@@ -99,14 +104,14 @@ const columns = [
 const data = [
   {
     key: 1,
-    name: "testuser1",
+    username: "testuser1",
     password: "Ff7Zas2asSJPZSs6mxZZzJCiziW",
     lastip: "47.108.50.154",
     lasttime: "2020-08-14 16:04:35"
   },
   {
     key: 2,
-    name: "testuser2",
+    username: "testuser2",
     password: "PZSys6qnxSNusXSPmxZZzJCiziW",
     lastip: "222.209.173.49",
     lasttime: "2020-08-13 09:03:23"
@@ -127,7 +132,7 @@ export default {
   },
   methods: {
     onSetting(record) {
-      this.successMsg(record.name);
+      this.successMsg(record.username);
     },
     onDelete(key) {
       this.successMsg(key);
