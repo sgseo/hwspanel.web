@@ -201,15 +201,15 @@ export default {
   },
   mounted() {
     setTimeout(() => {
-      let load = this.loadingMsg();
+      let load = this.public_msg_loading();
     }, 20);
   },
   methods: {
     onSearch(value) {
-      this.successMsg(value);
+      this.public_msg_success(value);
     },
     onFilter(btnId) {
-      this.loadingMsg();
+      this.public_msg_loading();
       $(".btnGroup").removeClass("active");
       $(btnId).addClass("active");
     }

@@ -344,27 +344,27 @@ export default {
   },
   mounted() {
     setTimeout(() => {
-      let load = this.loadingMsg();
+      let load = this.public_msg_loading();
     }, 20);
   },
   methods: {
     onInstall(record) {
-      this.successMsg(record.name);
+      this.public_msg_success(record.name);
     },
     onSetting(record) {
-      this.successMsg(record.name);
+      this.public_msg_success(record.name);
     },
     onDelete(key) {
-      this.successMsg(key);
+      this.public_msg_success(key);
     },
     onSearch(value) {
-      this.successMsg(value);
+      this.public_msg_success(value);
     },
     onChange(value) {
       console.log(value);
     },
     onFilter(btnId) {
-      this.loadingMsg();
+      this.public_msg_loading();
       $(".btnGroup").removeClass("active");
       $(btnId).addClass("active");
     }

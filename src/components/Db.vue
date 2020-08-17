@@ -74,7 +74,7 @@
                 @click="() => (recordKey = 0)"
               />
               <a-icon type="eye" class="mal5" v-else @click="() => (recordKey = record.key)" />
-              <a-icon type="copy" class="mal5" @click="copyToClipboard(text, record.dbUser)" />
+              <a-icon type="copy" class="mal5" @click="public_tools_copy_to_clipboard(text, record.dbUser)" />
             </div>
 
             <a-badge slot="status" slot-scope="status, record" :status="status" :text="record.msg" />
@@ -333,7 +333,7 @@ export default {
   },
   mounted() {
     setTimeout(() => {
-      let load = this.loadingMsg();
+      let load = this.public_msg_loading();
     }, 20);
   },
   methods: {
@@ -348,23 +348,23 @@ export default {
     },
 
     onManage(record) {
-      this.successMsg(record.dbName);
+      this.public_msg_success(record.dbName);
     },
 
     onSetting(record) {
-      this.successMsg(record.dbName);
+      this.public_msg_success(record.dbName);
     },
 
     onRebuild(key) {
-      this.successMsg(key);
+      this.public_msg_success(key);
     },
 
     onDelete(key) {
-      this.successMsg(key);
+      this.public_msg_success(key);
     },
 
     onSearch(value) {
-      this.successMsg(value);
+      this.public_msg_success(value);
     }
   }
 };

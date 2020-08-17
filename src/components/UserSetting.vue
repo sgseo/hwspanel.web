@@ -41,7 +41,7 @@
                 @click="() => (recordKey = 0)"
               />
               <a-icon type="eye" class="mal5" v-else @click="() => (recordKey = record.key)" />
-              <a-icon type="copy" class="mal5" @click="copyToClipboard(text, record.username)" />
+              <a-icon type="copy" class="mal5" @click="public_tools_copy_to_clipboard(text, record.username)" />
             </div>
 
 
@@ -127,15 +127,15 @@ export default {
   },
   mounted() {
     setTimeout(() => {
-      let load = this.loadingMsg();
+      let load = this.public_msg_loading();
     }, 20);
   },
   methods: {
     onSetting(record) {
-      this.successMsg(record.username);
+      this.public_msg_success(record.username);
     },
     onDelete(key) {
-      this.successMsg(key);
+      this.public_msg_success(key);
     },
   }
 };

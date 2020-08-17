@@ -79,7 +79,7 @@
                 @click="() => (recordKey = 0)"
               />
               <a-icon type="eye" class="mal5" v-else @click="() => (recordKey = record.key)" />
-              <a-icon type="copy" class="mal5" @click="copyToClipboard(text, record.ftpUser)" />
+              <a-icon type="copy" class="mal5" @click="public_tools_copy_to_clipboard(text, record.ftpUser)" />
             </div>
 
             <a-badge
@@ -398,7 +398,7 @@ export default {
   },
   mounted() {
     setTimeout(() => {
-      let load = this.loadingMsg();
+      let load = this.public_msg_loading();
     }, 20);
   },
   methods: {
@@ -413,15 +413,15 @@ export default {
     },
 
     onSetting(record) {
-      this.successMsg(record.comment)
+      this.public_msg_success(record.comment)
     },
 
     onDelete(key) {
-      this.successMsg(key)
+      this.public_msg_success(key)
     },
 
     onSearch(value) {
-      this.successMsg(value)
+      this.public_msg_success(value)
     },
   }
 };

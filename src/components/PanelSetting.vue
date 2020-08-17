@@ -141,7 +141,7 @@ export default {
   },
   mounted() {
     setTimeout(() => {
-      let load = this.loadingMsg();
+      let load = this.public_msg_loading();
     }, 20);
   },
   methods: {
@@ -149,7 +149,7 @@ export default {
       record.disabled = !record.disabled;
     },
     onHandle(record) {
-      this.loadingMsg();
+      this.public_msg_loading();
       this.onToogle(record);
     },
   }
