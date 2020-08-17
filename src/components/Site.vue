@@ -417,7 +417,22 @@ export default {
     },
 
     onSetting(record) {
-      this.public_msg_success(record.comment);
+      this.public_msg_success("设置" + record.siteName)
+
+      /*
+      layer.open({
+        type: 2,
+        title: "编辑网站",
+        area: ['700px', '690px'],
+        closeBtn: 2,
+        resize: false,
+        shadeClose: false,
+        shade: [0.5, "#000"],
+        offset: 'auto',
+        content: ['#/db', 'no'],
+        cancel: function () {}
+      });
+      */
     },
 
     onRebuildAll() {
