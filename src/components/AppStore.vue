@@ -67,7 +67,7 @@
               <span v-if="record.status != 'error'">
                 <a href="javascript:;" v-on:click="onSetting(record)">设置</a>
                 <a-divider type="vertical" />
-                <a href="javascript:;" v-on:click="onDelete(record.key)">卸载</a>
+                <a href="javascript:;" v-on:click="onDelete(record)">卸载</a>
               </span>
             </template>
           </a-table>
@@ -339,7 +339,7 @@ export default {
   data() {
     return {
       columns,
-      data,
+      data
     };
   },
   mounted() {
@@ -349,13 +349,37 @@ export default {
   },
   methods: {
     onInstall(record) {
-      this.public_msg_success(record.name);
+      let vm = this;
+      layer.confirm(
+        "立即安装[" + record.name + "]吗?",
+        {
+          icon: 3,
+          btn: ['确定', '取消'],
+          closeBtn: 2,
+          title: "安装软件确认"
+        },
+        function() {
+          vm.public_msg_success("安装成功!");
+        }
+      );
     },
     onSetting(record) {
       this.public_msg_success(record.name);
     },
-    onDelete(key) {
-      this.public_msg_success(key);
+    onDelete(record) {
+      let vm = this;
+      layer.confirm(
+        "您真的要卸载[" + record.name + "]吗?",
+        {
+          icon: 3,
+          btn: ['确定', '取消'],
+          closeBtn: 2,
+          title: "卸载软件确认"
+        },
+        function() {
+          vm.public_msg_success("卸载成功!");
+        }
+      );
     },
     onSearch(value) {
       this.public_msg_success(value);

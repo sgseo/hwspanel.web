@@ -31,7 +31,7 @@
           <span slot="title">数据库列表</span>
           <div class="mab10">
             <a-button type="primary" class="mar5">添加数据库</a-button>
-            <a-button type="dashed">重建所有数据库</a-button>
+            <a-button type="dashed" @click="onRebuildAll">重建所有数据库</a-button>
           </div>
           <a-table :scroll="{ x: 1050 }" :columns="columns" :data-source="data" size="small">
             <div
@@ -74,7 +74,11 @@
                 @click="() => (recordKey = 0)"
               />
               <a-icon type="eye" class="mal5" v-else @click="() => (recordKey = record.key)" />
-              <a-icon type="copy" class="mal5" @click="public_tools_copy_to_clipboard(text, record.dbUser)" />
+              <a-icon
+                type="copy"
+                class="mal5"
+                @click="public_tools_copy_to_clipboard(text, record.dbUser)"
+              />
             </div>
 
             <a-badge slot="status" slot-scope="status, record" :status="status" :text="record.msg" />
@@ -84,9 +88,9 @@
               <a-divider type="vertical" />
               <a href="javascript:;" v-on:click="onSetting(record)">设置</a>
               <a-divider type="vertical" />
-              <a href="javascript:;" v-on:click="onRebuild(record.key)">重建</a>
+              <a href="javascript:;" v-on:click="onRebuild(record)">重建</a>
               <a-divider type="vertical" />
-              <a href="javascript:;" v-on:click="onDelete(record.key)">删除</a>
+              <a href="javascript:;" v-on:click="onDelete(record)">删除</a>
             </template>
           </a-table>
         </a-card>
@@ -355,12 +359,52 @@ export default {
       this.public_msg_success(record.dbName);
     },
 
-    onRebuild(key) {
-      this.public_msg_success(key);
+    onRebuildAll() {
+      let vm = this;
+      layer.confirm(
+        "您真的要重建所有数据库吗?",
+        {
+          icon: 3,
+          btn: ['确定', '取消'],
+          closeBtn: 2,
+          title: "重建数据库确认"
+        },
+        function() {
+          vm.public_msg_success("重建成功!");
+        }
+      );
     },
 
-    onDelete(key) {
-      this.public_msg_success(key);
+    onRebuild(record) {
+      let vm = this;
+      layer.confirm(
+        "您真的要重建[" + record.dbName + "]吗?",
+        {
+          icon: 3,
+          btn: ['确定', '取消'],
+          closeBtn: 2,
+          title: "重建数据库确认"
+        },
+        function() {
+          vm.public_msg_success("重建成功!");
+        }
+      );
+    },
+
+    onDelete(record) {
+      let vm = this;
+      layer.confirm(
+        "您真的要删除[" + record.dbName + "]吗?",
+        {
+          icon: 3,
+          btn: ['确定', '取消'],
+          closeBtn: 2,
+          title: "删除数据库确认"
+        },
+        function() {
+          vm.public_msg_success("删除成功!");
+        }
+      );
     },
 
     onSearch(value) {

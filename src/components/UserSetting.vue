@@ -48,7 +48,7 @@
             <template slot="operation" slot-scope="text, record">
               <a href="javascript:;" v-on:click="onSetting(record)">修改密码</a>
               <a-divider type="vertical" />
-              <a href="javascript:;" v-on:click="onDelete(record.key)">删除用户</a>
+              <a href="javascript:;" v-on:click="onDelete(record)">删除用户</a>
             </template>
           </a-table>
         </a-card>
@@ -134,8 +134,12 @@ export default {
     onSetting(record) {
       this.public_msg_success(record.username);
     },
-    onDelete(key) {
-      this.public_msg_success(key);
+    onDelete(record) {
+      let vm = this
+      layer.confirm("您真的要删除["+record.username+"]吗?",
+          { icon: 3, btn: ['确定', '取消'], closeBtn: 2, title: '删除用户确认' },function () {
+        vm.public_msg_success("删除成功!")
+      });
     },
   }
 };

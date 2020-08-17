@@ -70,7 +70,7 @@
                 </router-link>
               </a-menu-item>
             </a-sub-menu>
-            <a-menu-item key="7">
+            <a-menu-item key="7" @click="onLogout">
               <a-icon type="logout" />
               <span>退出</span>
             </a-menu-item>
@@ -115,6 +115,13 @@ export default {
   methods: {
     onOpenTask() {
       this.successMsg("打开任务队列");
+    },
+    onLogout() {
+      let vm = this
+      layer.confirm("您真的要退出登录吗?",
+          { icon: 3, btn: ['确定','取消'], closeBtn: 2, title: '退出登录确认' },function() {
+            vm.public_msg_success("退出成功!")
+      });
     }
   }
 };
