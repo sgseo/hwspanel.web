@@ -417,22 +417,50 @@ export default {
     },
 
     onSetting(record) {
-      this.public_msg_success("设置" + record.siteName)
-
-      /*
       layer.open({
-        type: 2,
+        type: 1,
         title: "编辑网站",
-        area: ['700px', '690px'],
+        area: ["700px", "530px"],
         closeBtn: 2,
         resize: false,
         shadeClose: false,
         shade: [0.5, "#000"],
-        offset: 'auto',
-        content: ['#/db', 'no'],
-        cancel: function () {}
+        offset: "auto",
+        content: '<div class="site-setting-side"></div><div id="site-setting-main" class="pd15 site-setting-main">主体内容</div>',
+        cancel: function() {}
       });
-      */
+      setTimeout(function () {
+        var items = [
+          { title: '网站信息', html: '<button type="button" class="mar5 ant-btn ant-btn-primary"><span>测试按钮1</span></button>' },
+          { title: '运行目录', html: '<button type="button" class="mar5 ant-btn ant-btn-primary"><span>测试按钮2</span></button>' },
+          { title: '域名管理', html: '' },
+          { title: '配置文件', html: '' },
+          { title: '伪静态', html: '' },
+          { title: 'PHP版本', html: '' },
+          { title: 'SSL绑定', html: '' },
+          { title: '子目录绑定', html: '' },
+          { title: 'IP黑名单', html: '' },
+          { title: '带宽限制', html: '' },
+          { title: '首页与404', html: '' },
+          { title: 'FTP设置', html: '' },
+        ]
+        for (var i = 0; i < items.length; i++) {
+          var item = items[i];
+          var p = $('<p>' + item.title + '</p>');
+          p.data('html', item.html);
+          $('.site-setting-side').append(p);
+          if ( i == 0) {
+            $("#site-setting-main").html(item.html)
+          }
+        }
+        $('.site-setting-side p').click(function () {
+          $(this).addClass('bg-white').siblings().removeClass('bg-white');
+          var html = $(this).data('html')
+          if (html) {
+            $("#site-setting-main").html(html)
+          }
+        })
+      }, 150)
     },
 
     onRebuildAll() {
@@ -441,7 +469,7 @@ export default {
         "您真的要重建所有网站吗?",
         {
           icon: 3,
-          btn: ['确定', '取消'],
+          btn: ["确定", "取消"],
           closeBtn: 2,
           title: "重建网站确认"
         },
@@ -457,7 +485,7 @@ export default {
         "您真的要重建[" + record.siteName + "]吗?",
         {
           icon: 3,
-          btn: ['确定', '取消'],
+          btn: ["确定", "取消"],
           closeBtn: 2,
           title: "重建网站确认"
         },
@@ -473,7 +501,7 @@ export default {
         "您真的要删除[" + record.siteName + "]吗?",
         {
           icon: 3,
-          btn: ['确定', '取消'],
+          btn: ["确定", "取消"],
           closeBtn: 2,
           title: "删除网站确认"
         },
@@ -489,3 +517,25 @@ export default {
   }
 };
 </script>
+
+<style>
+.site-setting-side {
+	float: left;
+	background-color: #f0f0f1;
+	height: 100%;
+	width: 110px
+}
+.site-setting-side p {
+	cursor: pointer;
+	height: 40px;
+	line-height: 40px;
+	padding-left: 20px;
+	position: relative;
+	text-overflow: ellipsis;
+	overflow: hidden
+}
+.site-setting-main {
+	margin-left: 110px;
+	position: relative
+}
+</style>
