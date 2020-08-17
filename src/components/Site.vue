@@ -420,7 +420,7 @@ export default {
       layer.open({
         type: 1,
         title: "编辑网站",
-        area: ["700px", "530px"],
+        area: ["700px", "700px"],
         closeBtn: 2,
         resize: false,
         shadeClose: false,
@@ -431,17 +431,16 @@ export default {
       });
       setTimeout(function () {
         var items = [
-          { title: '网站信息', html: '<button type="button" class="mar5 ant-btn ant-btn-primary"><span>测试按钮1</span></button>' },
-          { title: '运行目录', html: '<button type="button" class="mar5 ant-btn ant-btn-primary"><span>测试按钮2</span></button>' },
           { title: '域名管理', html: '' },
+          { title: '运行目录', html: '' },
           { title: '配置文件', html: '' },
           { title: '伪静态', html: '' },
           { title: 'PHP版本', html: '' },
           { title: 'SSL绑定', html: '' },
           { title: '子目录绑定', html: '' },
           { title: 'IP黑名单', html: '' },
+          { title: 'IP白名单', html: '' },
           { title: '带宽限制', html: '' },
-          { title: '首页与404', html: '' },
           { title: 'FTP设置', html: '' },
         ]
         for (var i = 0; i < items.length; i++) {
@@ -451,6 +450,7 @@ export default {
           $('.site-setting-side').append(p);
           if ( i == 0) {
             $("#site-setting-main").html(item.html)
+            $('p').addClass('bg-white').siblings().removeClass('bg-white');
           }
         }
         $('.site-setting-side p').click(function () {
