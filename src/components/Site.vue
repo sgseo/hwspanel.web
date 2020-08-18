@@ -520,18 +520,7 @@ export default {
     onSetting(record) {
       let vm = this;
       this.visible = true;
-      layer.open({
-        type: 1,
-        title: "编辑网站",
-        area: ["700px", "700px"],
-        closeBtn: 2,
-        resize: false,
-        shadeClose: false,
-        shade: [0.5, "#000"],
-        offset: "auto",
-        content: $("#setting"),
-        cancel: function() {}
-      });
+      this.public_msg_open("编辑网站", ["700px", "700px"], $("#setting"))
       setTimeout(function() {
         vm.public_msg_loading();
         $(".setting-sidebar p").click(function() {

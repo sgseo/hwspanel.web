@@ -8,11 +8,11 @@ export const hws = {
         },
 
         public_msg_success: function(msg) {
-            layer.msg(msg, {icon: 1, time: 1000, shade: [0.5, "#000"]});
+            layer.msg(msg, {icon: 1, time: 1000, shade: [0.3, "#000"]});
         },
 
         public_msg_error: function(msg) {
-            layer.msg(msg, {icon: 2, shade: [0.5, "#000"]});
+            layer.msg(msg, {icon: 2, shade: [0.3, "#000"]});
         },
 
         public_msg_confirm: function(title, msg, func) {
@@ -26,6 +26,20 @@ export const hws = {
               },
               func
             );
+        },
+
+        public_msg_open: function(title, area, content) {
+            layer.open({
+              type: 1,
+              title: title,
+              area: area,
+              closeBtn: 2,
+              resize: false,
+              shadeClose: false,
+              shade: [0.3, "#000"],
+              offset: "auto",
+              content: content,
+            });
         },
 
         public_tools_format_timestamp: function(timestamp) {
