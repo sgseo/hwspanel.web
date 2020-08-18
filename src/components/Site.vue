@@ -197,7 +197,12 @@
             </a-table>
           </div>
         </a-tab-pane>
-        <a-tab-pane key="4" tab="配置文件">Content of Tab Pane 4</a-tab-pane>
+        <a-tab-pane key="4" tab="配置文件">
+          <span class="font12px">提示：Ctrl+F 搜索关键字，Ctrl+H 查找并替换，Alt+G 跳转到指定行的指定字符</span>
+          <div style="height: 500px;">
+            <codemirror v-model="config"></codemirror>
+          </div>
+        </a-tab-pane>
         <a-tab-pane key="5" tab="SSL绑定">Content of Tab Pane 5</a-tab-pane>
         <a-tab-pane key="6" tab="伪静态">Content of Tab Pane 6</a-tab-pane>
         <a-tab-pane key="7" tab="PHP版本">Content of Tab Pane 7</a-tab-pane>
@@ -225,7 +230,7 @@ const subDomainsData = [
     key: 1,
     domainName: "www.subtest1.com",
     port: "80",
-    path: "/static",
+    path: "/static"
   }
 ];
 
@@ -368,6 +373,7 @@ export default {
       recordKey: 0,
       searchText: "",
       searchInput: null,
+      config: "iptables -L -n",
 
       sitesData,
       sitesColumns: [
