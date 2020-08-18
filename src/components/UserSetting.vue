@@ -27,8 +27,6 @@
             <a-button type="primary" class="mar5">添加用户</a-button>
           </div>
           <a-table :scroll="{ x: 1045 }" :columns="columns" :data-source="data" size="small">
-
-
             <!-- 其实我觉得下面的这个功能实现的方法不好,但暂时没想到更好的办法 -->
             <!-- 以下代码在多个地方出现了重复 -->
             <div slot="password" slot-scope="text, record">
@@ -41,9 +39,12 @@
                 @click="() => (recordKey = 0)"
               />
               <a-icon type="eye" class="mal5" v-else @click="() => (recordKey = record.key)" />
-              <a-icon type="copy" class="mal5" @click="public_tools_copy_to_clipboard(text, record.username)" />
+              <a-icon
+                type="copy"
+                class="mal5"
+                @click="public_tools_copy_to_clipboard(text, record.username)"
+              />
             </div>
-
 
             <template slot="operation" slot-scope="text, record">
               <a href="javascript:;" v-on:click="onSetting(record)">修改密码</a>
@@ -115,7 +116,7 @@ const data = [
     password: "PZSys6qnxSNusXSPmxZZzJCiziW",
     lastip: "222.209.173.49",
     lasttime: "2020-08-13 09:03:23"
-  },
+  }
 ];
 export default {
   data() {
@@ -135,12 +136,15 @@ export default {
       this.public_msg_success(record.username);
     },
     onDelete(record) {
-      let vm = this
-      layer.confirm("您真的要删除["+record.username+"]吗?",
-          { icon: 3, btn: ['确定', '取消'], closeBtn: 2, title: '删除用户确认' },function () {
-        vm.public_msg_success("删除成功!")
-      });
-    },
+      let vm = this;
+      this.public_msg_confirm(
+        "删除用户确认",
+        "您真的要删除[" + record.username + "]吗?",
+        function() {
+          vm.public_msg_success("删除成功!");
+        }
+      );
+    }
   }
 };
 </script>

@@ -361,14 +361,9 @@ export default {
 
     onRebuildAll() {
       let vm = this;
-      layer.confirm(
+      this.public_msg_confirm(
+        "重建数据库确认",
         "您真的要重建所有数据库吗?",
-        {
-          icon: 3,
-          btn: ['确定', '取消'],
-          closeBtn: 2,
-          title: "重建数据库确认"
-        },
         function() {
           vm.public_msg_success("重建成功!");
         }
@@ -377,14 +372,9 @@ export default {
 
     onRebuild(record) {
       let vm = this;
-      layer.confirm(
+      this.public_msg_confirm(
+        "重建数据库确认",
         "您真的要重建[" + record.dbName + "]吗?",
-        {
-          icon: 3,
-          btn: ['确定', '取消'],
-          closeBtn: 2,
-          title: "重建数据库确认"
-        },
         function() {
           vm.public_msg_success("重建成功!");
         }
@@ -393,14 +383,9 @@ export default {
 
     onDelete(record) {
       let vm = this;
-      layer.confirm(
+      this.public_msg_confirm(
+        "删除数据库确认",
         "您真的要删除[" + record.dbName + "]吗?",
-        {
-          icon: 3,
-          btn: ['确定', '取消'],
-          closeBtn: 2,
-          title: "删除数据库确认"
-        },
         function() {
           vm.public_msg_success("删除成功!");
         }

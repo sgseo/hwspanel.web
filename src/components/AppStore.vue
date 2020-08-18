@@ -350,14 +350,9 @@ export default {
   methods: {
     onInstall(record) {
       let vm = this;
-      layer.confirm(
+      this.public_msg_confirm(
+        "安装软件确认",
         "立即安装[" + record.name + "]吗?",
-        {
-          icon: 3,
-          btn: ['确定', '取消'],
-          closeBtn: 2,
-          title: "安装软件确认"
-        },
         function() {
           vm.public_msg_success("安装成功!");
         }
@@ -368,14 +363,9 @@ export default {
     },
     onDelete(record) {
       let vm = this;
-      layer.confirm(
+      this.public_msg_confirm(
+        "卸载软件确认",
         "您真的要卸载[" + record.name + "]吗?",
-        {
-          icon: 3,
-          btn: ['确定', '取消'],
-          closeBtn: 2,
-          title: "卸载软件确认"
-        },
         function() {
           vm.public_msg_success("卸载成功!");
         }
@@ -389,7 +379,10 @@ export default {
     },
     onFilter(btnId) {
       this.public_msg_loading();
-      $(btnId).addClass('active').siblings().removeClass('active');
+      $(btnId)
+        .addClass("active")
+        .siblings()
+        .removeClass("active");
     }
   }
 };

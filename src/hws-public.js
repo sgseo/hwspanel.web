@@ -15,6 +15,19 @@ export const hws = {
             layer.msg(msg, {icon: 2, shade: [0.5, "#000"]});
         },
 
+        public_msg_confirm: function(title, msg, func) {
+            layer.confirm(
+              msg,
+              {
+                icon: 3,
+                btn: ["确定", "取消"],
+                closeBtn: 2,
+                title: title,
+              },
+              func
+            );
+        },
+
         public_tools_format_timestamp: function(timestamp) {
             return dayjs(timestamp)
         },

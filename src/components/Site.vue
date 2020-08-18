@@ -83,14 +83,14 @@
 
             <a-badge
               slot="siteStatus"
-              slot-scope="siteStatus, record"
-              :status="siteStatus"
+              slot-scope="text, record"
+              :status="text"
               :text="record.siteMsg"
             />
             <a-badge
               slot="ftpStatus"
-              slot-scope="ftpStatus, record"
-              :status="ftpStatus"
+              slot-scope="text, record"
+              :status="text"
               :text="record.ftpMsg"
             />
 
@@ -105,10 +105,66 @@
         </a-card>
       </a-col>
     </a-row>
+
+    <div v-show="visible" id="setting" style="height: 100%;">
+      <div class="setting-sidebar">
+        <p class="bg-white">域名管理</p>
+        <p>运行目录</p>
+        <p>配置文件</p>
+        <p>伪静态</p>
+        <p>SSL绑定</p>
+        <p>PHP版本</p>
+        <p>子目录绑定</p>
+        <p>IP黑名单</p>
+        <p>IP白名单</p>
+        <p>带宽限制</p>
+        <p>FTP设置</p>
+      </div>
+      <div class="pd15 setting-main">
+        <div v-if="navId == 0">
+          <div class="flex-row-space-between-wrap">
+            <a-textarea
+              placeholder="
+每行填写一个域名，默认端口为80
+注意端口号不要超过 65535
+如需另加端口，格式为 www.domain.com:88"
+              :rows="5"
+              style="width: 400px;"
+            />
+            <a-button type="primary">添加</a-button>
+            <a-table
+              :scroll="{ x: 500 }"
+              :columns="domainsColumns"
+              :data-source="domainsData"
+              size="small"
+              class="mat20"
+              style="width: 100%;"
+            >
+              <template slot="operation" slot-scope="text, record">
+                <a-button
+                  icon="delete"
+                  type="dashed"
+                  size="small"
+                  @click="onDeleteDomainName(record)"
+                ></a-button>
+              </template>
+            </a-table>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+const domainsData = [
+  {
+    key: 1,
+    domainName: "www.test1.com",
+    port: "80"
+  }
+];
+
 const data = [
   {
     key: "1",
@@ -245,7 +301,11 @@ const data = [
 export default {
   data() {
     return {
+      visible: false,
+      navId: 0,
+
       data,
+      domainsData,
       recordKey: 0,
       searchText: "",
       searchInput: null,
@@ -397,6 +457,47 @@ export default {
           className: "table_title",
           width: 135
         }
+      ],
+      domainsColumns: [
+        {
+          title: "域名",
+          dataIndex: "domainName",
+          key: "domainName",
+          className: "table_title",
+          scopedSlots: {
+            filterDropdown: "filterDropdown",
+            filterIcon: "filterIcon",
+            customRender: "domains"
+          },
+          onFilter: (value, record) =>
+            record.domainName
+              .toString()
+              .toLowerCase()
+              .includes(value.toLowerCase()),
+          onFilterDropdownVisibleChange: visible => {
+            if (visible) {
+              setTimeout(() => {
+                this.searchInput.focus();
+              }, 0);
+            }
+          }
+        },
+        {
+          title: "端口",
+          dataIndex: "port",
+          key: "port",
+          ellipsis: true,
+          width: 100,
+          className: "table_title"
+        },
+        {
+          title: "操作",
+          dataIndex: "operation",
+          key: "operation",
+          scopedSlots: { customRender: "operation" },
+          className: "table_title",
+          width: 60
+        }
       ]
     };
   },
@@ -417,6 +518,8 @@ export default {
     },
 
     onSetting(record) {
+      let vm = this;
+      this.visible = true;
       layer.open({
         type: 1,
         title: "编辑网站",
@@ -426,69 +529,37 @@ export default {
         shadeClose: false,
         shade: [0.5, "#000"],
         offset: "auto",
-        content: '<div class="site-setting-side"></div><div id="site-setting-main" class="pd15 site-setting-main">主体内容</div>',
+        content: $("#setting"),
         cancel: function() {}
       });
-      setTimeout(function () {
-        var items = [
-          { title: '域名管理', html: '' },
-          { title: '运行目录', html: '' },
-          { title: '配置文件', html: '' },
-          { title: '伪静态', html: '' },
-          { title: 'PHP版本', html: '' },
-          { title: 'SSL绑定', html: '' },
-          { title: '子目录绑定', html: '' },
-          { title: 'IP黑名单', html: '' },
-          { title: 'IP白名单', html: '' },
-          { title: '带宽限制', html: '' },
-          { title: 'FTP设置', html: '' },
-        ]
-        for (var i = 0; i < items.length; i++) {
-          var item = items[i];
-          var p = $('<p>' + item.title + '</p>');
-          p.data('html', item.html);
-          $('.site-setting-side').append(p);
-          if ( i == 0) {
-            $("#site-setting-main").html(item.html)
-            $('p').addClass('bg-white').siblings().removeClass('bg-white');
-          }
-        }
-        $('.site-setting-side p').click(function () {
-          $(this).addClass('bg-white').siblings().removeClass('bg-white');
-          var html = $(this).data('html')
-          if (html) {
-            $("#site-setting-main").html(html)
-          }
-        })
-      }, 150)
+      setTimeout(function() {
+        vm.public_msg_loading();
+        $(".setting-sidebar p").click(function() {
+          vm.public_msg_loading();
+          $(this)
+            .addClass("bg-white")
+            .siblings()
+            .removeClass("bg-white");
+        });
+      }, 150);
     },
 
     onRebuildAll() {
       let vm = this;
-      layer.confirm(
+      this.public_msg_confirm(
+        "重建网站确认",
         "您真的要重建所有网站吗?",
-        {
-          icon: 3,
-          btn: ["确定", "取消"],
-          closeBtn: 2,
-          title: "重建网站确认"
-        },
         function() {
-          vm.public_msg_success("重建成功!");
+          vm.public_msg_success("重建完毕!");
         }
       );
     },
 
     onRebuild(record) {
       let vm = this;
-      layer.confirm(
+      this.public_msg_confirm(
+        "重建网站确认",
         "您真的要重建[" + record.siteName + "]吗?",
-        {
-          icon: 3,
-          btn: ["确定", "取消"],
-          closeBtn: 2,
-          title: "重建网站确认"
-        },
         function() {
           vm.public_msg_success("重建成功!");
         }
@@ -497,16 +568,22 @@ export default {
 
     onDelete(record) {
       let vm = this;
-      layer.confirm(
+      this.public_msg_confirm(
+        "删除网站确认",
         "您真的要删除[" + record.siteName + "]吗?",
-        {
-          icon: 3,
-          btn: ["确定", "取消"],
-          closeBtn: 2,
-          title: "删除网站确认"
-        },
         function() {
           vm.public_msg_success("删除成功!");
+        }
+      );
+    },
+
+    onDeleteDomainName(record) {
+      let vm = this;
+      this.public_msg_confirm(
+        "删除域名确认",
+        "您真的要删除[" + record.domainName + "]吗?",
+        function() {
+          vm.public_msg_error("最后一个域名不能删除!");
         }
       );
     },
@@ -518,24 +595,24 @@ export default {
 };
 </script>
 
-<style>
-.site-setting-side {
-	float: left;
-	background-color: #f0f0f1;
-	height: 100%;
-	width: 110px
+<style scoped>
+.setting-sidebar {
+  float: left;
+  background-color: #f0f0f1;
+  height: 100%;
+  width: 110px;
 }
-.site-setting-side p {
-	cursor: pointer;
-	height: 40px;
-	line-height: 40px;
-	padding-left: 20px;
-	position: relative;
-	text-overflow: ellipsis;
-	overflow: hidden
+.setting-sidebar p {
+  cursor: pointer;
+  height: 40px;
+  line-height: 40px;
+  padding-left: 20px;
+  position: relative;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
-.site-setting-main {
-	margin-left: 110px;
-	position: relative
+.setting-main {
+  margin-left: 110px;
+  position: relative;
 }
 </style>

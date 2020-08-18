@@ -130,7 +130,7 @@ const data = [
       "影响phpMyAdmin打开等其他操作，默认为外网IP,若您在本地虚拟机测试,请填写虚拟机内网IP!",
     value: "222.209.173.49",
     disabled: true
-  },
+  }
 ];
 export default {
   data() {
@@ -151,7 +151,7 @@ export default {
     onHandle(record) {
       this.public_msg_loading();
       this.onToogle(record);
-    },
+    }
   }
 };
 </script>

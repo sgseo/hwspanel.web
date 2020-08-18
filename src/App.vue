@@ -58,16 +58,15 @@
               </router-link>
             </a-menu-item>
             <a-sub-menu key="sub1">
-              <span slot="title"><a-icon type="setting" /><span>全局设置</span></span>
+              <span slot="title">
+                <a-icon type="setting" />
+                <span>全局设置</span>
+              </span>
               <a-menu-item key="/panel_setting">
-                <router-link to="/panel_setting">
-                  面板设置
-                </router-link>
+                <router-link to="/panel_setting">面板设置</router-link>
               </a-menu-item>
               <a-menu-item key="/user_setting">
-                <router-link to="/user_setting">
-                  用户设置
-                </router-link>
+                <router-link to="/user_setting">用户设置</router-link>
               </a-menu-item>
             </a-sub-menu>
             <a-menu-item key="7" @click="onLogout">
@@ -77,15 +76,6 @@
           </a-menu>
         </a-layout-sider>
         <a-layout>
-          <!--
-        <a-layout-header class="bg-white pd0">
-          <a-icon
-            class="trigger"
-            :type="collapsed ? 'menu-unfold' : 'menu-fold'"
-            @click="() => (collapsed = !collapsed)"
-          />
-        </a-layout-header>
-          -->
           <a-layout-content
             :style="{ margin: '10px', minHeight: '280px' }"
             class="flex-column-space-between"
@@ -117,11 +107,14 @@ export default {
       this.successMsg("打开任务队列");
     },
     onLogout() {
-      let vm = this
-      layer.confirm("您真的要退出登录吗?",
-          { icon: 3, btn: ['确定','取消'], closeBtn: 2, title: '退出登录确认' },function() {
-            vm.public_msg_success("退出成功!")
-      });
+      let vm = this;
+      this.public_msg_confirm(
+        "退出登录确认",
+        "您真的要退出登录吗?",
+        function() {
+          vm.public_msg_success("退出成功!");
+        }
+      );
     }
   }
 };
