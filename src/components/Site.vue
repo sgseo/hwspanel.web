@@ -33,7 +33,12 @@
             <a-button type="primary" class="mar5">添加网站</a-button>
             <a-button type="dashed" @click="onRebuildAll">重建所有网站</a-button>
           </div>
-          <a-table :scroll="{ x: 1215 }" :columns="sitesColumns" :data-source="sitesData" size="small">
+          <a-table
+            :scroll="{ x: 1215 }"
+            :columns="sitesColumns"
+            :data-source="sitesData"
+            size="small"
+          >
             <div
               slot="filterDropdown"
               slot-scope="{ setSelectedKeys, selectedKeys, confirm, clearFilters, column }"
@@ -107,7 +112,14 @@
     </a-row>
 
     <div id="setting" class="left-tabs-container" v-show="false">
-      <a-tabs default-active-key="1" size="small" tab-position="left" type="card" :tabBarGutter="0">
+      <a-tabs
+        default-active-key="1"
+        size="small"
+        tab-position="left"
+        type="card"
+        :tabBarGutter="0"
+        @change="callback"
+      >
         <a-tab-pane key="1" tab="域名管理">
           <div class="flex-row-space-between-wrap">
             <a-textarea
@@ -537,6 +549,7 @@ export default {
 
     onSetting(record) {
       this.public_msg_open("编辑网站", ["700px", "700px"], $("#setting"));
+      this.public_msg_loading();
     },
 
     onDelete(record) {
@@ -554,6 +567,10 @@ export default {
       this.public_msg_success(value);
     },
 
+    callback(key) {
+      this.public_msg_loading();
+    },
+
     onDeleteDomainName(record) {
       let vm = this;
       this.public_msg_confirm(
@@ -563,7 +580,7 @@ export default {
           vm.public_msg_error("最后一个域名不能删除!");
         }
       );
-    },
+    }
   }
 };
 </script>
