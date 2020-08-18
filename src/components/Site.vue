@@ -150,7 +150,17 @@
             </a-table>
           </div>
         </a-tab-pane>
-        <a-tab-pane key="2" tab="运行目录" force-render>Content of Tab Pane 2</a-tab-pane>
+        <a-tab-pane key="2" tab="运行目录" force-render>
+          <a-alert
+            class="mab10"
+            message="部分程序需要指定二级目录作为运行目录，如ThinkPHP5，Laravel"
+            type="info"
+            show-icon
+            banner
+          />运行目录
+          <a-input class="mal10" addon-before="web" style="width: 300px;" />
+          <a-button class="mal10" type="primary">保存</a-button>
+        </a-tab-pane>
         <a-tab-pane key="3" tab="子目录绑定">Content of Tab Pane 3</a-tab-pane>
         <a-tab-pane key="4" tab="配置文件">Content of Tab Pane 4</a-tab-pane>
         <a-tab-pane key="5" tab="SSL绑定">Content of Tab Pane 5</a-tab-pane>
