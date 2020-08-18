@@ -27,6 +27,7 @@ import {
     Divider,
     Switch,
     Alert,
+    Tabs,
 } from 'ant-design-vue';
 Vue.use(Layout)
 Vue.use(Menu)
@@ -44,6 +45,7 @@ Vue.use(Input)
 Vue.use(Divider)
 Vue.use(Switch)
 Vue.use(Alert)
+Vue.use(Tabs)
 
 Vue.config.productionTip = false
 

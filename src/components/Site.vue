@@ -33,7 +33,7 @@
             <a-button type="primary" class="mar5">添加网站</a-button>
             <a-button type="dashed" @click="onRebuildAll">重建所有网站</a-button>
           </div>
-          <a-table :scroll="{ x: 1215 }" :columns="columns" :data-source="data" size="small">
+          <a-table :scroll="{ x: 1215 }" :columns="sitesColumns" :data-source="sitesData" size="small">
             <div
               slot="filterDropdown"
               slot-scope="{ setSelectedKeys, selectedKeys, confirm, clearFilters, column }"
@@ -106,28 +106,15 @@
       </a-col>
     </a-row>
 
-    <div v-show="visible" id="setting" style="height: 100%;">
-      <div class="setting-sidebar">
-        <p class="bg-white">域名管理</p>
-        <p>运行目录</p>
-        <p>配置文件</p>
-        <p>伪静态</p>
-        <p>SSL绑定</p>
-        <p>PHP版本</p>
-        <p>子目录绑定</p>
-        <p>IP黑名单</p>
-        <p>IP白名单</p>
-        <p>带宽限制</p>
-        <p>FTP设置</p>
-      </div>
-      <div class="pd15 setting-main">
-        <div v-if="navId == 0">
+    <div id="setting" class="left-tabs-container" v-show="false">
+      <a-tabs default-active-key="1" size="small" tab-position="left" type="card" :tabBarGutter="0">
+        <a-tab-pane key="1" tab="域名管理">
           <div class="flex-row-space-between-wrap">
             <a-textarea
               placeholder="
 每行填写一个域名，默认端口为80
-注意端口号不要超过 65535
-如需另加端口，格式为 www.domain.com:88"
+泛解析添加方法 *.domain.com
+如需另加端口，格式为 www.domain.com:8080"
               :rows="5"
               style="width: 400px;"
             />
@@ -150,8 +137,18 @@
               </template>
             </a-table>
           </div>
-        </div>
-      </div>
+        </a-tab-pane>
+        <a-tab-pane key="2" tab="运行目录" force-render>Content of Tab Pane 2</a-tab-pane>
+        <a-tab-pane key="3" tab="配置文件">Content of Tab Pane 3</a-tab-pane>
+        <a-tab-pane key="4" tab="伪静态">Content of Tab Pane 4</a-tab-pane>
+        <a-tab-pane key="5" tab="SSL绑定">Content of Tab Pane 5</a-tab-pane>
+        <a-tab-pane key="6" tab="PHP版本">Content of Tab Pane 6</a-tab-pane>
+        <a-tab-pane key="7" tab="子目录绑定">Content of Tab Pane 7</a-tab-pane>
+        <a-tab-pane key="8" tab="IP黑名单">Content of Tab Pane 8</a-tab-pane>
+        <a-tab-pane key="9" tab="IP白名单">Content of Tab Pane 9</a-tab-pane>
+        <a-tab-pane key="10" tab="带宽限制">Content of Tab Pane 10</a-tab-pane>
+        <a-tab-pane key="11" tab="FTP设置">Content of Tab Pane 11</a-tab-pane>
+      </a-tabs>
     </div>
   </div>
 </template>
@@ -165,7 +162,7 @@ const domainsData = [
   }
 ];
 
-const data = [
+const sitesData = [
   {
     key: "1",
     siteStatus: "success",
@@ -301,15 +298,12 @@ const data = [
 export default {
   data() {
     return {
-      visible: false,
-      navId: 0,
-
-      data,
-      domainsData,
       recordKey: 0,
       searchText: "",
       searchInput: null,
-      columns: [
+
+      sitesData,
+      sitesColumns: [
         {
           title: "状态",
           dataIndex: "siteStatus",
@@ -458,6 +452,8 @@ export default {
           width: 135
         }
       ],
+
+      domainsData,
       domainsColumns: [
         {
           title: "域名",
@@ -517,22 +513,6 @@ export default {
       this.searchText = "";
     },
 
-    onSetting(record) {
-      let vm = this;
-      this.visible = true;
-      this.public_msg_open("编辑网站", ["700px", "700px"], $("#setting"))
-      setTimeout(function() {
-        vm.public_msg_loading();
-        $(".setting-sidebar p").click(function() {
-          vm.public_msg_loading();
-          $(this)
-            .addClass("bg-white")
-            .siblings()
-            .removeClass("bg-white");
-        });
-      }, 150);
-    },
-
     onRebuildAll() {
       let vm = this;
       this.public_msg_confirm(
@@ -555,6 +535,10 @@ export default {
       );
     },
 
+    onSetting(record) {
+      this.public_msg_open("编辑网站", ["700px", "700px"], $("#setting"));
+    },
+
     onDelete(record) {
       let vm = this;
       this.public_msg_confirm(
@@ -564,6 +548,10 @@ export default {
           vm.public_msg_success("删除成功!");
         }
       );
+    },
+
+    onSearch(value) {
+      this.public_msg_success(value);
     },
 
     onDeleteDomainName(record) {
@@ -576,32 +564,6 @@ export default {
         }
       );
     },
-
-    onSearch(value) {
-      this.public_msg_success(value);
-    }
   }
 };
 </script>
-
-<style scoped>
-.setting-sidebar {
-  float: left;
-  background-color: #f0f0f1;
-  height: 100%;
-  width: 110px;
-}
-.setting-sidebar p {
-  cursor: pointer;
-  height: 40px;
-  line-height: 40px;
-  padding-left: 20px;
-  position: relative;
-  text-overflow: ellipsis;
-  overflow: hidden;
-}
-.setting-main {
-  margin-left: 110px;
-  position: relative;
-}
-</style>
