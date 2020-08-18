@@ -121,7 +121,7 @@
         @change="callback"
       >
         <a-tab-pane key="1" tab="域名管理">
-          <div class="flex-row-space-between-wrap">
+          <div class="flex-row-space-between-wrap mab10">
             <a-textarea
               placeholder="
 每行填写一个域名，默认端口为80
@@ -131,12 +131,59 @@
               style="width: 400px;"
             />
             <a-button type="primary">添加</a-button>
+          </div>
+          <a-table
+            :scroll="{ x: 160 }"
+            :columns="domainsColumns"
+            :data-source="domainsData"
+            size="small"
+            style="width: 100%;"
+          >
+            <template slot="operation" slot-scope="text, record">
+              <a-button
+                icon="delete"
+                type="dashed"
+                size="small"
+                @click="onDeleteDomainName(record)"
+              ></a-button>
+            </template>
+          </a-table>
+        </a-tab-pane>
+        <a-tab-pane key="2" tab="运行目录" force-render>
+          <a-alert
+            class="mab10"
+            message="部分程序需要指定二级目录作为运行目录，如ThinkPHP5，Laravel"
+            type="info"
+            show-icon
+            banner
+          />运行目录
+          <a-input class="mal10" addon-before="web" style="width: 300px;" />
+          <a-button class="mal10" type="primary">保存</a-button>
+        </a-tab-pane>
+        <a-tab-pane key="3" tab="子目录绑定">
+          <div class="flex-row-flex-start-nowrap mab10">
+            目录路径
+            <a-input class="mal10" addon-before="web" style="width: 400px;" />
+          </div>
+          <div class="flex-row-flex-start-nowrap mab10">
+            绑定域名
+            <a-textarea
+              class="mal10"
+              placeholder="
+每行填写一个域名，默认端口为80
+泛解析添加方法 *.domain.com
+如需另加端口，格式为 www.domain.com:8080"
+              :rows="5"
+              style="width: 325px;"
+            />
+            <a-button class="mal10" type="primary">添加</a-button>
+          </div>
+          <div>
             <a-table
-              :scroll="{ x: 500 }"
-              :columns="domainsColumns"
-              :data-source="domainsData"
+              :scroll="{ x: 360 }"
+              :columns="subDomainsColumns"
+              :data-source="subDomainsData"
               size="small"
-              class="mat20"
               style="width: 100%;"
             >
               <template slot="operation" slot-scope="text, record">
@@ -150,18 +197,6 @@
             </a-table>
           </div>
         </a-tab-pane>
-        <a-tab-pane key="2" tab="运行目录" force-render>
-          <a-alert
-            class="mab10"
-            message="部分程序需要指定二级目录作为运行目录，如ThinkPHP5，Laravel"
-            type="info"
-            show-icon
-            banner
-          />运行目录
-          <a-input class="mal10" addon-before="web" style="width: 300px;" />
-          <a-button class="mal10" type="primary">保存</a-button>
-        </a-tab-pane>
-        <a-tab-pane key="3" tab="子目录绑定">Content of Tab Pane 3</a-tab-pane>
         <a-tab-pane key="4" tab="配置文件">Content of Tab Pane 4</a-tab-pane>
         <a-tab-pane key="5" tab="SSL绑定">Content of Tab Pane 5</a-tab-pane>
         <a-tab-pane key="6" tab="伪静态">Content of Tab Pane 6</a-tab-pane>
@@ -182,6 +217,15 @@ const domainsData = [
     key: 1,
     domainName: "www.test1.com",
     port: "80"
+  }
+];
+
+const subDomainsData = [
+  {
+    key: 1,
+    domainName: "www.subtest1.com",
+    port: "80",
+    path: "/static",
   }
 ];
 
@@ -483,6 +527,7 @@ export default {
           dataIndex: "domainName",
           key: "domainName",
           className: "table_title",
+          ellipsis: true,
           scopedSlots: {
             filterDropdown: "filterDropdown",
             filterIcon: "filterIcon",
@@ -507,6 +552,58 @@ export default {
           key: "port",
           ellipsis: true,
           width: 100,
+          className: "table_title"
+        },
+        {
+          title: "操作",
+          dataIndex: "operation",
+          key: "operation",
+          scopedSlots: { customRender: "operation" },
+          className: "table_title",
+          width: 60
+        }
+      ],
+
+      subDomainsData,
+      subDomainsColumns: [
+        {
+          title: "域名",
+          dataIndex: "domainName",
+          key: "domainName",
+          className: "table_title",
+          ellipsis: true,
+          scopedSlots: {
+            filterDropdown: "filterDropdown",
+            filterIcon: "filterIcon",
+            customRender: "domains"
+          },
+          onFilter: (value, record) =>
+            record.domainName
+              .toString()
+              .toLowerCase()
+              .includes(value.toLowerCase()),
+          onFilterDropdownVisibleChange: visible => {
+            if (visible) {
+              setTimeout(() => {
+                this.searchInput.focus();
+              }, 0);
+            }
+          }
+        },
+        {
+          title: "端口",
+          dataIndex: "port",
+          key: "port",
+          ellipsis: true,
+          width: 100,
+          className: "table_title"
+        },
+        {
+          title: "子目录",
+          dataIndex: "path",
+          key: "path",
+          ellipsis: true,
+          width: 200,
           className: "table_title"
         },
         {

@@ -1481,6 +1481,20 @@ ol {
   flex-wrap: nowrap;
 }
 
+.flex-row-flex-start-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.flex-row-flex-start-nowrap {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: nowrap;
+}
+
 .flex-center-wrap {
   display: flex;
   align-items: center;
