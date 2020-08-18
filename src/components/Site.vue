@@ -151,15 +151,16 @@
           </div>
         </a-tab-pane>
         <a-tab-pane key="2" tab="运行目录" force-render>Content of Tab Pane 2</a-tab-pane>
-        <a-tab-pane key="3" tab="配置文件">Content of Tab Pane 3</a-tab-pane>
-        <a-tab-pane key="4" tab="伪静态">Content of Tab Pane 4</a-tab-pane>
+        <a-tab-pane key="3" tab="子目录绑定">Content of Tab Pane 3</a-tab-pane>
+        <a-tab-pane key="4" tab="配置文件">Content of Tab Pane 4</a-tab-pane>
         <a-tab-pane key="5" tab="SSL绑定">Content of Tab Pane 5</a-tab-pane>
-        <a-tab-pane key="6" tab="PHP版本">Content of Tab Pane 6</a-tab-pane>
-        <a-tab-pane key="7" tab="子目录绑定">Content of Tab Pane 7</a-tab-pane>
+        <a-tab-pane key="6" tab="伪静态">Content of Tab Pane 6</a-tab-pane>
+        <a-tab-pane key="7" tab="PHP版本">Content of Tab Pane 7</a-tab-pane>
         <a-tab-pane key="8" tab="IP黑名单">Content of Tab Pane 8</a-tab-pane>
         <a-tab-pane key="9" tab="IP白名单">Content of Tab Pane 9</a-tab-pane>
         <a-tab-pane key="10" tab="带宽限制">Content of Tab Pane 10</a-tab-pane>
         <a-tab-pane key="11" tab="FTP设置">Content of Tab Pane 11</a-tab-pane>
+        <a-tab-pane key="12" tab="压缩解压缩">Content of Tab Pane 12</a-tab-pane>
       </a-tabs>
     </div>
   </div>
