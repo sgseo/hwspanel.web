@@ -15,9 +15,9 @@
               </a-breadcrumb>
               <a-input-search
                 style="width: 300px;"
-                placeholder="应用搜索"
+                placeholder="应用搜索,支持模糊匹配"
                 enter-button
-                @search="onSearch"
+                @search="searchApp"
               />
             </a-col>
           </a-row>
@@ -31,9 +31,9 @@
           <span slot="title">应用列表</span>
           <div class="mab10">
             <a-button type="dashed">更新应用列表</a-button>
-            <div id="0" class="btn active" @click="onFilter('#0')">全部</div>
-            <div id="1" class="btn" @click="onFilter('#1')">运行环境</div>
-            <div id="2" class="btn" @click="onFilter('#2')">服务</div>
+            <div id="0" class="btn active" @click="findTag('#0')">全部</div>
+            <div id="1" class="btn" @click="findTag('#1')">运行环境</div>
+            <div id="2" class="btn" @click="findTag('#2')">服务</div>
           </div>
           <a-table :scroll="{ x: 445 }" :columns="columns" :data-source="data" size="small">
             <span
@@ -56,18 +56,17 @@
               slot-scope="index, record"
               size="small"
               :checked="index"
-              @change="onChange"
+              @change="indexDisplay"
             />
 
             <template slot="operation" slot-scope="text, record">
               <span v-if="record.status == 'error'">
-                <a href="javascript:;" v-on:click="onInstall(record)">安装</a>
+                <a href="javascript:;" v-on:click="installApp(record)">安装</a>
               </span>
-
               <span v-if="record.status != 'error'">
-                <a href="javascript:;" v-on:click="onSetting(record)">设置</a>
+                <a href="javascript:;" v-on:click="openSetting(record)">设置</a>
                 <a-divider type="vertical" />
-                <a href="javascript:;" v-on:click="onDelete(record)">卸载</a>
+                <a href="javascript:;" v-on:click="uninstallApp(record)">卸载</a>
               </span>
             </template>
           </a-table>
@@ -348,7 +347,19 @@ export default {
     }, 20);
   },
   methods: {
-    onInstall(record) {
+    searchApp(value) {
+      this.public_msg_success(value);
+    },
+
+    findTag(btnId) {
+      this.public_msg_loading();
+      $(btnId)
+        .addClass("active")
+        .siblings()
+        .removeClass("active");
+    },
+
+    installApp(record) {
       let vm = this;
       this.public_msg_confirm(
         "安装软件确认",
@@ -358,10 +369,8 @@ export default {
         }
       );
     },
-    onSetting(record) {
-      this.public_msg_success(record.name);
-    },
-    onDelete(record) {
+
+    uninstallApp(record) {
       let vm = this;
       this.public_msg_confirm(
         "卸载软件确认",
@@ -371,19 +380,14 @@ export default {
         }
       );
     },
-    onSearch(value) {
-      this.public_msg_success(value);
-    },
-    onChange(value) {
+
+    indexDisplay(value) {
       console.log(value);
     },
-    onFilter(btnId) {
-      this.public_msg_loading();
-      $(btnId)
-        .addClass("active")
-        .siblings()
-        .removeClass("active");
-    }
+
+    openSetting(record) {
+      this.public_msg_success(record.name);
+    },
   }
 };
 </script>
