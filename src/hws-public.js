@@ -28,17 +28,19 @@ export const hws = {
             );
         },
 
-        public_msg_open: function(title, area, content) {
+        public_msg_open: function(title, area, content, endfunc) {
             layer.open({
               type: 1,
               title: title,
-              area: area,
-              closeBtn: 2,
-              resize: false,
-              shadeClose: false,
-              shade: [0.3, "#000"],
-              offset: "auto",
               content: content,
+              area: area,
+              offset: "auto",
+              closeBtn: 2,
+              shade: [0.3, "#000"],
+              shadeClose: false,
+              resize: false,
+              maxmin: true,
+              end: endfunc,
             });
         },
 

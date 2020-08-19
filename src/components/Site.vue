@@ -111,7 +111,7 @@
       </a-col>
     </a-row>
 
-    <div id="setting" class="left-tabs-container" v-show="false">
+    <div id="setting" class="left-tabs-container" v-if="visible" v-show="false">
       <a-tabs
         default-active-key="1"
         size="small"
@@ -370,6 +370,7 @@ const sitesData = [
 export default {
   data() {
     return {
+      visible: false,
       recordKey: 0,
       searchText: "",
       searchInput: null,
@@ -662,8 +663,19 @@ export default {
     },
 
     onSetting(record) {
-      this.public_msg_loading();
-      this.public_msg_open("编辑网站", ["700px", "700px"], $("#setting"));
+      var vm = this;
+      this.visible = true;
+      setTimeout(function() {
+        vm.public_msg_open(
+          "编辑网站",
+          ["700px", "700px"],
+          $("#setting"),
+          function() {
+            vm.visible = false;
+          }
+        );
+        vm.public_msg_loading();
+      }, 150);
     },
 
     onDelete(record) {

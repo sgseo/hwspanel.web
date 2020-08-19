@@ -8,3 +8,7 @@
     monospace, 华文黑体, "Microsoft YaHei", 微软雅黑, STHei, "Helvetica Neue",
     Helvetica, Arial, sans-serif;
 }
+
+.CodeMirror-hints {
+  z-index: 19960303;
+}
