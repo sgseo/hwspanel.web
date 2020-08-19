@@ -17,7 +17,7 @@
                 style="width: 300px;"
                 placeholder="域名搜索"
                 enter-button
-                @search="onSearch"
+                @search="searchSite"
               />
             </a-col>
           </a-row>
@@ -31,7 +31,7 @@
           <span slot="title">网站列表</span>
           <div class="mab10">
             <a-button type="primary" class="mar5">添加网站</a-button>
-            <a-button type="dashed" @click="onRebuildAll">重建所有网站</a-button>
+            <a-button type="dashed" @click="rebuildSiteAll">重建所有网站</a-button>
           </div>
           <a-table
             :scroll="{ x: 1215 }"
@@ -100,11 +100,11 @@
             />
 
             <template slot="operation" slot-scope="text, record">
-              <a href="javascript:;" v-on:click="onSetting(record)">设置</a>
+              <a href="javascript:;" v-on:click="openSetting(record)">设置</a>
               <a-divider type="vertical" />
-              <a href="javascript:;" v-on:click="onRebuild(record)">重建</a>
+              <a href="javascript:;" v-on:click="rebuildSite(record)">重建</a>
               <a-divider type="vertical" />
-              <a href="javascript:;" v-on:click="onDelete(record)">删除</a>
+              <a href="javascript:;" v-on:click="removeSite(record)">删除</a>
             </template>
           </a-table>
         </a-card>
@@ -118,7 +118,7 @@
         tab-position="left"
         type="card"
         :tabBarGutter="0"
-        @change="handleSetting"
+        @change="onChangeSetting"
       >
         <a-tab-pane key="1" tab="域名管理">
           <div class="flex-row-space-between-wrap mab10">
@@ -140,12 +140,7 @@
             style="width: 100%;"
           >
             <template slot="operation" slot-scope="text, record">
-              <a-button
-                icon="delete"
-                type="dashed"
-                size="small"
-                @click="onDeleteDomainName(record)"
-              ></a-button>
+              <a-button icon="delete" type="dashed" size="small" @click="removeDomainName(record)"></a-button>
             </template>
           </a-table>
         </a-tab-pane>
@@ -193,7 +188,7 @@
                   icon="delete"
                   type="dashed"
                   size="small"
-                  @click="onDeleteDomainName(record)"
+                  @click="removeDomainName(record)"
                 ></a-button>
               </template>
             </a-table>
@@ -221,7 +216,7 @@
         </a-tab-pane>
 
         <a-tab-pane key="5" tab="SSL绑定">
-          <a-tabs default-active-key="1" type="card" @change="handleSSL" size="small">
+          <a-tabs default-active-key="1" type="card" @change="onChangeSsl" size="small">
             <a-tab-pane key="1" tab="证书">
               <a-alert
                 class="mab10"
@@ -271,7 +266,7 @@
                 style="width: 100%;"
               >
                 <template slot="operation" slot-scope="text, record">
-                  <a-button icon="delete" type="dashed" size="small" @click="onDeleteCert(record)"></a-button>
+                  <a-button icon="delete" type="dashed" size="small" @click="removeCert(record)"></a-button>
                 </template>
               </a-table>
             </a-tab-pane>
@@ -535,11 +530,11 @@ export default {
         mode: "text/x-sh",
         content:
           "<IfModule mod_rewrite.c>\n" +
-          "RewriteEngine on\n" +
-          "RewriteBase /\n" +
-          "RewriteCond %{REQUEST_FILENAME} !-d\n" +
-          "RewriteCond %{REQUEST_FILENAME} !-f\n" +
-          "RewriteRule ^(.*)$ index.php?s=/$1 [QSA,PT,L]\n" +
+          "    RewriteEngine on\n" +
+          "    RewriteBase /\n" +
+          "    RewriteCond %{REQUEST_FILENAME} !-d\n" +
+          "    RewriteCond %{REQUEST_FILENAME} !-f\n" +
+          "    RewriteRule ^(.*)$ index.php?s=/$1 [QSA,PT,L]\n" +
           "</IfModule>\n",
         list: [
           {
@@ -906,7 +901,11 @@ export default {
       this.searchText = "";
     },
 
-    onRebuildAll() {
+    searchSite(value) {
+      this.public_msg_success(value);
+    },
+
+    rebuildSiteAll() {
       let vm = this;
       this.public_msg_confirm(
         "重建网站确认",
@@ -917,7 +916,7 @@ export default {
       );
     },
 
-    onRebuild(record) {
+    rebuildSite(record) {
       let vm = this;
       this.public_msg_confirm(
         "重建网站确认",
@@ -928,7 +927,7 @@ export default {
       );
     },
 
-    onSetting(record) {
+    openSetting(record) {
       var vm = this;
       var load = this.public_msg_loading();
       layer.close(load);
@@ -945,7 +944,7 @@ export default {
       }, 150);
     },
 
-    onDelete(record) {
+    removeSite(record) {
       let vm = this;
       this.public_msg_confirm(
         "删除网站确认",
@@ -956,7 +955,7 @@ export default {
       );
     },
 
-    onDeleteDomainName(record) {
+    removeDomainName(record) {
       let vm = this;
       this.public_msg_confirm(
         "删除域名确认",
@@ -967,7 +966,7 @@ export default {
       );
     },
 
-    onDeleteCert(record) {
+    removeCert(record) {
       let vm = this;
       this.public_msg_confirm(
         "删除证书确认",
@@ -978,16 +977,12 @@ export default {
       );
     },
 
-    onSearch(value) {
-      this.public_msg_success(value);
-    },
-
-    handleSetting(key) {
+    onChangeSetting(key) {
       this.public_msg_loading();
       console.log(key);
     },
 
-    handleSSL(key) {
+    onChangeSsl(key) {
       this.public_msg_loading();
       console.log(key);
     }
