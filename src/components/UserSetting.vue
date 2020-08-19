@@ -47,9 +47,9 @@
             </div>
 
             <template slot="operation" slot-scope="text, record">
-              <a href="javascript:;" v-on:click="onSetting(record)">修改密码</a>
+              <a href="javascript:;" v-on:click="modifyPassword(record)">修改密码</a>
               <a-divider type="vertical" />
-              <a href="javascript:;" v-on:click="onDelete(record)">删除用户</a>
+              <a href="javascript:;" v-on:click="removeUser(record)">删除用户</a>
             </template>
           </a-table>
         </a-card>
@@ -132,10 +132,11 @@ export default {
     }, 20);
   },
   methods: {
-    onSetting(record) {
+    modifyPassword(record) {
       this.public_msg_success(record.username);
     },
-    onDelete(record) {
+
+    removeUser(record) {
       let vm = this;
       this.public_msg_confirm(
         "删除用户确认",
