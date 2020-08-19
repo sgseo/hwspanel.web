@@ -15,7 +15,7 @@
               </a-breadcrumb>
               <a-input-search
                 style="width: 300px;"
-                placeholder="域名搜索"
+                placeholder="网站搜索,支持模糊匹配"
                 enter-button
                 @search="searchSite"
               />
@@ -39,35 +39,6 @@
             :data-source="sitesData"
             size="small"
           >
-            <div
-              slot="filterDropdown"
-              slot-scope="{ setSelectedKeys, selectedKeys, confirm, clearFilters, column }"
-              style="padding: 8px"
-            >
-              <a-input
-                v-ant-ref="c => (searchInput = c)"
-                :placeholder="`Search ${column.dataIndex}`"
-                :value="selectedKeys[0]"
-                style="width: 188px; margin-bottom: 8px; display: block;"
-                @change="e => setSelectedKeys(e.target.value ? [e.target.value] : [])"
-                @pressEnter="() => handleSearch(selectedKeys, confirm, column.dataIndex)"
-              />
-              <a-button
-                type="primary"
-                icon="search"
-                size="small"
-                style="width: 90px; margin-right: 8px"
-                @click="() => handleSearch(selectedKeys, confirm, column.dataIndex)"
-              >过滤</a-button>
-              <a-button size="small" style="width: 90px" @click="() => handleReset(clearFilters)">重置</a-button>
-            </div>
-            <a-icon
-              slot="filterIcon"
-              slot-scope="filtered"
-              type="search"
-              :style="{ color: filtered ? '#108ee9' : undefined }"
-            />
-
             <!-- 其实我觉得下面的这个功能实现的方法不好,但暂时没想到更好的办法 -->
             <div slot="ftpPass" slot-scope="text, record">
               <span :id="record.ftpUser" v-show="recordKey == record.key">{{ text }}</span>
@@ -306,6 +277,7 @@
                 :value="rewrite.content"
               >{{ rewrite.name }}</a-select-option>
             </a-select>
+            <a-button type="link" @click="loadRewrite">加载当前配置</a-button>
           </div>
           <span class="font12px">提示：Ctrl+F 搜索关键字，Ctrl+H 查找并替换，Alt+G 跳转到指定行的指定字符，Alt+/ 自动补全</span>
           <div class="mab10" style="height: 450px;">
@@ -636,22 +608,7 @@ export default {
           key: "siteStatus",
           width: 70,
           className: "table_title",
-          scopedSlots: { customRender: "siteStatus" },
-          filters: [
-            {
-              text: "正常",
-              value: "success"
-            },
-            {
-              text: "暂停",
-              value: "warning"
-            },
-            {
-              text: "异常",
-              value: "error"
-            }
-          ],
-          onFilter: (value, record) => record.siteStatus.indexOf(value) === 0
+          scopedSlots: { customRender: "siteStatus" }
         },
         {
           title: "网站名称",
@@ -659,23 +616,7 @@ export default {
           key: "siteName",
           ellipsis: true,
           width: 150,
-          className: "table_title",
-          scopedSlots: {
-            filterDropdown: "filterDropdown",
-            filterIcon: "filterIcon"
-          },
-          onFilter: (value, record) =>
-            record.siteName
-              .toString()
-              .toLowerCase()
-              .includes(value.toLowerCase()),
-          onFilterDropdownVisibleChange: visible => {
-            if (visible) {
-              setTimeout(() => {
-                this.searchInput.focus();
-              }, 0);
-            }
-          }
+          className: "table_title"
         },
         {
           title: "网站路径",
@@ -691,18 +632,7 @@ export default {
           key: "ftpStatus",
           width: 70,
           className: "table_title",
-          scopedSlots: { customRender: "ftpStatus" },
-          filters: [
-            {
-              text: "正常",
-              value: "success"
-            },
-            {
-              text: "停止",
-              value: "warning"
-            }
-          ],
-          onFilter: (value, record) => record.ftpStatus.indexOf(value) === 0
+          scopedSlots: { customRender: "ftpStatus" }
         },
         {
           title: "FTP账户",
@@ -710,23 +640,7 @@ export default {
           key: "ftpUser",
           ellipsis: true,
           width: 150,
-          className: "table_title",
-          scopedSlots: {
-            filterDropdown: "filterDropdown",
-            filterIcon: "filterIcon"
-          },
-          onFilter: (value, record) =>
-            record.ftpUser
-              .toString()
-              .toLowerCase()
-              .includes(value.toLowerCase()),
-          onFilterDropdownVisibleChange: visible => {
-            if (visible) {
-              setTimeout(() => {
-                this.searchInput.focus();
-              }, 0);
-            }
-          }
+          className: "table_title"
         },
         {
           title: "FTP密码",
@@ -751,23 +665,7 @@ export default {
           dataIndex: "comment",
           key: "comment",
           ellipsis: true,
-          className: "table_title",
-          scopedSlots: {
-            filterDropdown: "filterDropdown",
-            filterIcon: "filterIcon"
-          },
-          onFilter: (value, record) =>
-            record.comment
-              .toString()
-              .toLowerCase()
-              .includes(value.toLowerCase()),
-          onFilterDropdownVisibleChange: visible => {
-            if (visible) {
-              setTimeout(() => {
-                this.searchInput.focus();
-              }, 0);
-            }
-          }
+          className: "table_title"
         },
         {
           title: "操作",
@@ -891,29 +789,8 @@ export default {
     }, 20);
   },
   methods: {
-    handleSearch(selectedKeys, confirm, dataIndex) {
-      confirm();
-      this.searchText = selectedKeys[0];
-    },
-
-    handleReset(clearFilters) {
-      clearFilters();
-      this.searchText = "";
-    },
-
     searchSite(value) {
       this.public_msg_success(value);
-    },
-
-    rebuildSiteAll() {
-      let vm = this;
-      this.public_msg_confirm(
-        "重建网站确认",
-        "您真的要重建所有网站吗?",
-        function() {
-          vm.public_msg_success("重建完毕!");
-        }
-      );
     },
 
     rebuildSite(record) {
@@ -923,6 +800,17 @@ export default {
         "您真的要重建[" + record.siteName + "]吗?",
         function() {
           vm.public_msg_success("重建成功!");
+        }
+      );
+    },
+
+    rebuildSiteAll() {
+      let vm = this;
+      this.public_msg_confirm(
+        "重建网站确认",
+        "您真的要重建所有网站吗?",
+        function() {
+          vm.public_msg_success("重建完毕!");
         }
       );
     },
@@ -975,6 +863,19 @@ export default {
           vm.public_msg_success("删除成功");
         }
       );
+    },
+
+    loadRewrite() {
+      var load = this.public_msg_loading();
+      this.rewrite.content =
+        "<IfModule mod_rewrite.c>\n" +
+        "    RewriteEngine on\n" +
+        "    RewriteBase /\n" +
+        "    RewriteCond %{REQUEST_FILENAME} !-d\n" +
+        "    RewriteCond %{REQUEST_FILENAME} !-f\n" +
+        "    RewriteRule ^(.*)$ index.php?s=/$1 [QSA,PT,L]\n" +
+        "</IfModule>\n";
+      layer.close(load);
     },
 
     onChangeSetting(key) {
