@@ -17,7 +17,7 @@
                 style="width: 300px;"
                 placeholder="日志详情搜索，支持模糊匹配"
                 enter-button
-                @search="onSearch"
+                @search="searchLog"
               />
             </a-col>
           </a-row>
@@ -36,20 +36,20 @@
             show-icon
           />
           <div class="mab10">
-            <div id="0" class="btn active" @click="onFilter('#0')">全部</div>
-            <div id="1" class="btn" @click="onFilter('#1')">用户登录</div>
-            <div id="2" class="btn" @click="onFilter('#2')">面板设置</div>
-            <div id="3" class="btn" @click="onFilter('#3')">网站设置</div>
-            <div id="4" class="btn" @click="onFilter('#4')">数据库设置</div>
-            <div id="5" class="btn" @click="onFilter('#5')">添加网站</div>
-            <div id="6" class="btn" @click="onFilter('#6')">删除网站</div>
-            <div id="7" class="btn" @click="onFilter('#7')">添加数据库</div>
-            <div id="8" class="btn" @click="onFilter('#8')">删除数据库</div>
-            <div id="9" class="btn" @click="onFilter('#9')">软件设置</div>
-            <div id="10" class="btn" @click="onFilter('#10')">软件安装</div>
-            <div id="11" class="btn" @click="onFilter('#11')">软件卸载</div>
-            <div id="12" class="btn" @click="onFilter('#12')">停止相关</div>
-            <div id="13" class="btn" @click="onFilter('#13')">重启相关</div>
+            <div id="0" class="btn active" @click="findTag('#0')">全部</div>
+            <div id="1" class="btn" @click="findTag('#1')">用户登录</div>
+            <div id="2" class="btn" @click="findTag('#2')">面板设置</div>
+            <div id="3" class="btn" @click="findTag('#3')">网站设置</div>
+            <div id="4" class="btn" @click="findTag('#4')">数据库设置</div>
+            <div id="5" class="btn" @click="findTag('#5')">添加网站</div>
+            <div id="6" class="btn" @click="findTag('#6')">删除网站</div>
+            <div id="7" class="btn" @click="findTag('#7')">添加数据库</div>
+            <div id="8" class="btn" @click="findTag('#8')">删除数据库</div>
+            <div id="9" class="btn" @click="findTag('#9')">软件设置</div>
+            <div id="10" class="btn" @click="findTag('#10')">软件安装</div>
+            <div id="11" class="btn" @click="findTag('#11')">软件卸载</div>
+            <div id="12" class="btn" @click="findTag('#12')">停止相关</div>
+            <div id="13" class="btn" @click="findTag('#13')">重启相关</div>
           </div>
           <a-table :scroll="{ x: 600 }" :columns="columns" :data-source="data" size="small"></a-table>
         </a-card>
@@ -204,10 +204,11 @@ export default {
     }, 20);
   },
   methods: {
-    onSearch(value) {
+    searchLog(value) {
       this.public_msg_success(value);
     },
-    onFilter(btnId) {
+
+    findTag(btnId) {
       this.public_msg_loading();
       $(btnId)
         .addClass("active")
