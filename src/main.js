@@ -31,6 +31,7 @@ import {
     Switch,
     Alert,
     Tabs,
+    Select,
 } from 'ant-design-vue';
 Vue.use(Layout)
 Vue.use(Menu)
@@ -49,6 +50,7 @@ Vue.use(Divider)
 Vue.use(Switch)
 Vue.use(Alert)
 Vue.use(Tabs)
+Vue.use(Select)
 
 // codemirror
 Vue.use(VueCodemirror, {

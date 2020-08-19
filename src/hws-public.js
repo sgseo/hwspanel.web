@@ -40,6 +40,7 @@ export const hws = {
               shadeClose: false,
               resize: false,
               maxmin: true,
+              zIndex: -1,
               end: endfunc,
             });
         },
