@@ -763,6 +763,8 @@ export default {
 
     onSetting(record) {
       var vm = this;
+      var load = this.public_msg_loading();
+      layer.close(load)
       this.visible = true;
       setTimeout(function() {
         vm.public_msg_open(
@@ -773,7 +775,6 @@ export default {
             vm.visible = false;
           }
         );
-        vm.public_msg_loading();
       }, 150);
     },
 
