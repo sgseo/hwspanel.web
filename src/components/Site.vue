@@ -239,7 +239,7 @@
                   </span>
                 </a-alert>
                 选择证书
-                <a-select :default-value="cert.current" style="width: 120px;">
+                <a-select :default-value="cert.current" style="width: 200px;">
                   <a-select-option
                     v-for="cert in cert.list"
                     :key="cert.id"
@@ -255,6 +255,27 @@
                 <p class="font12px mat5 color888">如开启后无法使用HTTPS访问,请检查安全组是否正确放行443端口</p>
             </a-tab-pane>
             <a-tab-pane key="2" tab="证书夹">
+              <div class="flex-row-flex-start-nowrap mab10">
+                <a-textarea class="mar5" placeholder="证书(PEM格式)" :rows="6" style="width: 240px;"/>
+                <a-textarea class="mar5" placeholder="密钥(KEY)" :rows="6" style="width: 240px;"/>
+                <a-button class="mal10" type="primary">添加</a-button>
+              </div>
+              <a-table
+                :scroll="{ x: 360 }"
+                :columns="certsColumns"
+                :data-source="certsData"
+                size="small"
+                style="width: 100%;"
+              >
+                <template slot="operation" slot-scope="text, record">
+                  <a-button
+                    icon="delete"
+                    type="dashed"
+                    size="small"
+                    @click="onDeleteCert(record)"
+                  ></a-button>
+                </template>
+              </a-table>
             </a-tab-pane>
             <div slot="tabBarExtraContent">
               强制https
@@ -292,7 +313,7 @@
 const domainsData = [
   {
     key: 1,
-    domainName: "www.test1.com",
+    name: "www.test1.com",
     port: "80"
   }
 ];
@@ -300,11 +321,22 @@ const domainsData = [
 const subDomainsData = [
   {
     key: 1,
-    domainName: "www.subtest1.com",
+    name: "www.subtest1.com",
     port: "80",
     path: "/static"
   }
 ];
+
+const certsData = [
+    {
+        key: 1,
+        name: "*.61499.com",
+        organization: "Sectigo Limited",
+        time: "2020-06-15 00:00:00",
+        expires: "2021-06-15 23:59:59"
+    }
+
+]
 
 const sitesData = [
   {
@@ -461,6 +493,7 @@ export default {
           { version: "7.3.14" }
         ]
       },
+
       cert: {
         current: "测试证书1",
         list: [
@@ -687,27 +720,10 @@ export default {
       domainsColumns: [
         {
           title: "域名",
-          dataIndex: "domainName",
-          key: "domainName",
+          dataIndex: "name",
+          key: "name",
           className: "table_title",
           ellipsis: true,
-          scopedSlots: {
-            filterDropdown: "filterDropdown",
-            filterIcon: "filterIcon",
-            customRender: "domains"
-          },
-          onFilter: (value, record) =>
-            record.domainName
-              .toString()
-              .toLowerCase()
-              .includes(value.toLowerCase()),
-          onFilterDropdownVisibleChange: visible => {
-            if (visible) {
-              setTimeout(() => {
-                this.searchInput.focus();
-              }, 0);
-            }
-          }
         },
         {
           title: "端口",
@@ -731,27 +747,10 @@ export default {
       subDomainsColumns: [
         {
           title: "域名",
-          dataIndex: "domainName",
-          key: "domainName",
+          dataIndex: "name",
+          key: "name",
           className: "table_title",
           ellipsis: true,
-          scopedSlots: {
-            filterDropdown: "filterDropdown",
-            filterIcon: "filterIcon",
-            customRender: "domains"
-          },
-          onFilter: (value, record) =>
-            record.domainName
-              .toString()
-              .toLowerCase()
-              .includes(value.toLowerCase()),
-          onFilterDropdownVisibleChange: visible => {
-            if (visible) {
-              setTimeout(() => {
-                this.searchInput.focus();
-              }, 0);
-            }
-          }
         },
         {
           title: "端口",
@@ -767,6 +766,50 @@ export default {
           key: "path",
           ellipsis: true,
           width: 200,
+          className: "table_title"
+        },
+        {
+          title: "操作",
+          dataIndex: "operation",
+          key: "operation",
+          scopedSlots: { customRender: "operation" },
+          className: "table_title",
+          width: 60
+        }
+      ],
+
+
+      certsData,
+      certsColumns: [
+        {
+          title: "关联域名",
+          dataIndex: "name",
+          key: "name",
+          className: "table_title",
+          ellipsis: true,
+        },
+        {
+          title: "发证机构",
+          dataIndex: "organization",
+          key: "organization",
+          ellipsis: true,
+          width: 100,
+          className: "table_title"
+        },
+        {
+          title: "发证时间",
+          dataIndex: "time",
+          key: "time",
+          ellipsis: true,
+          width: 100,
+          className: "table_title"
+        },
+        {
+          title: "到期时间",
+          dataIndex: "expires",
+          key: "expires",
+          ellipsis: true,
+          width: 100,
           className: "table_title"
         },
         {
@@ -846,6 +889,28 @@ export default {
       );
     },
 
+    onDeleteDomainName(record) {
+      let vm = this;
+      this.public_msg_confirm(
+        "删除域名确认",
+        "您真的要删除[" + record.name + "]吗?",
+        function() {
+          vm.public_msg_error("最后一个域名不能删除!");
+        }
+      );
+    },
+
+    onDeleteCert(record) {
+      let vm = this;
+      this.public_msg_confirm(
+        "删除证书确认",
+        "您真的要删除[" + record.name + "]吗?",
+        function() {
+          vm.public_msg_success("删除成功")
+        }
+      );
+    },
+
     onSearch(value) {
       this.public_msg_success(value);
     },
@@ -853,17 +918,6 @@ export default {
     callback(key) {
       this.public_msg_loading();
     },
-
-    onDeleteDomainName(record) {
-      let vm = this;
-      this.public_msg_confirm(
-        "删除域名确认",
-        "您真的要删除[" + record.domainName + "]吗?",
-        function() {
-          vm.public_msg_error("最后一个域名不能删除!");
-        }
-      );
-    }
   }
 };
 </script>
