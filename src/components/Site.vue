@@ -662,8 +662,8 @@ export default {
     },
 
     onSetting(record) {
-      this.public_msg_open("编辑网站", ["700px", "700px"], $("#setting"));
       this.public_msg_loading();
+      this.public_msg_open("编辑网站", ["700px", "700px"], $("#setting"));
     },
 
     onDelete(record) {
