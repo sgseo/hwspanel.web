@@ -111,14 +111,14 @@
       </a-col>
     </a-row>
 
-    <div id="setting" class="left-tabs-container" v-if="visible" v-show="false">
+    <div id="setting" class="left-tabs-container" v-if="visibleSetting" v-show="false">
       <a-tabs
         default-active-key="1"
         size="small"
         tab-position="left"
         type="card"
         :tabBarGutter="0"
-        @change="callback"
+        @change="handleSetting"
       >
         <a-tab-pane key="1" tab="域名管理">
           <div class="flex-row-space-between-wrap mab10">
@@ -149,6 +149,7 @@
             </template>
           </a-table>
         </a-tab-pane>
+
         <a-tab-pane key="2" tab="运行目录" force-render>
           <a-alert
             class="mab10"
@@ -160,6 +161,7 @@
           <a-input class="mal10" addon-before="web" style="width: 300px;" />
           <a-button class="mal10" type="primary">保存</a-button>
         </a-tab-pane>
+
         <a-tab-pane key="3" tab="子目录绑定">
           <div class="flex-row-flex-start-nowrap mab10">
             目录路径
@@ -197,6 +199,7 @@
             </a-table>
           </div>
         </a-tab-pane>
+
         <a-tab-pane key="4" tab="PHP版本">
           PHP版本
           <a-select :default-value="php.current" style="width: 120px;">
@@ -216,48 +219,48 @@
             banner
           />
         </a-tab-pane>
+
         <a-tab-pane key="5" tab="SSL绑定">
-          <a-tabs
-            default-active-key="1"
-            type="card"
-            @change="callback"
-            size="small"
-          >
+          <a-tabs default-active-key="1" type="card" @change="handleSSL" size="small">
             <a-tab-pane key="1" tab="证书">
-                <a-alert
-                  class="mab10"
-                  message="证书已部署成功,请在证书到期之前更换新的证书"
-                  type="success"
-                  show-icon
-                  banner
-                >
-                  <span slot="description">
-                    <p>发证机构: Sectigo Limited</p>
-                    <p>发证时间: 2020-06-15 00:00:00</p>
-                    <p>到期时间: 2021-06-15 23:59:59</p>
-                    <p>关联域名: *.61499.com, 61499.com</p>
-                  </span>
-                </a-alert>
-                选择证书
-                <a-select :default-value="cert.current" style="width: 200px;">
-                  <a-select-option
-                    v-for="cert in cert.list"
-                    :key="cert.id"
-                    :value="cert.name"
-                  >{{ cert.name }}</a-select-option>
-                </a-select>
-                <a-button class="mal10" type="primary">保存</a-button>
-                <p class="font12px mat5 color888">
-                  请先在证书夹添加证书,如没有证书可
-                  <a class="font12px" href="https://www.hws.com/security/ssl.html" target="_blank">点我购买</a></p>
-                <p class="font12px mat5 color888">选择证书点击保存即可部署至网站</p>
-                <p class="font12px mat5 color888">默认情况下,证书将绑定到当前已有的所有域名</p>
-                <p class="font12px mat5 color888">如开启后无法使用HTTPS访问,请检查安全组是否正确放行443端口</p>
+              <a-alert
+                class="mab10"
+                message="证书已部署成功,请在证书到期之前更换新的证书"
+                type="success"
+                show-icon
+                banner
+              >
+                <span slot="description">
+                  <p>发证机构: Sectigo Limited</p>
+                  <p>发证时间: 2020-06-15 00:00:00</p>
+                  <p>到期时间: 2021-06-15 23:59:59</p>
+                  <p>关联域名: *.61499.com, 61499.com</p>
+                </span>
+              </a-alert>选择证书
+              <a-select :default-value="cert.current" style="width: 200px;">
+                <a-select-option
+                  v-for="cert in cert.list"
+                  :key="cert.id"
+                  :value="cert.name"
+                >{{ cert.name }}</a-select-option>
+              </a-select>
+              <a-button class="mal10" type="primary">保存</a-button>
+              <p class="font12px mat5 color888">
+                请先在证书夹添加证书,如没有证书可
+                <a
+                  class="font12px"
+                  href="https://www.hws.com/security/ssl.html"
+                  target="_blank"
+                >点我购买</a>
+              </p>
+              <p class="font12px mat5 color888">选择证书点击保存即可部署至网站</p>
+              <p class="font12px mat5 color888">默认情况下,证书将绑定到当前已有的所有域名</p>
+              <p class="font12px mat5 color888">如开启后无法使用HTTPS访问,请检查安全组是否正确放行443端口</p>
             </a-tab-pane>
             <a-tab-pane key="2" tab="证书夹">
               <div class="flex-row-flex-start-nowrap mab10">
-                <a-textarea class="mar5" placeholder="证书(PEM格式)" :rows="6" style="width: 240px;"/>
-                <a-textarea class="mar5" placeholder="密钥(KEY)" :rows="6" style="width: 240px;"/>
+                <a-textarea class="mar5" placeholder="证书(PEM格式)" :rows="6" style="width: 240px;" />
+                <a-textarea class="mar5" placeholder="密钥(KEY)" :rows="6" style="width: 240px;" />
                 <a-button class="mal10" type="primary">添加</a-button>
               </div>
               <a-table
@@ -268,12 +271,7 @@
                 style="width: 100%;"
               >
                 <template slot="operation" slot-scope="text, record">
-                  <a-button
-                    icon="delete"
-                    type="dashed"
-                    size="small"
-                    @click="onDeleteCert(record)"
-                  ></a-button>
+                  <a-button icon="delete" type="dashed" size="small" @click="onDeleteCert(record)"></a-button>
                 </template>
               </a-table>
             </a-tab-pane>
@@ -282,8 +280,8 @@
               <a-switch size="small"></a-switch>
             </div>
           </a-tabs>
-
         </a-tab-pane>
+
         <a-tab-pane key="6" tab="配置文件">
           <span class="font12px">提示：Ctrl+F 搜索关键字，Ctrl+H 查找并替换，Alt+G 跳转到指定行的指定字符，Alt+/ 自动补全</span>
           <div class="mab10" style="height: 500px;">
@@ -298,7 +296,35 @@
           />
           <a-button type="primary">保存</a-button>
         </a-tab-pane>
-        <a-tab-pane key="7" tab="伪静态">Content of Tab Pane 7</a-tab-pane>
+
+        <a-tab-pane key="7" tab="伪静态">
+          <div class="mab10">
+            <a-select
+              default-value
+              style="width: 200px;"
+              @change="(value) => (rewrite.content = value)"
+            >
+              <a-select-option value>模板-空</a-select-option>
+              <a-select-option
+                v-for="rewrite in rewrite.list"
+                :key="rewrite.id"
+                :value="rewrite.content"
+              >{{ rewrite.name }}</a-select-option>
+            </a-select>
+          </div>
+          <span class="font12px">提示：Ctrl+F 搜索关键字，Ctrl+H 查找并替换，Alt+G 跳转到指定行的指定字符，Alt+/ 自动补全</span>
+          <div class="mab10" style="height: 450px;">
+            <codemirror v-model="rewrite.content" :options="rewrite"></codemirror>
+          </div>
+          <a-alert
+            class="mab10"
+            message="若设置伪静态后，网站无法正常访问，请尝试设置回'模板-空'"
+            type="warning"
+            show-icon
+            banner
+          />
+          <a-button type="primary">保存</a-button>
+        </a-tab-pane>
         <a-tab-pane key="8" tab="IP黑名单">Content of Tab Pane 8</a-tab-pane>
         <a-tab-pane key="9" tab="IP白名单">Content of Tab Pane 9</a-tab-pane>
         <a-tab-pane key="10" tab="带宽限制">Content of Tab Pane 10</a-tab-pane>
@@ -328,15 +354,14 @@ const subDomainsData = [
 ];
 
 const certsData = [
-    {
-        key: 1,
-        name: "*.61499.com",
-        organization: "Sectigo Limited",
-        time: "2020-06-15 00:00:00",
-        expires: "2021-06-15 23:59:59"
-    }
-
-]
+  {
+    key: 1,
+    name: "*.61499.com",
+    organization: "Sectigo Limited",
+    time: "2020-06-15 00:00:00",
+    expires: "2021-06-15 23:59:59"
+  }
+];
 
 const sitesData = [
   {
@@ -474,10 +499,10 @@ const sitesData = [
 export default {
   data() {
     return {
-      visible: false,
       recordKey: 0,
       searchText: "",
       searchInput: null,
+      visibleSetting: false,
 
       php: {
         current: "7.3.14",
@@ -502,7 +527,50 @@ export default {
           { id: 3, name: "测试证书3" },
           { id: 4, name: "测试证书4" },
           { id: 5, name: "测试证书5" },
-          { id: 6, name: "测试证书6" },
+          { id: 6, name: "测试证书6" }
+        ]
+      },
+
+      rewrite: {
+        mode: "text/x-sh",
+        content:
+          "<IfModule mod_rewrite.c>\n" +
+          "RewriteEngine on\n" +
+          "RewriteBase /\n" +
+          "RewriteCond %{REQUEST_FILENAME} !-d\n" +
+          "RewriteCond %{REQUEST_FILENAME} !-f\n" +
+          "RewriteRule ^(.*)$ index.php?s=/$1 [QSA,PT,L]\n" +
+          "</IfModule>\n",
+        list: [
+          {
+            id: 1,
+            name: "模板-wordpress",
+            content:
+              "location /\n" +
+              "{\n" +
+              "    try_files $uri $uri/ /index.php?$args;\n" +
+              "}\n" +
+              "rewrite /wp-admin$ $scheme://$host$uri/ permanent;"
+          },
+          {
+            id: 2,
+            name: "模板-phpwind",
+            content:
+              "location / {\n" +
+              "    rewrite ^(.*)-htm-(.*)$ $1.php?$2 last;\n" +
+              "    rewrite ^(.*)/simple/([a-z0-9_]+.html)$ $1/simple/index.php?$2 last;\n" +
+              "}"
+          },
+          {
+            id: 3,
+            name: "模板-shopex",
+            content:
+              "location / {\n" +
+              "    if (!-e $request_filename) {\n" +
+              "        rewrite ^/(.+.(html|xml|json|htm|php|jsp|asp|shtml))$ /index.php?$1 last;\n" +
+              "    }\n" +
+              "}"
+          }
         ]
       },
 
@@ -723,7 +791,7 @@ export default {
           dataIndex: "name",
           key: "name",
           className: "table_title",
-          ellipsis: true,
+          ellipsis: true
         },
         {
           title: "端口",
@@ -750,7 +818,7 @@ export default {
           dataIndex: "name",
           key: "name",
           className: "table_title",
-          ellipsis: true,
+          ellipsis: true
         },
         {
           title: "端口",
@@ -778,7 +846,6 @@ export default {
         }
       ],
 
-
       certsData,
       certsColumns: [
         {
@@ -786,7 +853,7 @@ export default {
           dataIndex: "name",
           key: "name",
           className: "table_title",
-          ellipsis: true,
+          ellipsis: true
         },
         {
           title: "发证机构",
@@ -864,15 +931,15 @@ export default {
     onSetting(record) {
       var vm = this;
       var load = this.public_msg_loading();
-      layer.close(load)
-      this.visible = true;
+      layer.close(load);
+      this.visibleSetting = true;
       setTimeout(function() {
         vm.public_msg_open(
           "编辑网站",
           ["700px", "700px"],
           $("#setting"),
           function() {
-            vm.visible = false;
+            vm.visibleSetting = false;
           }
         );
       }, 150);
@@ -906,7 +973,7 @@ export default {
         "删除证书确认",
         "您真的要删除[" + record.name + "]吗?",
         function() {
-          vm.public_msg_success("删除成功")
+          vm.public_msg_success("删除成功");
         }
       );
     },
@@ -915,9 +982,15 @@ export default {
       this.public_msg_success(value);
     },
 
-    callback(key) {
+    handleSetting(key) {
       this.public_msg_loading();
+      console.log(key);
     },
+
+    handleSSL(key) {
+      this.public_msg_loading();
+      console.log(key);
+    }
   }
 };
 </script>
