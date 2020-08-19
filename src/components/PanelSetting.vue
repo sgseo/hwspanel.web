@@ -37,13 +37,13 @@
                 v-if="record.disabled"
                 size="small"
                 type="primary"
-                @click="onToogle(record)"
+                @click="toogle(record)"
               >修改</a-button>
               <a-button
                 v-else-if="!record.disabled"
                 size="small"
                 style="background: #87d068; border-color: #87d068; color: #fff;"
-                @click="onHandle(record)"
+                @click="saveModify(record)"
               >确认</a-button>
             </template>
           </a-table>
@@ -145,12 +145,13 @@ export default {
     }, 20);
   },
   methods: {
-    onToogle(record) {
+    toogle(record) {
       record.disabled = !record.disabled;
     },
-    onHandle(record) {
+
+    saveModify(record) {
       this.public_msg_loading();
-      this.onToogle(record);
+      this.toogle(record);
     }
   }
 };
