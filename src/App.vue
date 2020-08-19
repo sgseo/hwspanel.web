@@ -18,7 +18,6 @@
             theme="dark"
             mode="inline"
             :default-selected-keys="[$route.path]"
-            :defaultOpenKeys="defaultOpenKeys"
             :selectedKeys="[$route.path]"
           >
             <a-menu-item key="/index">
@@ -99,7 +98,6 @@ export default {
     return {
       zhCN,
       collapsed: false,
-      defaultOpenKeys: ["sub1"]
     };
   },
   methods: {
