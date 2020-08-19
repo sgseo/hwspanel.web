@@ -15,9 +15,9 @@
               </a-breadcrumb>
               <a-input-search
                 style="width: 300px;"
-                placeholder="数据库搜索"
+                placeholder="数据库搜索,支持模糊匹配"
                 enter-button
-                @search="onSearch"
+                @search="searchDatabase"
               />
             </a-col>
           </a-row>
@@ -31,38 +31,9 @@
           <span slot="title">数据库列表</span>
           <div class="mab10">
             <a-button type="primary" class="mar5">添加数据库</a-button>
-            <a-button type="dashed" @click="onRebuildAll">重建所有数据库</a-button>
+            <a-button type="dashed" @click="rebuildDatabaseAll">重建所有数据库</a-button>
           </div>
           <a-table :scroll="{ x: 1050 }" :columns="columns" :data-source="data" size="small">
-            <div
-              slot="filterDropdown"
-              slot-scope="{ setSelectedKeys, selectedKeys, confirm, clearFilters, column }"
-              style="padding: 8px"
-            >
-              <a-input
-                v-ant-ref="c => (searchInput = c)"
-                :placeholder="`Search ${column.dataIndex}`"
-                :value="selectedKeys[0]"
-                style="width: 188px; margin-bottom: 8px; display: block;"
-                @change="e => setSelectedKeys(e.target.value ? [e.target.value] : [])"
-                @pressEnter="() => handleSearch(selectedKeys, confirm, column.dataIndex)"
-              />
-              <a-button
-                type="primary"
-                icon="search"
-                size="small"
-                style="width: 90px; margin-right: 8px"
-                @click="() => handleSearch(selectedKeys, confirm, column.dataIndex)"
-              >过滤</a-button>
-              <a-button size="small" style="width: 90px" @click="() => handleReset(clearFilters)">重置</a-button>
-            </div>
-            <a-icon
-              slot="filterIcon"
-              slot-scope="filtered"
-              type="search"
-              :style="{ color: filtered ? '#108ee9' : undefined }"
-            />
-
             <!-- 其实我觉得下面的这个功能实现的方法不好,但暂时没想到更好的办法 -->
             <div slot="dbPass" slot-scope="text, record">
               <span :id="record.dbUser" v-show="recordKey == record.key">{{ text }}</span>
@@ -84,13 +55,13 @@
             <a-badge slot="status" slot-scope="status, record" :status="status" :text="record.msg" />
 
             <template slot="operation" slot-scope="text, record">
-              <a href="javascript:;" v-on:click="onManage(record)">管理</a>
+              <a href="javascript:;" v-on:click="openManage(record)">管理</a>
               <a-divider type="vertical" />
-              <a href="javascript:;" v-on:click="onSetting(record)">设置</a>
+              <a href="javascript:;" v-on:click="openSetting(record)">设置</a>
               <a-divider type="vertical" />
-              <a href="javascript:;" v-on:click="onRebuild(record)">重建</a>
+              <a href="javascript:;" v-on:click="rebuildDatabase(record)">重建</a>
               <a-divider type="vertical" />
-              <a href="javascript:;" v-on:click="onDelete(record)">删除</a>
+              <a href="javascript:;" v-on:click="removeDatabase(record)">删除</a>
             </template>
           </a-table>
         </a-card>
@@ -208,17 +179,6 @@ export default {
           width: 70,
           scopedSlots: { customRender: "status" },
           className: "table_title",
-          filters: [
-            {
-              text: "正常",
-              value: "success"
-            },
-            {
-              text: "异常",
-              value: "error"
-            }
-          ],
-          onFilter: (value, record) => record.status.indexOf(value) === 0
         },
         {
           title: "数据库名称",
@@ -227,22 +187,6 @@ export default {
           ellipsis: true,
           width: 200,
           className: "table_title",
-          scopedSlots: {
-            filterDropdown: "filterDropdown",
-            filterIcon: "filterIcon"
-          },
-          onFilter: (value, record) =>
-            record.dbName
-              .toString()
-              .toLowerCase()
-              .includes(value.toLowerCase()),
-          onFilterDropdownVisibleChange: visible => {
-            if (visible) {
-              setTimeout(() => {
-                this.searchInput.focus();
-              }, 0);
-            }
-          }
         },
         {
           title: "数据库账户",
@@ -251,22 +195,6 @@ export default {
           ellipsis: true,
           width: 200,
           className: "table_title",
-          scopedSlots: {
-            filterDropdown: "filterDropdown",
-            filterIcon: "filterIcon"
-          },
-          onFilter: (value, record) =>
-            record.dbUser
-              .toString()
-              .toLowerCase()
-              .includes(value.toLowerCase()),
-          onFilterDropdownVisibleChange: visible => {
-            if (visible) {
-              setTimeout(() => {
-                this.searchInput.focus();
-              }, 0);
-            }
-          }
         },
         {
           title: "数据库密码",
@@ -284,22 +212,6 @@ export default {
           ellipsis: true,
           width: 200,
           className: "table_title",
-          scopedSlots: {
-            filterDropdown: "filterDropdown",
-            filterIcon: "filterIcon"
-          },
-          onFilter: (value, record) =>
-            record.dbSite
-              .toString()
-              .toLowerCase()
-              .includes(value.toLowerCase()),
-          onFilterDropdownVisibleChange: visible => {
-            if (visible) {
-              setTimeout(() => {
-                this.searchInput.focus();
-              }, 0);
-            }
-          }
         },
         {
           title: "备注",
@@ -307,22 +219,6 @@ export default {
           key: "comment",
           ellipsis: true,
           className: "table_title",
-          scopedSlots: {
-            filterDropdown: "filterDropdown",
-            filterIcon: "filterIcon"
-          },
-          onFilter: (value, record) =>
-            record.comment
-              .toString()
-              .toLowerCase()
-              .includes(value.toLowerCase()),
-          onFilterDropdownVisibleChange: visible => {
-            if (visible) {
-              setTimeout(() => {
-                this.searchInput.focus();
-              }, 0);
-            }
-          }
         },
         {
           title: "操作",
@@ -341,36 +237,15 @@ export default {
     }, 20);
   },
   methods: {
-    handleSearch(selectedKeys, confirm, dataIndex) {
-      confirm();
-      this.searchText = selectedKeys[0];
-    },
-
-    handleReset(clearFilters) {
-      clearFilters();
-      this.searchText = "";
-    },
-
-    onManage(record) {
+    openManage(record) {
       this.public_msg_success(record.dbName);
     },
 
-    onSetting(record) {
+    openSetting(record) {
       this.public_msg_success(record.dbName);
     },
 
-    onRebuildAll() {
-      let vm = this;
-      this.public_msg_confirm(
-        "重建数据库确认",
-        "您真的要重建所有数据库吗?",
-        function() {
-          vm.public_msg_success("重建成功!");
-        }
-      );
-    },
-
-    onRebuild(record) {
+    rebuildDatabase(record) {
       let vm = this;
       this.public_msg_confirm(
         "重建数据库确认",
@@ -381,7 +256,18 @@ export default {
       );
     },
 
-    onDelete(record) {
+    rebuildDatabaseAll() {
+      let vm = this;
+      this.public_msg_confirm(
+        "重建数据库确认",
+        "您真的要重建所有数据库吗?",
+        function() {
+          vm.public_msg_success("重建成功!");
+        }
+      );
+    },
+
+    removeDatabase(record) {
       let vm = this;
       this.public_msg_confirm(
         "删除数据库确认",
@@ -392,7 +278,7 @@ export default {
       );
     },
 
-    onSearch(value) {
+    searchDatabase(value) {
       this.public_msg_success(value);
     }
   }
