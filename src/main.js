@@ -54,16 +54,18 @@ Vue.use(Tabs)
 Vue.use(VueCodemirror, {
   options: {
     tabSize: 4,
+    indentUnit: 4,
+    smartIndent: true,
+    lineWiseCopyCut: true,
     styleActiveLine: true,
     styleSelectedText: true,
     scrollbarStyle: "simple",
     showCursorWhenSelecting: true,
     extraKeys: {
-      "Tab": "autocomplete",
+      "Alt-/": "autocomplete",
       "Ctrl-F": "findPersistent",
       "Ctrl-H": "replaceAll",
     },
-    mode: "nginx",
     lineNumbers: true,
     lineWrapping:true,
     matchBrackets: true,

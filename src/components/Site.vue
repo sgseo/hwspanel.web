@@ -198,10 +198,18 @@
           </div>
         </a-tab-pane>
         <a-tab-pane key="4" tab="配置文件">
-          <span class="font12px">提示：Ctrl+F 搜索关键字，Ctrl+H 查找并替换，Alt+G 跳转到指定行的指定字符</span>
-          <div style="height: 500px;">
-            <codemirror v-model="config"></codemirror>
+          <span class="font12px">提示：Ctrl+F 搜索关键字，Ctrl+H 查找并替换，Alt+G 跳转到指定行的指定字符，Alt+/ 自动补全</span>
+          <div class="mab10" style="height: 500px;">
+            <codemirror v-model="codeConfig.content" :options="codeConfig"></codemirror>
           </div>
+          <a-alert
+            class="mab10"
+            message="此处为站点主配置文件,若您不了解配置规则,请勿随意修改."
+            type="warning"
+            show-icon
+            banner
+          />
+          <a-button type="primary">保存</a-button>
         </a-tab-pane>
         <a-tab-pane key="5" tab="SSL绑定">Content of Tab Pane 5</a-tab-pane>
         <a-tab-pane key="6" tab="伪静态">Content of Tab Pane 6</a-tab-pane>
@@ -374,7 +382,63 @@ export default {
       recordKey: 0,
       searchText: "",
       searchInput: null,
-      config: "iptables -L -n",
+      codeConfig: {
+        mode: 'text/x-nginx-conf',
+        content: 'server\n' +
+'{\n' +
+'    listen 80;\n' +
+'    server_name tp.com;\n' +
+'    index index.php index.html index.htm default.php default.htm default.html;\n'+
+'    root /www/wwwroot/tp6/public;\n' +
+'\n' +
+'    #SSL-START SSL相关配置，请勿删除或修改下一行带注释的404规则\n' +
+'    #error_page 404/404.html;\n' +
+'    limit_conn perserver 300;\n' +
+'    limit_conn perip 25;\n' +
+'    limit_rate 512k;\n' +
+'    #SSL-END\n' +
+'\n' +
+'    #ERROR-PAGE-START  错误页配置，可以注释、删除或修改\n' +
+'    #error_page 404 /404.html;\n' +
+'    #error_page 502 /502.html;\n' +
+'    #ERROR-PAGE-END\n' +
+'\n' +
+'    #PHP-INFO-START  PHP引用配置，可以注释或修改\n' +
+'    include enable-php-73.conf;\n' +
+'    #PHP-INFO-END\n' +
+'\n' +
+'    #REWRITE-START URL重写规则引用,修改后将导致面板设置的伪静态规则失效\n' +
+'    include /www/server/panel/vhost/rewrite/tp.com.conf;\n' +
+'    #REWRITE-END\n' +
+'\n' +
+'    #禁止访问的文件或目录\n' +
+'    location ~ ^/(\.user.ini|\.htaccess|\.git|\.svn|\.project|LICENSE|README.md)\n' +
+'    {\n' +
+'        return 404;\n' +
+'    }\n' +
+'\n' +
+'    #一键申请SSL证书验证目录相关设置\n' +
+'    location ~ \.well-known{\n' +
+'        allow all;\n' +
+'    }\n' +
+'\n' +
+'    location ~ .*\.(gif|jpg|jpeg|png|bmp|swf)$\n' +
+'    {\n' +
+'        expires      30d;\n' +
+'        error_log off;\n' +
+'        access_log /dev/null;\n' +
+'    }\n' +
+'\n' +
+'    location ~ .*\.(js|css)?$\n' +
+'    {\n' +
+'        expires      12h;\n' +
+'        error_log off;\n' +
+'        access_log /dev/null;\n' +
+'    }\n' +
+'    access_log  /www/wwwlogs/tp.com.log;\n' +
+'    error_log  /www/wwwlogs/tp.com.error.log;\n' +
+'}\n'
+      },
 
       sitesData,
       sitesColumns: [
