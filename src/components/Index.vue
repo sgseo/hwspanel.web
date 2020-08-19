@@ -48,7 +48,7 @@
                 <a-progress
                   type="circle"
                   :percent="item.data"
-                  :strokeColor="onColor(item.data)"
+                  :strokeColor="setColor(item.data)"
                 />
                 <h4 class="color777 ma5 font12px">{{ item.info }}</h4>
               </li>
@@ -93,7 +93,7 @@
           </span>
           <ul class="dragsort">
             <li v-for="item in quickOperation" :key="item.id" class="ma5 text-center">
-              <a-card class="bgf8 text-left hover" :bordered="false" @click="onClick(item.name)">
+              <a-card class="bgf8 text-left hover" :bordered="false" @click="openSetting(item.name)">
                 <div class="flex">
                   <div
                     :style="item.icon"
@@ -338,10 +338,11 @@ export default {
     }, 20);
   },
   methods: {
-    onClick(event) {
+    openSetting(event) {
       this.public_msg_success("点击了" + event);
     },
-    onColor: function(progress) {
+
+    setColor(progress) {
       if (progress > 90) { return "#f5222d";}
       else if (progress > 70) { return "#faad14";}
       else { return "#52c41a";}
