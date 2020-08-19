@@ -216,7 +216,53 @@
             banner
           />
         </a-tab-pane>
-        <a-tab-pane key="5" tab="SSL绑定">Content of Tab Pane 5</a-tab-pane>
+        <a-tab-pane key="5" tab="SSL绑定">
+          <a-tabs
+            default-active-key="1"
+            type="card"
+            @change="callback"
+            size="small"
+          >
+            <a-tab-pane key="1" tab="证书">
+                <a-alert
+                  class="mab10"
+                  message="证书已部署成功,请在证书到期之前更换新的证书"
+                  type="success"
+                  show-icon
+                  banner
+                >
+                  <span slot="description">
+                    <p>发证机构: Sectigo Limited</p>
+                    <p>发证时间: 2020-06-15 00:00:00</p>
+                    <p>到期时间: 2021-06-15 23:59:59</p>
+                    <p>关联域名: *.61499.com, 61499.com</p>
+                  </span>
+                </a-alert>
+                选择证书
+                <a-select :default-value="cert.current" style="width: 120px;">
+                  <a-select-option
+                    v-for="cert in cert.list"
+                    :key="cert.id"
+                    :value="cert.name"
+                  >{{ cert.name }}</a-select-option>
+                </a-select>
+                <a-button class="mal10" type="primary">保存</a-button>
+                <p class="font12px mat5 color888">
+                  请先在证书夹添加证书,如没有证书可
+                  <a class="font12px" href="https://www.hws.com/security/ssl.html" target="_blank">点我购买</a></p>
+                <p class="font12px mat5 color888">选择证书点击保存即可部署至网站</p>
+                <p class="font12px mat5 color888">默认情况下,证书将绑定到当前已有的所有域名</p>
+                <p class="font12px mat5 color888">如开启后无法使用HTTPS访问,请检查安全组是否正确放行443端口</p>
+            </a-tab-pane>
+            <a-tab-pane key="2" tab="证书夹">
+            </a-tab-pane>
+            <div slot="tabBarExtraContent">
+              强制https
+              <a-switch size="small"></a-switch>
+            </div>
+          </a-tabs>
+
+        </a-tab-pane>
         <a-tab-pane key="6" tab="配置文件">
           <span class="font12px">提示：Ctrl+F 搜索关键字，Ctrl+H 查找并替换，Alt+G 跳转到指定行的指定字符，Alt+/ 自动补全</span>
           <div class="mab10" style="height: 500px;">
@@ -413,6 +459,17 @@ export default {
           { version: "7.1.33" },
           { version: "7.2.27" },
           { version: "7.3.14" }
+        ]
+      },
+      cert: {
+        current: "测试证书1",
+        list: [
+          { id: 1, name: "测试证书1" },
+          { id: 2, name: "测试证书2" },
+          { id: 3, name: "测试证书3" },
+          { id: 4, name: "测试证书4" },
+          { id: 5, name: "测试证书5" },
+          { id: 6, name: "测试证书6" },
         ]
       },
 
