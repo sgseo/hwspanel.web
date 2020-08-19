@@ -197,7 +197,9 @@
             </a-table>
           </div>
         </a-tab-pane>
-        <a-tab-pane key="4" tab="配置文件">
+        <a-tab-pane key="4" tab="PHP版本">Content of Tab Pane 4</a-tab-pane>
+        <a-tab-pane key="5" tab="SSL绑定">Content of Tab Pane 5</a-tab-pane>
+        <a-tab-pane key="6" tab="配置文件">
           <span class="font12px">提示：Ctrl+F 搜索关键字，Ctrl+H 查找并替换，Alt+G 跳转到指定行的指定字符，Alt+/ 自动补全</span>
           <div class="mab10" style="height: 500px;">
             <codemirror v-model="codeConfig.content" :options="codeConfig"></codemirror>
@@ -211,9 +213,7 @@
           />
           <a-button type="primary">保存</a-button>
         </a-tab-pane>
-        <a-tab-pane key="5" tab="SSL绑定">Content of Tab Pane 5</a-tab-pane>
-        <a-tab-pane key="6" tab="伪静态">Content of Tab Pane 6</a-tab-pane>
-        <a-tab-pane key="7" tab="PHP版本">Content of Tab Pane 7</a-tab-pane>
+        <a-tab-pane key="7" tab="伪静态">Content of Tab Pane 7</a-tab-pane>
         <a-tab-pane key="8" tab="IP黑名单">Content of Tab Pane 8</a-tab-pane>
         <a-tab-pane key="9" tab="IP白名单">Content of Tab Pane 9</a-tab-pane>
         <a-tab-pane key="10" tab="带宽限制">Content of Tab Pane 10</a-tab-pane>
