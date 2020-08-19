@@ -10,7 +10,7 @@
                 background: #108ee9;
                 cursor: pointer;
                 overflow: hidden;"
-            @click="onOpenTask"
+            @click="openTask"
           >
             <span style="line-height: 32px;">护卫神.主机大师</span>
           </div>
@@ -68,7 +68,7 @@
                 <router-link to="/user_setting">用户设置</router-link>
               </a-menu-item>
             </a-sub-menu>
-            <a-menu-item key="7" @click="onLogout">
+            <a-menu-item key="7" @click="exitPanel">
               <a-icon type="logout" />
               <span>退出</span>
             </a-menu-item>
@@ -101,10 +101,11 @@ export default {
     };
   },
   methods: {
-    onOpenTask() {
+    openTask() {
       this.successMsg("打开任务队列");
     },
-    onLogout() {
+
+    exitPanel() {
       let vm = this;
       this.public_msg_confirm(
         "退出登录确认",
