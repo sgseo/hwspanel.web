@@ -316,7 +316,7 @@ export default {
       setTimeout(function() {
         vm.public_msg_open(
           "数据库设置[" + record.dbName + "]--归属网站[" + record.dbSite + "]",
-          ["500px", "300px"],
+          ["auto", "auto"],
           null,
           $("#setting"),
           -1,
