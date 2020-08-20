@@ -18,7 +18,7 @@
                 {{ topBar.adv.info }}
               </a>
             </a-col>
-            <a-col :xs="24" :sm="12" :md="12" :lg="6" :xl="4">
+            <a-col :xs="24" :sm="12" :md="12" :lg="6" :xl="4" class="text-right">
               <a-badge dot class="font12px">
                 <a href="https://github.com/Wjinlei/hwspanel" target="_blank" class="color666">
                   <a-icon type="github" />
