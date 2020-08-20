@@ -29,11 +29,13 @@
       <a-col :span="24">
         <a-card size="small">
           <span slot="title">应用列表</span>
-          <div class="mab10">
-            <a-button type="dashed">更新应用列表</a-button>
-            <div id="0" class="btn active" @click="findTag('#0')">全部</div>
-            <div id="1" class="btn" @click="findTag('#1')">运行环境</div>
-            <div id="2" class="btn" @click="findTag('#2')">服务</div>
+          <div class="mab10 flex-row-space-between-wrap">
+            <div>
+              <div id="0" class="btn active" @click="findTag('#0')">全部</div>
+              <div id="1" class="btn" @click="findTag('#1')">运行环境</div>
+              <div id="2" class="btn" @click="findTag('#2')">服务</div>
+            </div>
+            <a-button type="dashed" icon="cloud-sync">同步应用列表</a-button>
           </div>
           <a-table :scroll="{ x: 445 }" :columns="columns" :data-source="data" size="small">
             <span
