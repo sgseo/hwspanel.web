@@ -204,7 +204,7 @@
                 >{{ cert.name }}</a-select-option>
               </a-select>
               <a-button class="mal10" type="primary">保存</a-button>
-              <p class="font12px mat5 color888">
+              <p class="font12px mat5 color-info">
                 请先在证书夹添加证书,如没有证书可
                 <a
                   class="font12px"
@@ -212,9 +212,9 @@
                   target="_blank"
                 >点我购买</a>
               </p>
-              <p class="font12px mat5 color888">选择证书点击保存即可部署至网站</p>
-              <p class="font12px mat5 color888">默认情况下,证书将绑定到当前已有的所有域名</p>
-              <p class="font12px mat5 color888">如开启后无法使用HTTPS访问,请检查安全组是否正确放行443端口</p>
+              <p class="font12px mat5 color-info">选择证书点击保存即可部署至网站</p>
+              <p class="font12px mat5 color-info">默认情况下,证书将绑定到当前已有的所有域名</p>
+              <p class="font12px mat5 color-info">如开启后无法使用HTTPS访问,请检查安全组是否正确放行443端口</p>
             </a-tab-pane>
             <a-tab-pane key="2" tab="证书夹">
               <div class="flex-row-flex-start-nowrap mab10">
@@ -395,8 +395,18 @@
         </a-tab-pane>
 
         <a-tab-pane key="13" tab="网站日志">
-          <a-button type="dashed" class="mab10 font12px">重新获取</a-button>
-          <div class="mab20 font12px">
+          <div class="flex-row-space-between-wrap">
+            <div>
+              <a-button type="dashed" class="font12px" size="small">重新获取</a-button>
+              <span class="mal5 font12px color-info">这将会重新获取网站的最新日志</span>
+            </div>
+            <div class="font12px">
+              每秒获取一次
+              <a-switch size="small"></a-switch>
+            </div>
+          </div>
+          <a-divider class="ma0 mab10 mat10"/>
+          <div class="mab10 color-primary font12px">
             响应日志
             <a-textarea
               :defaultValue="log.accessLog"
@@ -405,7 +415,7 @@
               class="color-terminal font12px"
             />
           </div>
-          <div class="font12px">
+          <div class="color-error font12px">
             错误日志
             <a-textarea
               :defaultValue="log.errorLog"
