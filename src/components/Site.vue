@@ -273,7 +273,11 @@
           <a-button type="primary">保存</a-button>
         </a-tab-pane>
 
-        <a-tab-pane key="8" tab="访问限制">
+        <a-tab-pane key="8" tab="301重定向">
+            敬请期待
+        </a-tab-pane>
+
+        <a-tab-pane key="9" tab="访问限制">
           允许所有,拒绝以下(黑名单)
           <div class="flex-row-flex-start-nowrap mab10 mat10">
             <a-textarea
@@ -304,8 +308,8 @@
           <a-alert class="mab10" message="以上两种情况只有一种会生效,以最后一次设置为准" type="info" show-icon />
         </a-tab-pane>
 
-        <a-tab-pane key="9" tab="流量限制">敬请期待</a-tab-pane>
-        <a-tab-pane key="10" tab="FTP设置">
+        <a-tab-pane key="10" tab="流量限制">敬请期待</a-tab-pane>
+        <a-tab-pane key="11" tab="FTP设置">
           开关
           <a-switch class="mal5" size="small"></a-switch>
           <div class="mat10">
@@ -336,7 +340,7 @@
           <a-button class="mat10" type="primary">保存</a-button>
         </a-tab-pane>
 
-        <a-tab-pane key="11" tab="备份与解压">
+        <a-tab-pane key="12" tab="备份与解压">
           <a-button class="mab10" type="primary">立即备份</a-button>
           <a-table
             :scroll="{ x: 300 }"
@@ -365,7 +369,7 @@
           </a-table>
         </a-tab-pane>
 
-        <a-tab-pane key="12" tab="网站日志">
+        <a-tab-pane key="13" tab="网站日志">
           <a-button type="dashed" class="mab10 font12px">重新获取</a-button>
           <div class="mab20 font12px">
             响应日志
