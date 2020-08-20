@@ -35,8 +35,8 @@
           </div>
           <a-table
             :scroll="{ x: 1215 }"
-            :columns="sitesColumns"
-            :data-source="sitesData"
+            :columns="siteColumns"
+            :data-source="siteDatas"
             size="small"
           >
             <!-- 其实我觉得下面的这个功能实现的方法不好,但暂时没想到更好的办法 -->
@@ -105,8 +105,8 @@
           </div>
           <a-table
             :scroll="{ x: 160 }"
-            :columns="domainsColumns"
-            :data-source="domainsData"
+            :columns="domainColumns"
+            :data-source="domainDatas"
             size="small"
             style="width: 100%;"
           >
@@ -148,8 +148,8 @@
           <div>
             <a-table
               :scroll="{ x: 360 }"
-              :columns="subDomainsColumns"
-              :data-source="subDomainsData"
+              :columns="subDomainColumns"
+              :data-source="subDomainDatas"
               size="small"
               style="width: 100%;"
             >
@@ -187,12 +187,7 @@
         <a-tab-pane key="5" tab="SSL绑定">
           <a-tabs default-active-key="1" type="card" @change="onChangeSsl" size="small">
             <a-tab-pane key="1" tab="证书">
-              <a-alert
-                class="mab10"
-                message="证书已部署成功,请在证书到期之前更换新的证书"
-                type="success"
-                show-icon
-              >
+              <a-alert class="mab10" message="证书已部署成功,请在证书到期之前更换新的证书" type="success" show-icon>
                 <span slot="description">
                   <p>发证机构: Sectigo Limited</p>
                   <p>发证时间: 2020-06-15 00:00:00</p>
@@ -228,8 +223,8 @@
               </div>
               <a-table
                 :scroll="{ x: 360 }"
-                :columns="certsColumns"
-                :data-source="certsData"
+                :columns="certColumns"
+                :data-source="certDatas"
                 size="small"
                 style="width: 100%;"
               >
@@ -250,12 +245,7 @@
           <div class="mab10" style="height: 500px;">
             <codemirror v-model="config.content" :options="config"></codemirror>
           </div>
-          <a-alert
-            class="mab10"
-            message="此处为站点主配置文件,若您不了解配置规则,请勿随意修改."
-            type="warning"
-            show-icon
-          />
+          <a-alert class="mab10" message="此处为站点主配置文件,若您不了解配置规则,请勿随意修改." type="warning" show-icon />
           <a-button type="primary">保存</a-button>
         </a-tab-pane>
 
@@ -279,72 +269,101 @@
           <div class="mab10" style="height: 450px;">
             <codemirror v-model="rewrite.content" :options="rewrite"></codemirror>
           </div>
-          <a-alert
-            class="mab10"
-            message="若设置伪静态后，网站无法正常访问，请尝试设置回'模板-空'"
-            type="info"
-            show-icon
-          />
+          <a-alert class="mab10" message="若设置伪静态后，网站无法正常访问，请尝试设置回'模板-空'" type="info" show-icon />
           <a-button type="primary">保存</a-button>
         </a-tab-pane>
 
         <a-tab-pane key="8" tab="访问限制">
           允许所有,拒绝以下(黑名单)
           <div class="flex-row-flex-start-nowrap mab10 mat10">
-            <a-textarea placeholder="
+            <a-textarea
+              placeholder="
 每行填写一个IP或域名
 单个IP: 192.168.1.1
 支持网段: 192.168.1.0/24
 域名: www.domain.com
-              " :rows="6" style="width: 300px;" />
+              "
+              :rows="6"
+              style="width: 300px;"
+            />
             <a-button class="mal10" type="primary">保存</a-button>
-          </div>
-          拒绝所有,允许以下(白名单)
+          </div>拒绝所有,允许以下(白名单)
           <div class="flex-row-flex-start-nowrap mab10 mat10">
-            <a-textarea placeholder="
+            <a-textarea
+              placeholder="
 每行填写一个IP或域名
 单个IP: 192.168.1.1
 支持网段: 192.168.1.0/24
 域名: www.domain.com
-              " :rows="6" style="width: 300px;" />
+              "
+              :rows="6"
+              style="width: 300px;"
+            />
             <a-button class="mal10" type="primary">保存</a-button>
           </div>
-          <a-alert
-            class="mab10"
-            message="以上两种情况只有一种会生效,以最后一次设置为准"
-            type="info"
-            show-icon
-          />
+          <a-alert class="mab10" message="以上两种情况只有一种会生效,以最后一次设置为准" type="info" show-icon />
         </a-tab-pane>
+
         <a-tab-pane key="9" tab="流量限制">Content of Tab Pane 10</a-tab-pane>
         <a-tab-pane key="10" tab="FTP设置">
-          开关<a-switch class="mal5" size="small"></a-switch>
+          开关
+          <a-switch class="mal5" size="small"></a-switch>
           <div class="mat10">
-            <a-input addon-before="FTP用户" default-value="www_test1_com" disabled style="width: 300px"/>
+            <a-input
+              addon-before="FTP用户"
+              default-value="www_test1_com"
+              disabled
+              style="width: 300px"
+            />
           </div>
           <div class="mat10">
-            <a-input-password addon-before="FTP密码" default-value="xMxeekHnDjxH4npj" style="width: 300px" />
+            <a-input-password
+              addon-before="FTP密码"
+              default-value="xMxeekHnDjxH4npj"
+              style="width: 300px"
+            />
             <a-button type="link">随机生成</a-button>
           </div>
           <div class="mat10">
-            <a-input addon-before="FTP容量" addon-after="单位(MB)" default-value="10" style="width: 300px"/>
+            <a-input
+              addon-before="FTP容量"
+              addon-after="单位(MB)"
+              default-value="10"
+              style="width: 300px"
+            />
           </div>
-          <a-alert
-            class="mat10"
-            message="每个网站都会关联一个FTP,您可以在此处开启或关闭它"
-            type="info"
-            show-icon
-          />
+          <a-alert class="mat10" message="每个网站都会关联一个FTP,您可以在此处开启或关闭它" type="info" show-icon />
           <a-button class="mat10" type="primary">保存</a-button>
         </a-tab-pane>
-        <a-tab-pane key="11" tab="打包与解压">Content of Tab Pane 12</a-tab-pane>
+
+        <a-tab-pane key="11" tab="备份与解压">
+          <a-button class="mab10" type="primary">备份</a-button>
+          <a-table
+            :scroll="{ x: 270 }"
+            :columns="backupColumns"
+            :data-source="backupDatas"
+            size="small"
+            style="width: 100%;"
+          >
+            <template slot="operation" slot-scope="text, record">
+              <a-button
+                class="mar5"
+                icon="download"
+                type="dashed"
+                size="small"
+                @click="downloadBackup(record)"
+              ></a-button>
+              <a-button icon="delete" type="dashed" size="small" @click="removeBackup(record)"></a-button>
+            </template>
+          </a-table>
+        </a-tab-pane>
       </a-tabs>
     </div>
   </div>
 </template>
 
 <script>
-const domainsData = [
+const domainDatas = [
   {
     key: 1,
     name: "www.test1.com",
@@ -352,7 +371,7 @@ const domainsData = [
   }
 ];
 
-const subDomainsData = [
+const subDomainDatas = [
   {
     key: 1,
     name: "www.subtest1.com",
@@ -361,7 +380,7 @@ const subDomainsData = [
   }
 ];
 
-const certsData = [
+const certDatas = [
   {
     key: 1,
     name: "*.61499.com",
@@ -371,7 +390,16 @@ const certsData = [
   }
 ];
 
-const sitesData = [
+const backupDatas = [
+  {
+    key: 1,
+    name: "www.test1.com_20200820_112640.zip",
+    size: "21M",
+    time: "2020-08-20 11:26:40"
+  }
+];
+
+const siteDatas = [
   {
     key: "1",
     siteStatus: "success",
@@ -641,8 +669,8 @@ export default {
           "}\n"
       },
 
-      sitesData,
-      sitesColumns: [
+      siteDatas,
+      siteColumns: [
         {
           title: "状态",
           dataIndex: "siteStatus",
@@ -718,8 +746,8 @@ export default {
         }
       ],
 
-      domainsData,
-      domainsColumns: [
+      domainDatas,
+      domainColumns: [
         {
           title: "域名",
           dataIndex: "name",
@@ -745,8 +773,8 @@ export default {
         }
       ],
 
-      subDomainsData,
-      subDomainsColumns: [
+      subDomainDatas,
+      subDomainColumns: [
         {
           title: "域名",
           dataIndex: "name",
@@ -780,8 +808,8 @@ export default {
         }
       ],
 
-      certsData,
-      certsColumns: [
+      certDatas,
+      certColumns: [
         {
           title: "关联域名",
           dataIndex: "name",
@@ -820,6 +848,41 @@ export default {
           scopedSlots: { customRender: "operation" },
           className: "table_title",
           width: 60
+        }
+      ],
+
+      backupDatas,
+      backupColumns: [
+        {
+          title: "文件名称",
+          dataIndex: "name",
+          key: "name",
+          className: "table_title",
+          ellipsis: true
+        },
+        {
+          title: "文件大小",
+          dataIndex: "size",
+          key: "size",
+          ellipsis: true,
+          width: 100,
+          className: "table_title"
+        },
+        {
+          title: "备份时间",
+          dataIndex: "time",
+          key: "time",
+          ellipsis: true,
+          width: 100,
+          className: "table_title"
+        },
+        {
+          title: "操作",
+          dataIndex: "operation",
+          key: "operation",
+          scopedSlots: { customRender: "operation" },
+          className: "table_title",
+          width: 70
         }
       ]
     };
@@ -873,6 +936,10 @@ export default {
       }, 150);
     },
 
+    onChangeSetting(key) {
+      this.public_msg_loading();
+    },
+
     removeSite(record) {
       let vm = this;
       this.public_msg_confirm(
@@ -893,6 +960,10 @@ export default {
           vm.public_msg_error("最后一个域名不能删除!");
         }
       );
+    },
+
+    onChangeSsl(key) {
+      this.public_msg_loading();
     },
 
     removeCert(record) {
@@ -919,14 +990,19 @@ export default {
       layer.close(load);
     },
 
-    onChangeSetting(key) {
-      this.public_msg_loading();
-      console.log(key);
+    downloadBackup() {
+      this.public_msg_success("下载成功");
     },
 
-    onChangeSsl(key) {
-      this.public_msg_loading();
-      console.log(key);
+    removeBackup(record) {
+      let vm = this;
+      this.public_msg_confirm(
+        "删除备份确认",
+        "您真的要删除[" + record.name + "]吗?",
+        function() {
+          vm.public_msg_success("删除成功");
+        }
+      );
     }
   }
 };
