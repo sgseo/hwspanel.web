@@ -122,7 +122,6 @@
             message="部分程序需要指定二级目录作为运行目录，如ThinkPHP5，Laravel"
             type="info"
             show-icon
-            banner
           />运行目录
           <a-input class="mal10" addon-before="web" style="width: 300px;" />
           <a-button class="mal10" type="primary">保存</a-button>
@@ -182,7 +181,6 @@
             description="若非必要，尽量不要使用PHP5.6以下的版本，这会降低您的服务器安全性；"
             type="info"
             show-icon
-            banner
           />
         </a-tab-pane>
 
@@ -194,7 +192,6 @@
                 message="证书已部署成功,请在证书到期之前更换新的证书"
                 type="success"
                 show-icon
-                banner
               >
                 <span slot="description">
                   <p>发证机构: Sectigo Limited</p>
@@ -258,7 +255,6 @@
             message="此处为站点主配置文件,若您不了解配置规则,请勿随意修改."
             type="warning"
             show-icon
-            banner
           />
           <a-button type="primary">保存</a-button>
         </a-tab-pane>
@@ -288,7 +284,6 @@
             message="若设置伪静态后，网站无法正常访问，请尝试设置回'模板-空'"
             type="warning"
             show-icon
-            banner
           />
           <a-button type="primary">保存</a-button>
         </a-tab-pane>
