@@ -366,7 +366,15 @@
         </a-tab-pane>
 
         <a-tab-pane key="12" tab="备份与解压">
-          <a-button class="mab10" type="primary">立即备份</a-button>
+          <a-button class="mar10" type="primary">立即备份</a-button>
+          <a-upload
+            name="backupfile"
+            :multiple="true"
+            action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+          >
+            <a-button><a-icon type="upload" />从本地上传</a-button>
+          </a-upload>
+          <a-divider class="ma0 mat10 mab10"/>
           <a-table
             :scroll="{ x: 300 }"
             :columns="backupColumns"

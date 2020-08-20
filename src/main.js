@@ -34,6 +34,7 @@ import {
     Tabs,
     Select,
     Checkbox,
+    Upload,
 } from 'ant-design-vue';
 Vue.use(Layout)
 Vue.use(Menu)
@@ -54,6 +55,7 @@ Vue.use(Alert)
 Vue.use(Tabs)
 Vue.use(Select)
 Vue.use(Checkbox)
+Vue.use(Upload)
 
 // codemirror
 Vue.use(VueCodemirror, {
