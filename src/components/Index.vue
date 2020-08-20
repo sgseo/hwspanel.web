@@ -5,20 +5,20 @@
       <a-col :span="24">
         <a-card size="small" :bordered="false" class="font12px">
           <a-row :gutter="[5,5]">
-            <a-col :xs="24" :sm="12" :md="12" :lg="6" :xl="4">
+            <a-col :xs="24" :sm="24" :md="24" :lg="6" :xl="4">
               <a-icon type="tags" />
               <span>系统：{{ topBar.osName }}</span>
             </a-col>
-            <a-col :xs="24" :sm="12" :md="12" :lg="6" :xl="4">
+            <a-col :xs="24" :sm="24" :md="24" :lg="6" :xl="4">
               <span>{{ topBar.upTime }}</span>
             </a-col>
-            <a-col :xs="24" :sm="12" :md="12" :lg="6" :xl="12">
+            <a-col :xs="24" :sm="24" :md="24" :lg="6" :xl="12">
               <a class="color-warning" :href="topBar.adv.url" target="_blank">
                 <a-icon type="notification" />
                 {{ topBar.adv.info }}
               </a>
             </a-col>
-            <a-col :xs="24" :sm="12" :md="12" :lg="6" :xl="4" class="text-right">
+            <a-col :xs="24" :sm="24" :md="24" :lg="6" :xl="4">
               <a-badge dot class="font12px">
                 <a href="https://github.com/Wjinlei/hwspanel" target="_blank" class="color666">
                   <a-icon type="github" />
