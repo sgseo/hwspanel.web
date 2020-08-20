@@ -304,7 +304,7 @@
           <a-alert class="mab10" message="以上两种情况只有一种会生效,以最后一次设置为准" type="info" show-icon />
         </a-tab-pane>
 
-        <a-tab-pane key="9" tab="流量限制">Content of Tab Pane 10</a-tab-pane>
+        <a-tab-pane key="9" tab="流量限制">敬请期待</a-tab-pane>
         <a-tab-pane key="10" tab="FTP设置">
           开关
           <a-switch class="mal5" size="small"></a-switch>
