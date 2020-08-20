@@ -366,7 +366,7 @@
         </a-tab-pane>
 
         <a-tab-pane key="12" tab="备份与解压">
-          <a-button class="mar10" type="primary">立即备份</a-button>
+          <a-button class="mar5" type="primary">立即备份</a-button>
           <a-upload
             name="backupfile"
             :multiple="true"
