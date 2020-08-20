@@ -626,8 +626,9 @@ export default {
       rewrite301: {
         current: "整站跳转",
         list: [
-          { id: 1, domainname: "www.test1.com" },
-          { id: 2, domainname: "bbs.test1.com" }
+          { id: 1, domainname: "整站跳转" },
+          { id: 2, domainname: "www.test1.com" },
+          { id: 3, domainname: "bbs.test1.com" }
         ]
       },
 
