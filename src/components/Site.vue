@@ -282,7 +282,7 @@
           <a-alert
             class="mab10"
             message="若设置伪静态后，网站无法正常访问，请尝试设置回'模板-空'"
-            type="warning"
+            type="info"
             show-icon
           />
           <a-button type="primary">保存</a-button>
@@ -317,7 +317,26 @@
           />
         </a-tab-pane>
         <a-tab-pane key="9" tab="流量限制">Content of Tab Pane 10</a-tab-pane>
-        <a-tab-pane key="10" tab="FTP设置">Content of Tab Pane 11</a-tab-pane>
+        <a-tab-pane key="10" tab="FTP设置">
+          开关<a-switch class="mal5" size="small"></a-switch>
+          <div class="mat10">
+            <a-input addon-before="FTP用户" default-value="www_test1_com" disabled style="width: 300px"/>
+          </div>
+          <div class="mat10">
+            <a-input-password addon-before="FTP密码" default-value="xMxeekHnDjxH4npj" style="width: 300px" />
+            <a-button type="link">随机生成</a-button>
+          </div>
+          <div class="mat10">
+            <a-input addon-before="FTP容量" addon-after="单位(MB)" default-value="10" style="width: 300px"/>
+          </div>
+          <a-alert
+            class="mat10"
+            message="每个网站都会关联一个FTP,您可以在此处开启或关闭它"
+            type="info"
+            show-icon
+          />
+          <a-button class="mat10" type="primary">保存</a-button>
+        </a-tab-pane>
         <a-tab-pane key="11" tab="打包与解压">Content of Tab Pane 12</a-tab-pane>
       </a-tabs>
     </div>
