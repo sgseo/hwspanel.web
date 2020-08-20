@@ -287,11 +287,38 @@
           />
           <a-button type="primary">保存</a-button>
         </a-tab-pane>
-        <a-tab-pane key="8" tab="IP黑名单">Content of Tab Pane 8</a-tab-pane>
-        <a-tab-pane key="9" tab="IP白名单">Content of Tab Pane 9</a-tab-pane>
-        <a-tab-pane key="10" tab="带宽限制">Content of Tab Pane 10</a-tab-pane>
-        <a-tab-pane key="11" tab="FTP设置">Content of Tab Pane 11</a-tab-pane>
-        <a-tab-pane key="12" tab="压缩解压缩">Content of Tab Pane 12</a-tab-pane>
+
+        <a-tab-pane key="8" tab="访问限制">
+          允许所有,拒绝以下(黑名单)
+          <div class="flex-row-flex-start-nowrap mab10 mat10">
+            <a-textarea placeholder="
+每行填写一个IP或域名
+单个IP: 192.168.1.1
+支持网段: 192.168.1.0/24
+域名: www.domain.com
+              " :rows="6" style="width: 300px;" />
+            <a-button class="mal10" type="primary">保存</a-button>
+          </div>
+          拒绝所有,允许以下(白名单)
+          <div class="flex-row-flex-start-nowrap mab10 mat10">
+            <a-textarea placeholder="
+每行填写一个IP或域名
+单个IP: 192.168.1.1
+支持网段: 192.168.1.0/24
+域名: www.domain.com
+              " :rows="6" style="width: 300px;" />
+            <a-button class="mal10" type="primary">保存</a-button>
+          </div>
+          <a-alert
+            class="mab10"
+            message="以上两种情况只有一种会生效,以最后一次设置为准"
+            type="info"
+            show-icon
+          />
+        </a-tab-pane>
+        <a-tab-pane key="9" tab="流量限制">Content of Tab Pane 10</a-tab-pane>
+        <a-tab-pane key="10" tab="FTP设置">Content of Tab Pane 11</a-tab-pane>
+        <a-tab-pane key="11" tab="打包与解压">Content of Tab Pane 12</a-tab-pane>
       </a-tabs>
     </div>
   </div>
