@@ -364,6 +364,28 @@
             </template>
           </a-table>
         </a-tab-pane>
+
+        <a-tab-pane key="12" tab="网站日志">
+          <a-button type="dashed" class="mab10 font12px">重新获取</a-button>
+          <div class="mab20 font12px">
+            响应日志
+            <a-textarea
+              :defaultValue="log.accessLog"
+              :readOnly="true"
+              :rows="14"
+              class="color-terminal font12px"
+            />
+          </div>
+          <div class="font12px">
+            错误日志
+            <a-textarea
+              :defaultValue="log.errorLog"
+              :readOnly="true"
+              :rows="14"
+              class="color-terminal font12px"
+            />
+          </div>
+        </a-tab-pane>
       </a-tabs>
     </div>
 
@@ -582,6 +604,11 @@ export default {
           { id: 5, name: "测试证书5" },
           { id: 6, name: "测试证书6" }
         ]
+      },
+
+      log: {
+        accessLog: "当前没有日志",
+        errorLog: "当前没有日志"
       },
 
       rewrite: {

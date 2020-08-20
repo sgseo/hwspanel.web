@@ -114,6 +114,11 @@ ol {
   color: #909399;
 }
 
+.color-terminal {
+  background-color: #333;
+  color: #ccc;
+}
+
 .bgf8 {
   background-color: #f8f8f8;
 }
