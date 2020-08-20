@@ -3,6 +3,10 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 
+// Public components
+import MyTopBar from './components/base/TopBar.vue'
+Vue.component('my-topbar', MyTopBar)
+
 // Public functions
 import {hws} from './hws-public.js'
 Vue.mixin(hws)

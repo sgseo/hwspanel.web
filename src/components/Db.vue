@@ -1,29 +1,8 @@
 <template>
   <div>
-    <!-- 以下代码在多个地方出现了重复 -->
-    <a-row :gutter="[10,10]">
-      <a-col :span="24">
-        <a-card size="small" :bordered="false" class="font12px">
-          <a-row :gutter="[5,5]">
-            <a-col :span="24" class="flex-row-space-between-wrap">
-              <a-breadcrumb>
-                <a-breadcrumb-item>
-                  <a-icon type="home" />
-                  <router-link to="/">首页</router-link>
-                </a-breadcrumb-item>
-                <a-breadcrumb-item>数据库</a-breadcrumb-item>
-              </a-breadcrumb>
-              <a-input-search
-                style="width: 300px;"
-                placeholder="数据库搜索,支持模糊匹配"
-                enter-button
-                @search="searchDatabase"
-              />
-            </a-col>
-          </a-row>
-        </a-card>
-      </a-col>
-    </a-row>
+    <my-topbar title="数据库">
+      <a-input-search slot="col4" placeholder="数据库搜索,支持模糊匹配" enter-button @search="searchDatabase" />
+    </my-topbar>
 
     <a-row :gutter="[10,10]">
       <a-col :span="24">

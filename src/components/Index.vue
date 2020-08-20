@@ -1,37 +1,30 @@
 <template>
   <div>
-    <!-- 以下代码在多个地方出现了重复 -->
-    <a-row :gutter="[10,10]">
-      <a-col :span="24">
-        <a-card size="small" :bordered="false" class="font12px">
-          <a-row :gutter="[5,5]">
-            <a-col :xs="24" :sm="24" :md="24" :lg="6" :xl="4">
-              <a-icon type="tags" />
-              <span>系统：{{ topBar.osName }}</span>
-            </a-col>
-            <a-col :xs="24" :sm="24" :md="24" :lg="6" :xl="4">
-              <span>{{ topBar.upTime }}</span>
-            </a-col>
-            <a-col :xs="24" :sm="24" :md="24" :lg="6" :xl="12">
-              <a class="color-warning" :href="topBar.adv.url" target="_blank">
-                <a-icon type="notification" />
-                {{ topBar.adv.info }}
-              </a>
-            </a-col>
-            <a-col :xs="24" :sm="24" :md="24" :lg="6" :xl="4">
-              <a-badge dot class="font12px">
-                <a href="https://github.com/Wjinlei/hwspanel" target="_blank" class="color666">
-                  <a-icon type="github" />
-                </a>
-                版本：{{ topBar.curVer }}
-              </a-badge>
-              <a href="#" class="mal10">更新</a>
-              <a href="#" class="mal5">其他</a>
-            </a-col>
-          </a-row>
-        </a-card>
-      </a-col>
-    </a-row>
+    <my-topbar>
+      <p slot="col1">
+        <a-icon type="tags" />
+        系统：{{ topBar.osName }}
+      </p>
+      <p slot="col2">{{ topBar.upTime }}</p>
+      <p slot="col3">
+        <a class="color-warning" :href="topBar.adv.url" target="_blank">
+          <a-icon type="notification" />
+          {{ topBar.adv.info }}
+        </a>
+      </p>
+      <p slot="col4">
+        <a-badge dot class="font12px">
+          <a href="https://github.com/Wjinlei/hwspanel" target="_blank" class="color666">
+            <a-icon type="github" />
+          </a>
+          版本：{{ topBar.curVer }}
+        </a-badge>
+        <a href="#" class="mal10">更新</a>
+        <a href="#" class="mal10">修复</a>
+        <a href="#" class="mal10">Restart</a>
+      </p>
+    </my-topbar>
+
     <a-row :gutter="[10,10]">
       <a-col :span="24">
         <a-card size="small">
@@ -45,11 +38,7 @@
             >
               <li v-for="item in systemResource" :key="item.title" class="text-center">
                 <h4 class="color-title ma5">{{ item.title}}</h4>
-                <a-progress
-                  type="circle"
-                  :percent="item.data"
-                  :strokeColor="setColor(item.data)"
-                />
+                <a-progress type="circle" :percent="item.data" :strokeColor="setColor(item.data)" />
                 <h4 class="color777 ma5 font12px">{{ item.info }}</h4>
               </li>
             </ul>
@@ -93,7 +82,11 @@
           </span>
           <ul class="dragsort">
             <li v-for="item in quickOperation" :key="item.id" class="ma5 text-center">
-              <a-card class="bgf8 text-left hover" :bordered="false" @click="openSetting(item.name)">
+              <a-card
+                class="bgf8 text-left hover"
+                :bordered="false"
+                @click="openSetting(item.name)"
+              >
                 <div class="flex">
                   <div
                     :style="item.icon"
@@ -343,10 +336,14 @@ export default {
     },
 
     setColor(progress) {
-      if (progress > 90) { return "#f5222d";}
-      else if (progress > 70) { return "#faad14";}
-      else { return "#52c41a";}
-    },
+      if (progress > 90) {
+        return "#f5222d";
+      } else if (progress > 70) {
+        return "#faad14";
+      } else {
+        return "#52c41a";
+      }
+    }
   }
 };
 </script>

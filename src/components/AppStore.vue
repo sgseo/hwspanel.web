@@ -1,29 +1,8 @@
 <template>
   <div>
-    <!-- 以下代码在多个地方出现了重复 -->
-    <a-row :gutter="[10,10]">
-      <a-col :span="24">
-        <a-card size="small" :bordered="false" class="font12px">
-          <a-row :gutter="[5,5]">
-            <a-col :span="24" class="flex-row-space-between-wrap">
-              <a-breadcrumb>
-                <a-breadcrumb-item>
-                  <a-icon type="home" />
-                  <router-link to="/">首页</router-link>
-                </a-breadcrumb-item>
-                <a-breadcrumb-item>应用商店</a-breadcrumb-item>
-              </a-breadcrumb>
-              <a-input-search
-                style="width: 300px;"
-                placeholder="应用搜索,支持模糊匹配"
-                enter-button
-                @search="searchApp"
-              />
-            </a-col>
-          </a-row>
-        </a-card>
-      </a-col>
-    </a-row>
+    <my-topbar title="应用商店">
+      <a-input-search slot="col4" placeholder="应用搜索,支持模糊匹配" enter-button @search="searchApp" />
+    </my-topbar>
 
     <a-row :gutter="[10,10]">
       <a-col :span="24">
@@ -389,7 +368,7 @@ export default {
 
     openSetting(record) {
       this.public_msg_success(record.name);
-    },
+    }
   }
 };
 </script>

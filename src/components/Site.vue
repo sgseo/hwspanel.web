@@ -1,29 +1,13 @@
 <template>
   <div>
-    <!-- 以下代码在多个地方出现了重复 -->
-    <a-row :gutter="[10,10]">
-      <a-col :span="24">
-        <a-card size="small" :bordered="false" class="font12px">
-          <a-row :gutter="[5,5]">
-            <a-col :span="24" class="flex-row-space-between-wrap">
-              <a-breadcrumb>
-                <a-breadcrumb-item>
-                  <a-icon type="home" />
-                  <router-link to="/">首页</router-link>
-                </a-breadcrumb-item>
-                <a-breadcrumb-item>网站管理</a-breadcrumb-item>
-              </a-breadcrumb>
-              <a-input-search
-                style="width: 300px;"
-                placeholder="网站搜索,支持模糊匹配"
-                enter-button
-                @search="searchSite"
-              />
-            </a-col>
-          </a-row>
-        </a-card>
-      </a-col>
-    </a-row>
+    <my-topbar title="网站管理">
+      <a-input-search
+        slot="col4"
+        placeholder="网站搜索,支持模糊匹配"
+        enter-button
+        @search="searchSite"
+      />
+    </my-topbar>
 
     <a-row :gutter="[10,10]">
       <a-col :span="24">
@@ -372,9 +356,11 @@
             :multiple="true"
             action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
           >
-            <a-button><a-icon type="upload" />从本地上传</a-button>
+            <a-button>
+              <a-icon type="upload" />从本地上传
+            </a-button>
           </a-upload>
-          <a-divider class="ma0 mat10 mab10"/>
+          <a-divider class="ma0 mat10 mab10" />
           <a-table
             :scroll="{ x: 300 }"
             :columns="backupColumns"
@@ -413,7 +399,7 @@
               <a-switch size="small"></a-switch>
             </div>
           </div>
-          <a-divider class="ma0 mab10 mat10"/>
+          <a-divider class="ma0 mab10 mat10" />
           <div class="mab10 color-primary font12px">
             响应日志
             <a-textarea
@@ -1026,7 +1012,11 @@ export default {
       this.visibleSetting = true;
       setTimeout(function() {
         vm.public_msg_open(
-          "网站设置["+record.siteName+"]--开通时间["+record.createTime+"]",
+          "网站设置[" +
+            record.siteName +
+            "]--开通时间[" +
+            record.createTime +
+            "]",
           ["700px", "700px"],
           null,
           $("#setting"),
