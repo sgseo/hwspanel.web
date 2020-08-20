@@ -265,7 +265,7 @@ export default {
       this.visibleSetting = true;
       setTimeout(function() {
         vm.public_msg_open(
-          "数据库设置",
+          "数据库设置["+record.dbName+"]--归属网站["+record.dbSite+"]",
           ["700px", "400px"],
           null,
           $("#setting"),

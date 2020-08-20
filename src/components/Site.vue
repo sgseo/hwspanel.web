@@ -1008,7 +1008,7 @@ export default {
       this.visibleSetting = true;
       setTimeout(function() {
         vm.public_msg_open(
-          "编辑网站",
+          "网站设置["+record.siteName+"]--开通时间["+record.createTime+"]",
           ["700px", "700px"],
           null,
           $("#setting"),
