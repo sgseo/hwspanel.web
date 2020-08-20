@@ -33,7 +33,12 @@
             <a-button type="primary" class="mar5">添加数据库</a-button>
             <a-button type="dashed" @click="rebuildDatabaseAll">重建所有数据库</a-button>
           </div>
-          <a-table :scroll="{ x: 1050 }" :columns="databaseColumns" :data-source="databaseDatas" size="small">
+          <a-table
+            :scroll="{ x: 1050 }"
+            :columns="databaseColumns"
+            :data-source="databaseDatas"
+            size="small"
+          >
             <!-- 其实我觉得下面的这个功能实现的方法不好,但暂时没想到更好的办法 -->
             <div slot="dbPass" slot-scope="text, record">
               <span :id="record.dbUser" v-show="recordKey == record.key">{{ text }}</span>
@@ -92,19 +97,24 @@
               default-value="xMxeekHnDjxH4npj"
               style="width: 300px"
             />
-            <a-button type="link" >随机生成</a-button>
+            <a-button type="link">随机生成</a-button>
           </div>
           <a-button type="primary">保存</a-button>
         </a-tab-pane>
-        <a-tab-pane key="2" tab="备份导入">
-            敬请期待
+        <a-tab-pane key="2" tab="归属网站">
+          归属
+          <a-select :default-value="dbSite.current" style="width: 350px;" class="mab10">
+            <a-select-option
+              v-for="site in dbSite.list"
+              :key="site.id"
+              :value="site.name"
+            >{{ site.name }}</a-select-option>
+          </a-select>
+          <a-alert class="mab10" message="设置归属不仅方便记忆,还可以与其进行一些关联操作" type="info" show-icon />
+          <a-button type="primary">保存</a-button>
         </a-tab-pane>
-        <a-tab-pane key="3" tab="访问权限">
-            敬请期待
-        </a-tab-pane>
-        <a-tab-pane key="4" tab="归属网站">
-            敬请期待
-        </a-tab-pane>
+        <a-tab-pane key="3" tab="备份导入">敬请期待</a-tab-pane>
+        <a-tab-pane key="4" tab="访问权限">敬请期待</a-tab-pane>
       </a-tabs>
     </div>
   </div>
@@ -211,6 +221,20 @@ export default {
       searchInput: null,
       visibleSetting: false,
 
+      dbSite: {
+        current: "www.test1.com",
+        list: [
+          { id: 1, name: "www.test1.com" },
+          { id: 2, name: "www.test2.com" },
+          { id: 3, name: "www.test3.com" },
+          { id: 4, name: "www.test4.com" },
+          { id: 5, name: "www.test5.com" },
+          { id: 6, name: "www.test6.com" },
+          { id: 7, name: "www.test7.com" },
+          { id: 8, name: "www.test8.com" },
+          { id: 9, name: "www.test9.com" }
+        ]
+      },
 
       databaseDatas,
       databaseColumns: [
@@ -221,7 +245,7 @@ export default {
           ellipsis: true,
           width: 70,
           scopedSlots: { customRender: "status" },
-          className: "table_title",
+          className: "table_title"
         },
         {
           title: "数据库名称",
@@ -229,7 +253,7 @@ export default {
           key: "dbName",
           ellipsis: true,
           width: 200,
-          className: "table_title",
+          className: "table_title"
         },
         {
           title: "数据库账户",
@@ -237,7 +261,7 @@ export default {
           key: "dbUser",
           ellipsis: true,
           width: 200,
-          className: "table_title",
+          className: "table_title"
         },
         {
           title: "数据库密码",
@@ -254,14 +278,14 @@ export default {
           key: "dbSite",
           ellipsis: true,
           width: 200,
-          className: "table_title",
+          className: "table_title"
         },
         {
           title: "备注",
           dataIndex: "comment",
           key: "comment",
           ellipsis: true,
-          className: "table_title",
+          className: "table_title"
         },
         {
           title: "操作",
@@ -291,7 +315,7 @@ export default {
       this.visibleSetting = true;
       setTimeout(function() {
         vm.public_msg_open(
-          "数据库设置["+record.dbName+"]--归属网站["+record.dbSite+"]",
+          "数据库设置[" + record.dbName + "]--归属网站[" + record.dbSite + "]",
           ["500px", "300px"],
           null,
           $("#setting"),
