@@ -339,13 +339,20 @@
         <a-tab-pane key="11" tab="备份与解压">
           <a-button class="mab10" type="primary">备份</a-button>
           <a-table
-            :scroll="{ x: 270 }"
+            :scroll="{ x: 300 }"
             :columns="backupColumns"
             :data-source="backupDatas"
             size="small"
             style="width: 100%;"
           >
             <template slot="operation" slot-scope="text, record">
+              <a-button
+                class="mar5"
+                icon="file-zip"
+                type="dashed"
+                size="small"
+                @click="openUnzipBackup(record)"
+              ></a-button>
               <a-button
                 class="mar5"
                 icon="download"
@@ -358,6 +365,15 @@
           </a-table>
         </a-tab-pane>
       </a-tabs>
+    </div>
+
+    <!-- unzip layer -->
+    <div id="unzip" class="pd15" v-if="visibleUnzip" v-show="false">
+      <a-checkbox class="mab10">先清空web目录再解压</a-checkbox>
+      <div class="flex-row-space-between-nowrap">
+        <div style="width: 50px">解压到</div>
+        <a-input addon-before="web" default-value="/" />
+      </div>
     </div>
   </div>
 </template>
@@ -539,6 +555,7 @@ export default {
       searchText: "",
       searchInput: null,
       visibleSetting: false,
+      visibleUnzip: false,
 
       php: {
         current: "7.3.14",
@@ -882,7 +899,7 @@ export default {
           key: "operation",
           scopedSlots: { customRender: "operation" },
           className: "table_title",
-          width: 70
+          width: 100
         }
       ]
     };
@@ -928,7 +945,11 @@ export default {
         vm.public_msg_open(
           "编辑网站",
           ["700px", "700px"],
+          null,
           $("#setting"),
+          null,
+          null,
+          null,
           function() {
             vm.visibleSetting = false;
           }
@@ -990,8 +1011,32 @@ export default {
       layer.close(load);
     },
 
-    downloadBackup() {
-      this.public_msg_success("下载成功");
+    openUnzipBackup(record) {
+      var vm = this;
+      var load = this.public_msg_loading();
+      layer.close(load);
+      this.visibleUnzip = true;
+      setTimeout(function() {
+        var index = vm.public_msg_open(
+          "在线解压",
+          ["400px", "190px"],
+          ["确定", "取消"],
+          $("#unzip"),
+          null,
+          function() {
+            vm.public_msg_success("解压成功");
+            layer.close(index);
+          },
+          null,
+          function() {
+            vm.visibleUnzip = false;
+          }
+        );
+      }, 150);
+    },
+
+    downloadBackup(record) {
+      this.public_msg_success("下载[" + record.name + "]成功");
     },
 
     removeBackup(record) {

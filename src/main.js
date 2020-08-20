@@ -11,6 +11,7 @@ Vue.mixin(hws)
 import './assets/css/base.css'
 import './assets/css/antd.css'
 import './assets/css/codemirror.css'
+import './assets/css/layer.css'
 
 // ant-design-vue
 import {
@@ -32,6 +33,7 @@ import {
     Alert,
     Tabs,
     Select,
+    Checkbox,
 } from 'ant-design-vue';
 Vue.use(Layout)
 Vue.use(Menu)
@@ -51,6 +53,7 @@ Vue.use(Switch)
 Vue.use(Alert)
 Vue.use(Tabs)
 Vue.use(Select)
+Vue.use(Checkbox)
 
 // codemirror
 Vue.use(VueCodemirror, {

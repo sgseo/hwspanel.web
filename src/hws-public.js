@@ -28,12 +28,13 @@ export const hws = {
             );
         },
 
-        public_msg_open: function(title, area, content, endfunc) {
-            layer.open({
+        public_msg_open: function(title, area, btn, content, successfunc, yesfunc, cancelfunc, endfunc) {
+            var open = layer.open({
               type: 1,
               title: title,
               content: content,
               area: area,
+              btn: btn,
               offset: "auto",
               closeBtn: 2,
               shade: [0.3, "#000"],
@@ -41,8 +42,12 @@ export const hws = {
               resize: false,
               maxmin: true,
               zIndex: -1,
+              success: successfunc,
+              yes: yesfunc,
+              cancel: cancelfunc,
               end: endfunc,
             });
+            return open
         },
 
         public_tools_format_timestamp: function(timestamp) {
