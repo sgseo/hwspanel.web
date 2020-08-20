@@ -33,7 +33,7 @@
             <a-button type="primary" class="mar5">添加数据库</a-button>
             <a-button type="dashed" @click="rebuildDatabaseAll">重建所有数据库</a-button>
           </div>
-          <a-table :scroll="{ x: 1050 }" :columns="columns" :data-source="data" size="small">
+          <a-table :scroll="{ x: 1050 }" :columns="databaseColumns" :data-source="databaseDatas" size="small">
             <!-- 其实我觉得下面的这个功能实现的方法不好,但暂时没想到更好的办法 -->
             <div slot="dbPass" slot-scope="text, record">
               <span :id="record.dbUser" v-show="recordKey == record.key">{{ text }}</span>
@@ -67,11 +67,25 @@
         </a-card>
       </a-col>
     </a-row>
+
+    <div id="setting" class="left-tabs-container" v-if="visibleSetting" v-show="false">
+      <a-tabs
+        default-active-key="1"
+        size="small"
+        tab-position="left"
+        type="card"
+        :tabBarGutter="0"
+        @change="onChangeSetting"
+      >
+        <a-tab-pane key="1" tab="修改密码">
+        </a-tab-pane>
+      </a-tabs>
+    </div>
   </div>
 </template>
 
 <script>
-const data = [
+const databaseDatas = [
   {
     key: "1",
     status: "success",
@@ -166,11 +180,14 @@ const data = [
 export default {
   data() {
     return {
-      data,
       recordKey: 0,
       searchText: "",
       searchInput: null,
-      columns: [
+      visibleSetting: false,
+
+
+      databaseDatas,
+      databaseColumns: [
         {
           title: "状态",
           dataIndex: "status",
@@ -242,7 +259,29 @@ export default {
     },
 
     openSetting(record) {
-      this.public_msg_success(record.dbName);
+      var vm = this;
+      var load = this.public_msg_loading();
+      layer.close(load);
+      this.visibleSetting = true;
+      setTimeout(function() {
+        vm.public_msg_open(
+          "数据库设置",
+          ["700px", "400px"],
+          null,
+          $("#setting"),
+          -1,
+          null,
+          null,
+          null,
+          function() {
+            vm.visibleSetting = false;
+          }
+        );
+      }, 150);
+    },
+
+    onChangeSetting(key) {
+      this.public_msg_loading();
     },
 
     rebuildDatabase(record) {
