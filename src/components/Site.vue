@@ -117,14 +117,15 @@
         </a-tab-pane>
 
         <a-tab-pane key="2" tab="运行目录" force-render>
+          运行目录
+          <a-input class="mal10" addon-before="web" style="width: 300px;" />
+          <a-button class="mal10" type="primary">保存</a-button>
           <a-alert
-            class="mab10"
+            class="mat10"
             message="部分程序需要指定二级目录作为运行目录，如ThinkPHP5，Laravel"
             type="info"
             show-icon
-          />运行目录
-          <a-input class="mal10" addon-before="web" style="width: 300px;" />
-          <a-button class="mal10" type="primary">保存</a-button>
+          />
         </a-tab-pane>
 
         <a-tab-pane key="3" tab="子目录绑定">
