@@ -78,6 +78,32 @@
         @change="onChangeSetting"
       >
         <a-tab-pane key="1" tab="修改密码">
+          <div class="mab10">
+            <a-input
+              addon-before="数据库用户"
+              default-value="www_test1_com"
+              disabled
+              style="width: 300px"
+            />
+          </div>
+          <div class="mab10">
+            <a-input-password
+              addon-before="数据库密码"
+              default-value="xMxeekHnDjxH4npj"
+              style="width: 300px"
+            />
+            <a-button type="link" >随机生成</a-button>
+          </div>
+          <a-button type="primary">保存</a-button>
+        </a-tab-pane>
+        <a-tab-pane key="2" tab="备份导入">
+            敬请期待
+        </a-tab-pane>
+        <a-tab-pane key="3" tab="访问权限">
+            敬请期待
+        </a-tab-pane>
+        <a-tab-pane key="4" tab="归属网站">
+            敬请期待
         </a-tab-pane>
       </a-tabs>
     </div>
@@ -266,7 +292,7 @@ export default {
       setTimeout(function() {
         vm.public_msg_open(
           "数据库设置["+record.dbName+"]--归属网站["+record.dbSite+"]",
-          ["700px", "400px"],
+          ["500px", "300px"],
           null,
           $("#setting"),
           -1,
