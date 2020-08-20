@@ -6,7 +6,7 @@
         <a-card size="small" :bordered="false" class="font12px">
           <a-row :gutter="[5,5]">
             <a-col :xs="24" :sm="12" :md="12" :lg="6" :xl="4">
-              <a-icon type="tags" class="mar5" />
+              <a-icon type="tags" />
               <span>系统：{{ topBar.osName }}</span>
             </a-col>
             <a-col :xs="24" :sm="12" :md="12" :lg="6" :xl="4">
@@ -14,7 +14,7 @@
             </a-col>
             <a-col :xs="24" :sm="12" :md="12" :lg="6" :xl="12">
               <a class="color-warning" :href="topBar.adv.url" target="_blank">
-                <a-icon class="mar5" type="notification" />
+                <a-icon type="notification" />
                 {{ topBar.adv.info }}
               </a>
             </a-col>
@@ -75,7 +75,7 @@
             <router-link :to="item.url">
               <a-card class="bgf8 text-center hover" :bordered="false">
                 <p>
-                  <a-icon class="ma5" :type="item.class" />
+                  <a-icon :type="item.class" />
                   {{ item.title}}
                 </p>
                 <p class="font22px color-primary">{{ item.data }}</p>
@@ -154,7 +154,7 @@
             <a :href="item.url" :target="item.target">
               <a-card class="bgf8 text-left hover" :bordered="false">
                 <p>
-                  <a-icon class="mar5" :type="item.iconType" />
+                  <a-icon :type="item.iconType" />
                   {{ item.title }}
                 </p>
                 <p :class="item.class">{{ item.description }}</p>
