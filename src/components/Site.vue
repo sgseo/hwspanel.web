@@ -337,7 +337,7 @@
         </a-tab-pane>
 
         <a-tab-pane key="11" tab="备份与解压">
-          <a-button class="mab10" type="primary">备份</a-button>
+          <a-button class="mab10" type="primary">立即备份</a-button>
           <a-table
             :scroll="{ x: 300 }"
             :columns="backupColumns"
