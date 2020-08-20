@@ -947,6 +947,7 @@ export default {
           ["700px", "700px"],
           null,
           $("#setting"),
+          -1,
           null,
           null,
           null,
@@ -1022,6 +1023,7 @@ export default {
           ["400px", "190px"],
           ["确定", "取消"],
           $("#unzip"),
+          -1,
           null,
           function() {
             vm.public_msg_success("解压成功");

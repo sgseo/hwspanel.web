@@ -28,7 +28,7 @@ export const hws = {
             );
         },
 
-        public_msg_open: function(title, area, btn, content, successfunc, yesfunc, cancelfunc, endfunc) {
+        public_msg_open: function(title, area, btn, content, zIndex, successfunc, yesfunc, cancelfunc, endfunc) {
             var open = layer.open({
               type: 1,
               title: title,
@@ -41,7 +41,7 @@ export const hws = {
               shadeClose: false,
               resize: false,
               maxmin: true,
-              zIndex: -1,
+              zIndex: zIndex,
               success: successfunc,
               yes: yesfunc,
               cancel: cancelfunc,
