@@ -274,7 +274,31 @@
         </a-tab-pane>
 
         <a-tab-pane key="8" tab="301重定向">
-            敬请期待
+          <div class="flex-row-flex-start-nowrap mab10">
+            <div class="text-right mar10" style="width: 60px">访问域名</div>
+            <a-select :default-value="rewrite301.current" style="width: 400px;">
+              <a-select-option
+                v-for="rewrite301 in rewrite301.list"
+                :key="rewrite301.id"
+                :value="rewrite301.domainname"
+              >{{ rewrite301.domainname }}</a-select-option>
+            </a-select>
+          </div>
+          <div class="flex-row-flex-start-nowrap mab10">
+            <div class="text-right mar10" style="width: 60px">目标URL</div>
+            <a-input addon-before="http://" default-value="www.baidu.com" style="width: 400px;" />
+          </div>
+          <div class="flex-row-flex-start-nowrap mab10">
+            <div class="text-right mar10" style="width: 60px">开关</div>
+            <a-switch size="small"></a-switch>
+          </div>
+          <a-alert class="mab10" message="关闭301重定向后，需清空浏览器缓存才能看到生效结果." type="info" show-icon />
+          <a-alert
+            class="mab10"
+            message="选择[整站跳转]时请不要将目标URL设为同一站点下的域名,否则会出现循环重定向"
+            type="warning"
+            show-icon
+          />
         </a-tab-pane>
 
         <a-tab-pane key="9" tab="访问限制">
@@ -595,6 +619,14 @@ export default {
           { version: "7.1.33" },
           { version: "7.2.27" },
           { version: "7.3.14" }
+        ]
+      },
+
+      rewrite301: {
+        current: "整站跳转",
+        list: [
+          { id: 1, domainname: "www.test1.com" },
+          { id: 2, domainname: "bbs.test1.com" }
         ]
       },
 
