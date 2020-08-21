@@ -1,7 +1,7 @@
 html,
 body,
 #app {
-  min-width: 420px;
+  min-width: 400px;
   height: 100%;
   font-size: 12px;
   font-family: "Monaco", "Menlo", "Ubuntu Mono", "Consolas", "Source Code Pro",
