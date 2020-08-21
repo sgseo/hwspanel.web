@@ -364,21 +364,30 @@
             style="width: 100%;"
           >
             <template slot="operation" slot-scope="text, record">
-              <a-button
-                class="mar5"
-                icon="file-zip"
-                type="dashed"
-                size="small"
-                @click="openUnzipBackup(record)"
-              ></a-button>
-              <a-button
-                class="mar5"
-                icon="download"
-                type="dashed"
-                size="small"
-                @click="downloadBackup(record)"
-              ></a-button>
-              <a-button icon="delete" type="dashed" size="small" @click="removeBackup(record)"></a-button>
+              <a-tooltip>
+                <template slot="title">在线解压</template>
+                <a-button
+                  class="mar5"
+                  icon="file-zip"
+                  type="dashed"
+                  size="small"
+                  @click="openUnzipBackup(record)"
+                ></a-button>
+              </a-tooltip>
+              <a-tooltip>
+                <template slot="title">下载备份文件</template>
+                <a-button
+                  class="mar5"
+                  icon="download"
+                  type="dashed"
+                  size="small"
+                  @click="downloadBackup(record)"
+                ></a-button>
+              </a-tooltip>
+              <a-tooltip>
+                <template slot="title">删除备份文件</template>
+                <a-button icon="delete" type="dashed" size="small" @click="removeBackup(record)"></a-button>
+              </a-tooltip>
             </template>
           </a-table>
         </a-tab-pane>
