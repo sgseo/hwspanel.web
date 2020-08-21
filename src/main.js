@@ -39,6 +39,7 @@ import {
     Select,
     Checkbox,
     Upload,
+    Tooltip,
 } from 'ant-design-vue';
 Vue.use(Layout)
 Vue.use(Menu)
@@ -60,6 +61,7 @@ Vue.use(Tabs)
 Vue.use(Select)
 Vue.use(Checkbox)
 Vue.use(Upload)
+Vue.use(Tooltip)
 
 // codemirror
 Vue.use(VueCodemirror, {

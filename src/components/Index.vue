@@ -2,14 +2,20 @@
   <div>
     <my-topbar :leftWidth="400" :rightWidth="230">
       <span slot="left" class="flex-row-flex-start-wrap">
-        <span style="padding-right: 50px">
-          <a-icon type="tags" />
-          系统：{{ topBar.osName }}
-        </span>
-        <span>
-          <a-icon type="info-circle" />
-          {{ topBar.upTime }}
-        </span>
+        <a-tooltip>
+          <template slot="title">{{ topBar.osName }}</template>
+          <span style="padding-right: 50px">
+            <a-icon type="tags" />
+            系统：{{ topBar.osName }}
+          </span>
+        </a-tooltip>
+        <a-tooltip>
+          <template slot="title">{{ topBar.upTime }}</template>
+          <span>
+            <a-icon type="info-circle" />
+            {{ topBar.upTime }}
+          </span>
+        </a-tooltip>
       </span>
       <a slot="center" class="color-warning" :href="topBar.adv.url" target="_blank">
         <a-icon type="notification" />
