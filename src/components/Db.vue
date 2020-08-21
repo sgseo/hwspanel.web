@@ -86,16 +86,18 @@
           <a-button type="primary">保存</a-button>
         </a-tab-pane>
         <a-tab-pane key="2" tab="归属网站">
-          归属
-          <a-select :default-value="dbSite.current" style="width: 350px;" class="mab10">
+          <a-alert class="mab10" message="设置归属不仅方便记忆,还可以与其进行一些关联操作" type="info" show-icon />
+          关联至网站
+          <a-select :default-value="dbSite.current" style="width: 310px;" class="mab10">
             <a-select-option
               v-for="site in dbSite.list"
               :key="site.id"
               :value="site.name"
             >{{ site.name }}</a-select-option>
           </a-select>
-          <a-alert class="mab10" message="设置归属不仅方便记忆,还可以与其进行一些关联操作" type="info" show-icon />
-          <a-button type="primary">保存</a-button>
+          <div>
+            <a-button type="primary">保存</a-button>
+          </div>
         </a-tab-pane>
         <a-tab-pane key="3" tab="备份导入">敬请期待</a-tab-pane>
         <a-tab-pane key="4" tab="访问权限">敬请期待</a-tab-pane>
