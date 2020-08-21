@@ -8,9 +8,9 @@
       <a-col :span="24">
         <a-card size="small">
           <span slot="title">网站列表</span>
-          <div class="mab10">
-            <a-button type="primary" class="mar5">添加网站</a-button>
-            <a-button type="dashed" @click="rebuildSiteAll">重建所有网站</a-button>
+          <div>
+            <a-button type="primary" class="mar5 mab10">添加网站</a-button>
+            <a-button type="dashed"  class="mar5 mab10" @click="rebuildSiteAll">重建网站</a-button>
           </div>
           <a-table
             :scroll="{ x: 1215 }"

@@ -13,9 +13,9 @@
       <a-col :span="24">
         <a-card size="small">
           <span slot="title">数据库列表</span>
-          <div class="mab10">
-            <a-button type="primary" class="mar5">添加数据库</a-button>
-            <a-button type="dashed" @click="rebuildDatabaseAll">重建所有数据库</a-button>
+          <div>
+            <a-button type="primary" class="mar5 mab10">添加数据库</a-button>
+            <a-button type="dashed"  class="mar5 mab10" @click="rebuildDatabaseAll">重建数据库</a-button>
           </div>
           <a-table
             :scroll="{ x: 1050 }"
