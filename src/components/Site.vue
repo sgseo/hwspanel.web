@@ -1,12 +1,7 @@
 <template>
   <div>
-    <my-topbar title="网站管理">
-      <a-input-search
-        slot="col4"
-        placeholder="网站搜索,支持模糊匹配"
-        enter-button
-        @search="searchSite"
-      />
+    <my-topbar title="网站管理" :leftWidth="130" :rightWidth="300">
+      <a-input-search slot="right" placeholder="网站搜索,支持模糊匹配" enter-button @search="searchSite" />
     </my-topbar>
 
     <a-row :gutter="[10,10]">

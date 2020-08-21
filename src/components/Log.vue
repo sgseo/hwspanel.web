@@ -1,7 +1,7 @@
 <template>
   <div>
-    <my-topbar title="日志">
-      <a-input-search slot="col4" placeholder="日志详情搜索，支持模糊匹配" enter-button @search="searchLog" />
+    <my-topbar title="日志" :leftWidth="100" :rightWidth="300">
+      <a-input-search slot="right" placeholder="日志详情搜索，支持模糊匹配" enter-button @search="searchLog" />
     </my-topbar>
 
     <a-row :gutter="[10,10]">

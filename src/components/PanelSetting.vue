@@ -1,6 +1,6 @@
 <template>
   <div>
-    <my-topbar title="面板设置"></my-topbar>
+    <my-topbar title="面板设置" :leftWidth="130" :rightWidth="0"></my-topbar>
 
     <a-row :gutter="[10,10]">
       <a-col :span="24">

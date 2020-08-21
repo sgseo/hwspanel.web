@@ -1,7 +1,7 @@
 <template>
   <div>
-    <my-topbar title="应用商店">
-      <a-input-search slot="col4" placeholder="应用搜索,支持模糊匹配" enter-button @search="searchApp" />
+    <my-topbar title="应用商店" :leftWidth="130" :rightWidth="300">
+      <a-input-search slot="right" placeholder="应用搜索,支持模糊匹配" enter-button @search="searchApp" />
     </my-topbar>
 
     <a-row :gutter="[10,10]">
