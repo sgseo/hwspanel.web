@@ -1,18 +1,16 @@
 <template>
   <div>
     <my-topbar>
-      <p slot="col1">
+      <span slot="col1">
         <a-icon type="tags" />
         系统：{{ topBar.osName }}
-      </p>
-      <p slot="col2">{{ topBar.upTime }}</p>
-      <p slot="col3">
-        <a class="color-warning" :href="topBar.adv.url" target="_blank">
-          <a-icon type="notification" />
-          {{ topBar.adv.info }}
-        </a>
-      </p>
-      <p slot="col4">
+      </span>
+      <span slot="col2">{{ topBar.upTime }}</span>
+      <a slot="col3" class="color-warning" :href="topBar.adv.url" target="_blank">
+        <a-icon type="notification" />
+        {{ topBar.adv.info }}
+      </a>
+      <span slot="col4">
         <a-badge dot class="font12px">
           <a href="https://github.com/Wjinlei/hwspanel" target="_blank" class="color666">
             <a-icon type="github" />
@@ -22,7 +20,7 @@
         <a href="#" class="mal10">更新</a>
         <a href="#" class="mal10">修复</a>
         <a href="#" class="mal10">Restart</a>
-      </p>
+      </span>
     </my-topbar>
 
     <a-row :gutter="[10,10]">
