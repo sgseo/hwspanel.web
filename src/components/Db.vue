@@ -86,7 +86,6 @@
           <a-button type="primary">保存</a-button>
         </a-tab-pane>
         <a-tab-pane key="2" tab="归属网站">
-          <a-alert class="mab10" message="设置归属不仅方便记忆,还可以与其进行一些关联操作" type="info" show-icon />
           关联至网站
           <a-select :default-value="dbSite.current" style="width: 310px;" class="mab10">
             <a-select-option
@@ -95,11 +94,58 @@
               :value="site.name"
             >{{ site.name }}</a-select-option>
           </a-select>
+          <p class="color-info mab10">设置关联网站不仅方便记忆,还可以与其进行一些联动操作</p>
           <div>
             <a-button type="primary">保存</a-button>
           </div>
         </a-tab-pane>
-        <a-tab-pane key="3" tab="备份导入">敬请期待</a-tab-pane>
+        <a-tab-pane key="3" tab="备份导入">
+          <a-button class="mar5" type="primary">立即备份</a-button>
+          <a-upload
+            name="backupfile"
+            :multiple="true"
+            action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+          >
+            <a-button>
+              <a-icon type="upload" />从本地上传
+            </a-button>
+          </a-upload>
+          <a-divider class="ma0 mat10 mab10" />
+          <a-table
+            :scroll="{ x: 300 }"
+            :columns="backupColumns"
+            :data-source="backupDatas"
+            size="small"
+            style="width: 100%;"
+          >
+            <template slot="operation" slot-scope="text, record">
+              <a-tooltip>
+                <template slot="title">导入数据库</template>
+                <a-button
+                  class="mar5"
+                  icon="import"
+                  type="dashed"
+                  size="small"
+                  @click="importBackup(record)"
+                ></a-button>
+              </a-tooltip>
+              <a-tooltip>
+                <template slot="title">下载备份文件</template>
+                <a-button
+                  class="mar5"
+                  icon="download"
+                  type="dashed"
+                  size="small"
+                  @click="downloadBackup(record)"
+                ></a-button>
+              </a-tooltip>
+              <a-tooltip>
+                <template slot="title">删除备份文件</template>
+                <a-button icon="delete" type="dashed" size="small" @click="removeBackup(record)"></a-button>
+              </a-tooltip>
+            </template>
+          </a-table>
+        </a-tab-pane>
         <a-tab-pane key="4" tab="访问权限">敬请期待</a-tab-pane>
       </a-tabs>
     </div>
@@ -199,6 +245,22 @@ const databaseDatas = [
     msg: "正常"
   }
 ];
+
+const backupDatas = [
+  {
+    key: 1,
+    name: "www.test1.com_20200820_112640.zip",
+    size: "21M",
+    time: "2020-08-20 11:26:40"
+  },
+  {
+    key: 2,
+    name: "www.test2.com_20200820_121840.zip",
+    size: "30M",
+    time: "2020-08-20 12:18:40"
+  }
+];
+
 export default {
   data() {
     return {
@@ -281,6 +343,41 @@ export default {
           width: 180,
           className: "table_title"
         }
+      ],
+
+      backupDatas,
+      backupColumns: [
+        {
+          title: "文件名称",
+          dataIndex: "name",
+          key: "name",
+          className: "table_title",
+          ellipsis: true
+        },
+        {
+          title: "文件大小",
+          dataIndex: "size",
+          key: "size",
+          ellipsis: true,
+          width: 100,
+          className: "table_title"
+        },
+        {
+          title: "备份时间",
+          dataIndex: "time",
+          key: "time",
+          ellipsis: true,
+          width: 100,
+          className: "table_title"
+        },
+        {
+          title: "操作",
+          dataIndex: "operation",
+          key: "operation",
+          scopedSlots: { customRender: "operation" },
+          className: "table_title",
+          width: 100
+        }
       ]
     };
   },
@@ -302,7 +399,7 @@ export default {
       setTimeout(function() {
         vm.public_msg_open(
           "数据库设置[" + record.dbName + "]--归属网站[" + record.dbSite + "]",
-          ["auto", "auto"],
+          ["700px", "700px"],
           null,
           $("#setting"),
           -1,
@@ -355,6 +452,32 @@ export default {
 
     searchDatabase(value) {
       this.public_msg_success(value);
+    },
+
+    importBackup(record) {
+      let vm = this;
+      this.public_msg_confirm(
+        "导入备份确认",
+        "您真的要导入[" + record.name + "]吗?",
+        function() {
+          vm.public_msg_success("导入成功!");
+        }
+      );
+    },
+
+    downloadBackup(record) {
+      this.public_msg_success("下载[" + record.name + "]成功");
+    },
+
+    removeBackup(record) {
+      let vm = this;
+      this.public_msg_confirm(
+        "删除备份确认",
+        "您真的要删除[" + record.name + "]吗?",
+        function() {
+          vm.public_msg_success("删除成功");
+        }
+      );
     }
   }
 };
