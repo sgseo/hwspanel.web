@@ -5,7 +5,9 @@ import store from './store'
 
 // Public components
 import MyTopBar from './components/base/TopBar.vue'
+import MyMessageBox from './components/public/MessageBox.vue'
 Vue.component('my-topbar', MyTopBar)
+Vue.component('my-messagebox', MyMessageBox)
 
 // Public functions
 import {hws} from './hws-public.js'

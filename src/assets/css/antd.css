@@ -34,3 +34,7 @@ th.table_title {
   border-color: #fff;
   background-color: #fff;
 }
+
+.ant-tabs-content {
+  overflow: auto !important;
+}

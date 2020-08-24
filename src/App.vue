@@ -87,6 +87,7 @@
           </a-layout-content>
         </a-layout>
       </a-layout>
+      <my-messagebox id="taskbox" v-if="visibleTaskBox"></my-messagebox>
     </div>
   </a-config-provider>
 </template>
@@ -98,11 +99,30 @@ export default {
     return {
       zhCN,
       collapsed: false,
+      visibleTaskBox: false,
     };
   },
   methods: {
     openTask() {
-      this.successMsg("打开任务队列");
+      var vm = this;
+      var load = this.public_msg_loading();
+      layer.close(load);
+      this.visibleTaskBox = true;
+      setTimeout(function() {
+        vm.public_msg_open(
+          "消息盒子",
+          ["700px", "700px"],
+          null,
+          $("#taskbox"),
+          -1,
+          null,
+          null,
+          null,
+          function() {
+            vm.visibleTaskBox = false;
+          }
+        );
+      }, 150);
     },
 
     exitPanel() {
