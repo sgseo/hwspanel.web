@@ -1,6 +1,6 @@
 <template>
   <div>
-    <my-topbar :leftWidth="400" :rightWidth="250">
+    <my-topbar :leftWidth="400" :rightWidth="350">
       <span slot="left" class="flex-row-flex-start-wrap">
         <a-tooltip>
           <template slot="title">{{ topBar.osName }}</template>
@@ -29,6 +29,8 @@
           版本：{{ topBar.curVer }}
         </a-badge>
         <a href="#" class="mal10">更新</a>
+        自动更新
+        <a-switch size="small"></a-switch>
         <a href="#" class="mal10">修复</a>
         <a href="#" class="mal10">Restart</a>
       </span>
