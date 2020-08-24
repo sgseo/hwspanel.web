@@ -1,6 +1,6 @@
 <template>
   <div>
-    <my-topbar :leftWidth="400" :rightWidth="230">
+    <my-topbar :leftWidth="400" :rightWidth="250">
       <span slot="left" class="flex-row-flex-start-wrap">
         <a-tooltip>
           <template slot="title">{{ topBar.osName }}</template>

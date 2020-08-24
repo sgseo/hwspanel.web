@@ -71,6 +71,7 @@ export default {
           className: "table_title font12px",
           ellipsis: true,
           width: this.rightWidth,
+          align: "right",
           scopedSlots: { customRender: "right" }
         }
       ],
