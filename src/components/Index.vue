@@ -17,9 +17,9 @@
           </span>
         </a-tooltip>
       </span>
-      <a slot="center" class="color-warning" :href="topBar.adv.url" target="_blank">
+      <a slot="center" class="color-warning" :href="topBar.ads.url" target="_blank">
         <a-icon type="notification" />
-        {{ topBar.adv.info }}
+        {{ topBar.ads.info }}
       </a>
       <span slot="right">
         <a-badge dot class="font12px">
@@ -179,7 +179,7 @@ const technicalSupport = [
     target: "_blank",
     iconType: "message",
     class: "color-success",
-    description: "有问题，上论坛发帖求助。"
+    description: "有问题，上论坛发帖求助。",
   },
   {
     title: "官网",
@@ -187,7 +187,7 @@ const technicalSupport = [
     target: "_blank",
     iconType: "star",
     class: "color-error",
-    description: "服务器安全，认准护卫神。"
+    description: "服务器安全，认准护卫神。",
   },
   {
     title: "800181978",
@@ -195,7 +195,7 @@ const technicalSupport = [
     target: "_self",
     iconType: "qq",
     class: "color-primary",
-    description: "在线沟通更流畅、更便利。"
+    description: "在线沟通更流畅、更便利。",
   },
   {
     title: "028-89549999",
@@ -203,7 +203,7 @@ const technicalSupport = [
     target: "_self",
     iconType: "phone",
     class: "color-warning",
-    description: "电话沟通更准确，更效率。"
+    description: "电话沟通更准确，更效率。",
   },
   {
     title: "帮助",
@@ -211,8 +211,8 @@ const technicalSupport = [
     target: "_blank",
     iconType: "solution",
     class: "color-success",
-    description: "帮助文档、教程、和知识。"
-  }
+    description: "帮助文档、教程、和知识。",
+  },
 ];
 export default {
   data() {
@@ -221,117 +221,123 @@ export default {
         osName: "centos 8.2.2004",
         upTime: "已不间断运行: 6天",
         curVer: "v1.0.0",
-        adv: {
+        ads: {
           info: "如何让服务器更安全？",
-          url: "https://www.hws.com/security"
-        }
+          url: "https://www.hws.com/security",
+        },
       },
       systemResource: [
         { data: 81, title: "平均负载", info: "运行缓慢" },
         { data: 93, title: "CPU使用率", info: "2核心" },
         { data: 30, title: "内存使用率", info: "546.02(MB)/1.78(GB)" },
-        { data: 14, title: "/", info: "14.51(GB)/39.99(GB)" }
+        { data: 14, title: "/", info: "14.51(GB)/39.99(GB)" },
       ],
       dataOverview: [
         { title: "网站", url: "/site", class: "global", data: 10 },
         { title: "数据库", url: "/db", class: "database", data: 9 },
-        { title: "日志条数", url: "/log", class: "snippets", data: 11 }
+        { title: "日志条数", url: "/log", class: "snippets", data: 11 },
       ],
       traffic: [
         {
           title: "上行",
           class: "trafficIcon bg-warning",
           data: 23,
-          dataList: [12, 20, 10, 13, 15, 14, 11]
+          dataList: [12, 20, 10, 13, 15, 14, 11],
         },
         {
           title: "下行",
           class: "trafficIcon bg-primary",
           data: 240,
-          dataList: [10, 25, 12, 10, 20, 12, 10]
+          dataList: [10, 25, 12, 10, 20, 12, 10],
         },
         { title: "总发送", class: "", data: 12 },
-        { title: "总接收", class: "", data: 24 }
+        { title: "总接收", class: "", data: 24 },
       ],
       quickOperation: [
         {
           name: "Apache",
           description: "使用人数最多的Web服务器",
           icon: {
-            backgroundImage: "url('/static/img/soft_ico/ico-apache.png')"
-          }
+            backgroundImage: "url('/static/img/soft_ico/ico-apache.png')",
+          },
         },
         {
           name: "Nginx",
           description: "小巧精悍的反向代理服务器",
-          icon: { backgroundImage: "url('/static/img/soft_ico/ico-nginx.png')" }
+          icon: {
+            backgroundImage: "url('/static/img/soft_ico/ico-nginx.png')",
+          },
         },
         {
           name: "MySQL 8.0.19",
           description: "MYSQL是一款关系型数据库",
-          icon: { backgroundImage: "url('/static/img/soft_ico/ico-mysql.png')" }
+          icon: {
+            backgroundImage: "url('/static/img/soft_ico/ico-mysql.png')",
+          },
         },
         {
           name: "PureFTPd",
           description: "PureFTPd是一款主打安全的FTP服务器软件",
           icon: {
-            backgroundImage: "url('/static/img/soft_ico/ico-pureftpd.png')"
-          }
+            backgroundImage: "url('/static/img/soft_ico/ico-pureftpd.png')",
+          },
         },
         {
           name: "Redis",
           description: "内存型数据库,一般用于缓存数据",
-          icon: { backgroundImage: "url('/static/img/soft_ico/ico-redis.png')" }
+          icon: {
+            backgroundImage: "url('/static/img/soft_ico/ico-redis.png')",
+          },
         },
         {
           name: "PHP53",
           description: "PHP是世界上最好的语言",
-          icon: { backgroundImage: "url('/static/img/soft_ico/ico-php.png')" }
+          icon: { backgroundImage: "url('/static/img/soft_ico/ico-php.png')" },
         },
         {
           name: "PHP54",
           description: "PHP是世界上最好的语言",
-          icon: { backgroundImage: "url('/static/img/soft_ico/ico-php.png')" }
+          icon: { backgroundImage: "url('/static/img/soft_ico/ico-php.png')" },
         },
         {
           name: "PHP55",
           description: "PHP是世界上最好的语言",
-          icon: { backgroundImage: "url('/static/img/soft_ico/ico-php.png')" }
+          icon: { backgroundImage: "url('/static/img/soft_ico/ico-php.png')" },
         },
         {
           name: "PHP56",
           description: "PHP是世界上最好的语言",
-          icon: { backgroundImage: "url('/static/img/soft_ico/ico-php.png')" }
+          icon: { backgroundImage: "url('/static/img/soft_ico/ico-php.png')" },
         },
         {
           name: "PHP70",
           description: "PHP是世界上最好的语言",
-          icon: { backgroundImage: "url('/static/img/soft_ico/ico-php.png')" }
+          icon: { backgroundImage: "url('/static/img/soft_ico/ico-php.png')" },
         },
         {
           name: "PHP71",
           description: "PHP是世界上最好的语言",
-          icon: { backgroundImage: "url('/static/img/soft_ico/ico-php.png')" }
+          icon: { backgroundImage: "url('/static/img/soft_ico/ico-php.png')" },
         },
         {
           name: "PHP72",
           description: "PHP是世界上最好的语言",
-          icon: { backgroundImage: "url('/static/img/soft_ico/ico-php.png')" }
+          icon: { backgroundImage: "url('/static/img/soft_ico/ico-php.png')" },
         },
         {
           name: "PHP73",
           description: "PHP是世界上最好的语言",
-          icon: { backgroundImage: "url('/static/img/soft_ico/ico-php.png')" }
+          icon: { backgroundImage: "url('/static/img/soft_ico/ico-php.png')" },
         },
         {
           name: "phpMyAdmin",
           description: "phpMyAdmin是一款(PHP写的)基于Web的MySQL数据库管理工具",
           icon: {
-            backgroundImage: "url('/static/img/soft_ico/ico-phpmyadmin.png')"
-          }
-        }
+            backgroundImage: "url('/static/img/soft_ico/ico-phpmyadmin.png')",
+          },
+        },
       ],
-      technicalSupport
+      technicalSupport,
     };
   },
   mounted() {
@@ -354,8 +360,8 @@ export default {
       } else {
         return "#52c41a";
       }
-    }
-  }
+    },
+  },
 };
 </script>
 
